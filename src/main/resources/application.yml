@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/wdy?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=PRC
+    username: root
+    password: 123456
+
+  jpa:
+    database: mysql
+    show-sql: true
+    properties:
+      hibernate:
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰映射
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 6666
+#  servlet:
+#    context-path: /hello
+
