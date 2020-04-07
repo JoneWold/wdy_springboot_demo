@@ -4,35 +4,35 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.wdy.springboot.entity.User">
-        <id column="id" property="id" />
-        <result column="key" property="key" />
-        <result column="name" property="name" />
-        <result column="account" property="account" />
-        <result column="password" property="password" />
-        <result column="salt2" property="salt2" />
-        <result column="org_key" property="orgKey" />
-        <result column="org_name" property="orgName" />
-        <result column="picture" property="picture" />
-        <result column="picture_obj" property="pictureObj" />
-        <result column="open_id" property="openId" />
-        <result column="union_id" property="unionId" />
-        <result column="gender" property="gender" />
-        <result column="email" property="email" />
-        <result column="phone" property="phone" />
-        <result column="status" property="status" />
-        <result column="online_status" property="onlineStatus" />
-        <result column="login_fail_times" property="loginFailTimes" />
-        <result column="last_login_time" property="lastLoginTime" />
-        <result column="unlock_time" property="unlockTime" />
-        <result column="create_time" property="createTime" />
-        <result column="creator" property="creator" />
-        <result column="update_time" property="updateTime" />
-        <result column="updator" property="updator" />
-        <result column="version" property="version" />
-        <result column="remark" property="remark" />
-        <result column="deleted" property="deleted" />
-        <result column="manager_level" property="managerLevel" />
-        <result column="manager_level_name" property="managerLevelName" />
+        <id column="id" property="id"/>
+        <result column="key" property="key"/>
+        <result column="name" property="name"/>
+        <result column="account" property="account"/>
+        <result column="password" property="password"/>
+        <result column="salt2" property="salt2"/>
+        <result column="org_key" property="orgKey"/>
+        <result column="org_name" property="orgName"/>
+        <result column="picture" property="picture"/>
+        <result column="picture_obj" property="pictureObj"/>
+        <result column="open_id" property="openId"/>
+        <result column="union_id" property="unionId"/>
+        <result column="gender" property="gender"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="status" property="status"/>
+        <result column="online_status" property="onlineStatus"/>
+        <result column="login_fail_times" property="loginFailTimes"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="unlock_time" property="unlockTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="creator" property="creator"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="updator" property="updator"/>
+        <result column="version" property="version"/>
+        <result column="remark" property="remark"/>
+        <result column="deleted" property="deleted"/>
+        <result column="manager_level" property="managerLevel"/>
+        <result column="manager_level_name" property="managerLevelName"/>
     </resultMap>
 
     <select id="getList" resultType="com.wdy.springboot.entity.User">

@@ -7,6 +7,8 @@ import com.wdy.springboot.entity.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -23,8 +25,10 @@ public class UserService extends ServiceImpl<UserMapper, User> {
     UserMapper userMapper;
 
     public Page<User> getList(int pageNum, int pageSize) {
-        Page<User> page = new Page<>(pageNum, pageSize);
-        page.setRecords(userMapper.getList());
+        List<User> list = userMapper.getList();
+        Page<User> page = new Page<>(pageNum, pageSize, list.size());
+        // 数据分页
+        page.setRecords(list.stream().skip((pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList()));
         return page;
     }
 
