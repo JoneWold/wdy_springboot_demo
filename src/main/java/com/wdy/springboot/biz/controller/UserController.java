@@ -1,6 +1,7 @@
 package com.wdy.springboot.biz.controller;
 
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-12-26
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
+
+    @GetMapping("/")
+    public String say() {
+        return "Hello Spring Boot";
+    }
+
 
 }
