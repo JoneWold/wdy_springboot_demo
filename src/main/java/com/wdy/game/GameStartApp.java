@@ -1,11 +1,16 @@
 package com.wdy.game;
 
+import com.wdy.game.engin.Sound;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import static com.wdy.game.constant.CommonConstant.screen_size;
 
@@ -37,6 +42,14 @@ public class GameStartApp extends Frame {
      * 选择人物
      */
     private ChoseMan cman = new ChoseMan();
+    //过关图
+    private BufferedImage completeimage = null;
+    //GAMEOVER图
+    private BufferedImage gameoverimage = null;
+    //缓冲层
+    private Image bufferImage = null;
+    private Sound completesound = new Sound("music/complete.mp3");
+    private Sound gameoversound = new Sound("music/gameover.mp3");
 
     public static void main(String[] args) {
         new GameStartApp().showScreen();
@@ -68,15 +81,86 @@ public class GameStartApp extends Frame {
         //添加键盘事件
         this.addKeyListener(new GameJoy());
 
-//        try { //读取读取画面
-//            completeimage = ImageIO.read(UserRobot.class.getResource("imgs/complete.jpg"));
-//            gameoverimage = ImageIO.read(UserRobot.class.getResource("imgs/Gameover.jpg"));
-//        } catch (IOException e1) {
-//            e1.printStackTrace();
-//        }
+        try { //读取读取画面
+            completeimage = ImageIO.read(UserRobot.class.getResource("imgs/complete.jpg"));
+            gameoverimage = ImageIO.read(UserRobot.class.getResource("imgs/Gameover.jpg"));
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
         this.setVisible(true);
     }
 
+    /**
+     * 绘制缓冲层
+     */
+    @Override
+    public void update(Graphics g) {
+        //创建缓冲层
+        if (bufferImage == null) {
+            bufferImage = this.createImage(screen_size.width, screen_size.height);
+        }
+        //获得缓冲层笔
+        Graphics bufferPen = bufferImage.getGraphics();
+        //设置刷新层颜色
+        bufferPen.setColor(this.getBackground());
+        //绘制刷新层
+        bufferPen.fillRect(0, 0, screen_size.width, screen_size.height);
+        paint(bufferPen);
+        g.drawImage(bufferImage, 0, 0, null);
+    }
+
+    /**
+     * 绘制元件
+     */
+    @Override
+    public void paint(Graphics g) {
+        switch (gamestatic) {
+            //读取状态
+            case -1:
+                cman.drawAll(g);
+                break;
+            //第一关开始
+            case 1:
+                if (chapter01 == null) {
+                    cman.close();
+                    cman = null;
+                    chapter01 = new Chapter01();
+                }
+                chapter01.drawAll(g);
+                break;
+            //过关
+            case 99:
+                if (chapter01 != null) {
+                    chapter01.close();
+                    chapter01 = null;
+                    completesound.playloop();
+                }
+                g.drawImage(completeimage, 0, 0, null);
+                break;
+            //GAME OVER
+            case 0:
+                if (chapter01 != null) {
+                    chapter01.close();
+                    chapter01 = null;
+                    gameoversound.playloop();
+                }
+                g.drawImage(gameoverimage, 0, 0, null);
+                break;
+            default:
+                break;
+        }
+
+        drawFPS(g);
+    }
+
+    /**
+     * 显示FPS
+     */
+    public void drawFPS(Graphics g) {
+        g.setFont(new Font("宋体", Font.BOLD, 24));
+        g.setColor(Color.RED);
+        g.drawString(String.valueOf(showFPS) + " FPS", 20, 50);
+    }
 
     /**
      * 主循环线程
