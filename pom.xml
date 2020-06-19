@@ -95,6 +95,14 @@
             <version>${dozer.version}</version>
         </dependency>
 
+        <!--音频文件-->
+        <dependency>
+            <groupId>com.sound.mp3</groupId>
+            <artifactId>mp3</artifactId>
+            <version>1.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jl1.0.1.jar</systemPath>
+        </dependency>
     </dependencies>
 
 
