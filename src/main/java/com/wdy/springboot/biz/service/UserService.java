@@ -2,7 +2,7 @@ package com.wdy.springboot.biz.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.wdy.springboot.biz.mapper.UserMapper;
+import com.wdy.springboot.biz.dao.UserMapper;
 import com.wdy.springboot.entity.User;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.wdy.springboot.biz.mapper;
+package com.wdy.springboot.biz.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wdy.springboot.entity.User;
