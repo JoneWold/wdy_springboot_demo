@@ -13,15 +13,14 @@ import java.io.InputStream;
 public class Sound {
     private AdvancedPlayer ap = null;
     private boolean tLoop = false;
-    private Muiscl ml = new Muiscl();
+    private Musicl ml = new Musicl();
     private String mp3path = null;
-    InputStream in;
 
     /**
      * ≥ı ºªØ
      */
     public Sound(String mp3path) {
-        this.mp3path = mp3path;
+        this.mp3path = "game/" + mp3path;
     }
 
     /**
@@ -49,15 +48,14 @@ public class Sound {
         ml.start();
     }
 
-    class Muiscl extends Thread {
+    class Musicl extends Thread {
         @Override
         public void run() {
             do {
-                in = this.getClass().getClassLoader()
-                        .getResourceAsStream(mp3path);
+                InputStream in = this.getClass().getClassLoader().getResourceAsStream(mp3path);
                 try {
                     ap = new AdvancedPlayer(in);
-                } catch (JavaLayerException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 try {

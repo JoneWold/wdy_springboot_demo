@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 
 /**
@@ -27,13 +28,12 @@ public class ChoseMan {
      */
     public ChoseMan() {
         try {
-            //人物
-            cmimage0 = ImageIO.read(UserRobot.class.getResource("imgs/choseman01.gif"));
-            cmimage1 = ImageIO.read(UserRobot.class.getResource("imgs/choseman02.gif"));
-
+            //人物   UserRobot.class.getResource("imgs/choseman01.gif")
+            cmimage0 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/choseman01.gif")));
+            cmimage0 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/choseman02.gif")));
             //机体
-            cjimage0 = ImageIO.read(UserRobot.class.getResource("imgs/lwj.gif"));
-            cjimage1 = ImageIO.read(UserRobot.class.getResource("imgs/freedom.gif"));
+            cjimage0 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/lwj.gif")));
+            cjimage1 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/freedom.gif")));
         } catch (IOException e) {
             e.printStackTrace();
         }

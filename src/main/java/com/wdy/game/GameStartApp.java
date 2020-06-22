@@ -11,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 import static com.wdy.game.constant.CommonConstant.screen_size;
 
@@ -82,8 +83,8 @@ public class GameStartApp extends Frame {
         this.addKeyListener(new GameJoy());
 
         try { //读取读取画面
-            completeimage = ImageIO.read(UserRobot.class.getResource("imgs/complete.jpg"));
-            gameoverimage = ImageIO.read(UserRobot.class.getResource("imgs/Gameover.jpg"));
+            completeimage = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/complete.jpg")));
+            gameoverimage = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/Gameover.jpg")));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
