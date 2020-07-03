@@ -21,3 +21,20 @@ server:
 #  servlet:
 #    context-path: /hello
 
+
+student:
+  name: 张三
+  age: 20
+  sex: true
+  birthday: 2020/07/03
+  location: {province: 陕西,city: 西安,zone: 莲湖区}
+  hobbies:
+  - 篮球
+  - 跑步
+  skills:
+  - Java编程
+  - 金融
+  pet:
+    nickName: 旺财
+    strain: 哈士奇
+
