@@ -28,4 +28,5 @@ public class Student {
     private Pet pet;
 
     //@Component 将此Javabean放入spring容器
+    //@ConfigurationProperties 绑定yaml配置的值
 }
