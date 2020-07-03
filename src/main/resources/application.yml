@@ -27,14 +27,20 @@ student:
   age: 20
   sex: true
   birthday: 2020/07/03
-  location: {province: 陕西,city: 西安,zone: 莲湖区}
-  hobbies:
-  - 篮球
-  - 跑步
-  skills:
-  - Java编程
-  - 金融
-  pet:
-    nickName: 旺财
-    strain: 哈士奇
+  # 默认可以不写引号，但只有双引号才会将其中的转义符进行转义，如换行符。而单引号内数据会将换行符原样输出
+  # Map类型数据可以写成：行内写法
+  # {province: "陕\n西",city: 西安,zone: 莲湖区}
+  location:
+    province: "陕\n西"
+    city: 西安
+    zone: 莲湖区
+  # List和数组类型可以写成：
+  # - 篮球
+  # - 跑步
+  hobbies: [篮球,跑步]
+  skills: [Java编程,金融]
+  # 对象类型数据可以写成：
+  # nickName: 旺财
+  # strain: 哈士奇
+  pet: {nickName: 旺财, strain: 哈士奇}
 
