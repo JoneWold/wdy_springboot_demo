@@ -10,7 +10,15 @@ spring:
     show-sql: true
     properties:
       hibernate:
+  # 2、多环境的切换（yml）
+  #  profiles:
+  #    active: dev1
 
+  # 3、动态切换多环境
+#（1）编译器运行参数指定环境：步骤Run/Debug Configurations》》》program arguments处添加代码：--spring.profiles.active=dev
+#（2）编译器vm参数指定环境：VM arguments处添加代码：-Dspring.profiles.active=dev
+#（3）cmd命令行方式指定（需要将项目打包成jar包）：
+#  java -jar wdy_springboot_demo-0.0.1-SNAPSHOT.jar --spring.profiles.active=test
 
 mybatis-plus:
   configuration:
@@ -20,6 +28,17 @@ server:
   port: 666
 #  servlet:
 #    context-path: /hello
+---
+server:
+  port: 6661
+spring:
+  profiles: dev1
+
+---
+server:
+  port: 6662
+spring:
+  profiles: test
 
 
 student:

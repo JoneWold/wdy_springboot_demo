@@ -109,6 +109,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/jl1.0.1.jar</systemPath>
         </dependency>
+
+        <!--以前引入js等静态资源，是将这些资源 下载并手工放入到webapp目录中；而springboot将这些静态资源直接以jar文件(maven)的形式引入项目-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.5.1</version>
+        </dependency>
     </dependencies>
 
 

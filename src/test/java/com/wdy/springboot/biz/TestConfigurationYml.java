@@ -3,6 +3,8 @@ package com.wdy.springboot.biz;
 import com.wdy.springboot.biz.wdy.yml.Student;
 import com.wdy.springboot.biz.wdy.yml.service.StudentService;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -15,6 +17,8 @@ import org.springframework.context.ApplicationContext;
  */
 @SpringBootTest
 public class TestConfigurationYml {
+
+    Logger logger = LoggerFactory.getLogger(TestConfigurationYml.class);
 
     @Autowired
     Student student;
@@ -32,6 +36,15 @@ public class TestConfigurationYml {
         // 从spring容器中获取 自定义配置中的数据
         StudentService service = (StudentService) context.getBean("stuService2");
         System.out.println(service);
+    }
+
+    @Test
+    void testLog() {
+        logger.trace("trace......");
+        logger.debug("debug......");
+        logger.info("info......");
+        logger.warn("warn......");
+        logger.error("error......");
     }
 
 }
