@@ -23,7 +23,8 @@ server:
 
 
 student:
-  name: 张三
+  # 引用application.properties配置的变量值
+  name: ${student.name:无名}
   age: 20
   sex: true
   birthday: 2020/07/03
@@ -48,4 +49,6 @@ student:
   # nickName: 旺财
   # strain: 哈士奇
   pet: {nickName: 旺财, strain: 哈士奇}
+  email: 115@1.com
+  userName: 管理员
 
