@@ -1,57 +1,61 @@
 一、动态切换多环境
-	（1）编译器运行参数指定环境：步骤Run/Debug Configurations--->>> program arguments处添加代码：--spring.profiles.active=dev
+
+	（1）编译器运行参数指定环境：步骤Run/Debug Configurations --->>> program arguments处添加代码：--spring.profiles.active=dev
 	（2）编译器vm参数指定环境：VM arguments处添加代码：-Dspring.profiles.active=dev
 	（3）cmd命令行方式指定（需要将项目打包成jar包）：
 	java -jar wdy_springboot_demo-0.0.1-SNAPSHOT.jar --spring.profiles.active=test
 
 
 二、配置文件的位置
-1、项目内部的配置文件：
-	.properties和.yml中的配置，相互补充；如果冲突，则.properties优先级高
-	springboot 默认能够读取的application.properties/application.yml这两个文件，可以存在于以下4个文件目录下
-	file：项目根目录/config  优先级最高
-	file：项目根目录
-	classpath：项目根目录/config
-	classpath：项目根目录    优先级最低
 
-2、项目外部的配置文件：
-	（1）编译器运行参数指定配置文件：步骤在Run/Debug Configurations --->>> program arguments处添加代码：--spring.config.location=D:/application.properties
-	（2）cmd命令行调用外部配置文件：
-  java -jar wdy_springboot_demo-0.0.1-SNAPSHOT.jar --spring.config.location=D:/application.properties
-	注意：如果同一个配置同时存在于内部配置文件和外部配置文件，则外部>内部
+    1、项目内部的配置文件：
+    	.properties和.yml中的配置，相互补充；如果冲突，则.properties优先级高
+    	springboot 默认能够读取的application.properties/application.yml这两个文件，可以存在于以下4个文件目录下
+    	file：项目根目录/config  优先级最高
+    	file：项目根目录
+    	classpath：项目根目录/config
+    	classpath：项目根目录    优先级最低
 
-3、项目运行参数修改某几个配置：
-	编译器运行参数，在Run/Debug Configurations --->>> program arguments处添加代码：--server.port=6663
-	通过cmd命令行修改某一配置: java -jar 项目名.jar --server.port=6663
+    2、项目外部的配置文件：
+    	（1）编译器运行参数指定配置文件：步骤在Run/Debug Configurations --->>> program arguments处添加代码：--spring.config.location=D:/application.properties
+    	（2）cmd命令行调用外部配置文件：
+      java -jar wdy_springboot_demo-0.0.1-SNAPSHOT.jar --spring.config.location=D:/application.properties
+    	注意：如果同一个配置同时存在于内部配置文件和外部配置文件，则外部>内部
 
-	注意：多个地方配置时，如果冲突，优先级是：命令行参数（运行参数>外部配置文件）>内部文件（properties>yml）
+    3、项目运行参数修改某几个配置：
+    	编译器运行参数，在Run/Debug Configurations --->>> program arguments处添加代码：--server.port=6663
+    	通过cmd命令行修改某一配置: java -jar 项目名.jar --server.port=6663
+
+    	注意：多个地方配置时，如果冲突，优先级是：命令行参数（运行参数>外部配置文件）>内部文件（properties>yml）
 
 
 三、springboot日志处理
-1、日志框架：UCL  JUL  jboss-logging  logback  log4j  log4j2  slf4j...
-	springboot默认选用的是logback，slf4j
-	日志级别：
-		TRACE< DEBUG< INFO< WARN< ERROR< FATAL< OFF
-	springboot默认的日志级别是info（即只打印info及之后级别的信息），
-	（1）也可以自定义一个日志级别：logging.level.com.wdy.springboot.SptApplication=warn
-	（2）可以通过配置将日志信息存放在文件中：logging.file=springboot.log
-	（3）也可以存储在某文件夹中：logging.path=D:/log/，并且文件名默认为spring.log
-	（4）指定日志显示格式：
-	日志在控制台中：
-	logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n
-	%d：日期时间
-	%thread：线程名
-	%-5level：显示日志级别，-5表示从左显示5个字符宽度
-	%logger{50}：设置日志长度
-	%msg：日志消息
-	%n：回车
-	日志在文件中：
-	logging.pattern.file=%d{yyyy-MM-dd} ** [%thread] ** %-5level %logger{50} - %msg%n
 
-2、springboot默认日志格式，是在jar包中相应的xml文件中进行配置。
+    1、日志框架：UCL  JUL  jboss-logging  logback  log4j  log4j2  slf4j...
+    	springboot默认选用的是logback，slf4j
+    	日志级别：
+    		TRACE< DEBUG< INFO< WARN< ERROR< FATAL< OFF
+    	springboot默认的日志级别是info（即只打印info及之后级别的信息），
+    	（1）也可以自定义一个日志级别：logging.level.com.wdy.springboot.SptApplication=warn
+    	（2）可以通过配置将日志信息存放在文件中：logging.file=springboot.log
+    	（3）也可以存储在某文件夹中：logging.path=D:/log/，并且文件名默认为spring.log
+    	（4）指定日志显示格式：
+    	日志在控制台中：
+    	logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n
+    	%d：日期时间
+    	%thread：线程名
+    	%-5level：显示日志级别，-5表示从左显示5个字符宽度
+    	%logger{50}：设置日志长度
+    	%msg：日志消息
+    	%n：回车
+    	日志在文件中：
+    	logging.pattern.file=%d{yyyy-MM-dd} ** [%thread] ** %-5level %logger{50} - %msg%n
+
+    2、springboot默认日志格式，是在jar包中相应的xml文件中进行配置。
 
 
 四、springboot处理web项目静态资源（html,css,js）
+
 	springboot是一个jar，因此静态资源就不是再存放到webapps中，静态资源的存放路径通过WebMvcAutoConfiguration类的addResourceHandlers()方法指定：/webjars/
 	1、引入第三方静态资源：官网地址 https://www.webjars.org/
 		<dependency>
@@ -70,13 +74,19 @@
 	注意：在以上目录存放资源文件后，访问时直接访问：http://127.0.0.1:666/hello.html
 
 
+    3、设置欢迎页
+        （1）通过类WebMvcAutoConfiguration中welcomePageHandlerMapping()方法 -->> getWelcomePage() -->> getIndexHtml()方法 指定默认的欢迎页：location + "index.html"。
+    即任意一个静态资源目录中的index.html就是欢迎页。
+        （2）网站中，网页标签的logo是固定名字：favicon.ico，现版本源码中没有找到，但是确实能改logo，需要自定义该图片放入任意静态资源目录中即可。
 
 
+	4、如何自定义静态资源目录
+	    类ResourceProperties文件中的注解prefix = "spring.resources"，加上该类中的常量staticLocations即可。
+        如：spring.resources.static-locations=classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/
+	    注意：自定义静态资源目录后，以前默认的静态资源目录会失效。
 
 
-
-	
-	
+五、
 	
 
 
