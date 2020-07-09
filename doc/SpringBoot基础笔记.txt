@@ -1,4 +1,35 @@
-一、动态切换多环境
+SpringBoot基础笔记
+
+一、相关注解
+
+    1、 @Component
+        将此Javabean放入spring容器
+
+    2、 @ConfigurationProperties
+        绑定yaml配置的值，支持批量注入值，支持松散语法(如：nickName写成nick-name)，不支持SpEL，jsr303数据校验
+        支持注入复杂类型，简单类型（8个基本类型/String/Date）
+
+    3、 @Value
+        支持单个值注入，不支持松散语法，支持SpEL（"${student.name}"），不支持jsr303数据校验，不支持注入复杂类型
+
+    4、 @Validated
+        开启jsr303数据校验的注解，然后@Email等注解才会生效
+
+    5、 @PropertySource
+        默认会加载application.properties/application.yml配置文件中的数据。
+        @PropertySource(value={"classpath:conf.properties"}) 会加载conf.properties文件中的数据，
+        但是其中value的值只能加载.properties为后缀的配置数据，不支持.yml
+
+    6、@ImportResource
+        spring boot 自动装配/自动配置：spring等配置文件默认会被springboot自动给配置好。
+        如果要自己编写spring等配置文件，springboot 默认是不识别的。
+        如果需要识别，则需要在springboot主配置类上通过@ImportResource(locations = {"classpath:wdySpring.xml"})指定配置文件的路径。
+        但是不推荐手写spring配置文件
+        配置：xml配置文件，通过注解配置
+        springboot推荐注解方式进行配置：@Configuration，@Bean
+
+
+二、动态切换多环境
 
 	（1）编译器运行参数指定环境：步骤Run/Debug Configurations --->>> program arguments处添加代码：--spring.profiles.active=dev
 	（2）编译器vm参数指定环境：VM arguments处添加代码：-Dspring.profiles.active=dev
@@ -6,7 +37,7 @@
 	java -jar wdy_springboot_demo-0.0.1-SNAPSHOT.jar --spring.profiles.active=test
 
 
-二、配置文件的位置
+三、配置文件的位置
 
     1、项目内部的配置文件：
     	.properties和.yml中的配置，相互补充；如果冲突，则.properties优先级高
@@ -29,7 +60,7 @@
     	注意：多个地方配置时，如果冲突，优先级是：命令行参数（运行参数>外部配置文件）>内部文件（properties>yml）
 
 
-三、springboot日志处理
+四、springboot日志处理
 
     1、日志框架：UCL  JUL  jboss-logging  logback  log4j  log4j2  slf4j...
     	springboot默认选用的是logback，slf4j
@@ -54,7 +85,7 @@
     2、springboot默认日志格式，是在jar包中相应的xml文件中进行配置。
 
 
-四、springboot处理web项目静态资源（html,css,js）
+五、springboot处理web项目静态资源（html,css,js）
 
 	springboot是一个jar，因此静态资源就不是再存放到webapps中，静态资源的存放路径通过WebMvcAutoConfiguration类的addResourceHandlers()方法指定：/webjars/
 	1、引入第三方静态资源：官网地址 https://www.webjars.org/
@@ -85,8 +116,18 @@
         如：spring.resources.static-locations=classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/
 	    注意：自定义静态资源目录后，以前默认的静态资源目录会失效。
 
+    5、springboot通过XxxAutoConfiguration实现自动装配，通过XxxProperties文件中的 prefix+属性名 修改默认值。
 
-五、
-	
+
+六、动态资源
+    JSP （springboot 默认不支持）推荐：模板引擎 thymeleaf
+    引入thymeleaf：官网查询thymeleaf的maven依赖
+    通过ThymeleafAutoConfiguration --> ThymeleafProperties类找到thymeleaf默认属性配置。
+
+	基本用法：<p th:text="${welcome}">Welcome to thymeleaf......</p>中，发现如果存在相关表达式，会先从${welcome}取值，如果有 则直接显示，如果没有 再显示Welcome to thymeleaf......
+    作用：th 就是替换原有html的值，即 th:html属性名=值；（th:xx 参见第十章：Attribute Precedence）
+
+    区别：th:text  获取文本值，会受到HTML样式的渲染
+         th:utext 获取文本值（不转义），当普通文本显示，不会受到HTML样式的渲染
 
 
