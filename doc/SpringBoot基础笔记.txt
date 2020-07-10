@@ -124,10 +124,44 @@ SpringBoot基础笔记
     引入thymeleaf：官网查询thymeleaf的maven依赖
     通过ThymeleafAutoConfiguration --> ThymeleafProperties类找到thymeleaf默认属性配置。
 
-	基本用法：<p th:text="${welcome}">Welcome to thymeleaf......</p>中，发现如果存在相关表达式，会先从${welcome}取值，如果有 则直接显示，如果没有 再显示Welcome to thymeleaf......
-    作用：th 就是替换原有html的值，即 th:html属性名=值；（th:xx 参见第十章：Attribute Precedence）
+	1、基本用法：<p th:text="${welcome}">Welcome to thymeleaf......</p>中，发现如果存在相关表达式，会先从${welcome}取值，如果有 则直接显示，如果没有 再显示Welcome to thymeleaf......
+        作用：th 就是替换原有html的值，即 th:html属性名=值；（th:xx 参见第十章：Attribute Precedence）
 
-    区别：th:text  获取文本值，会受到HTML样式的渲染
-         th:utext 获取文本值（不转义），当普通文本显示，不会受到HTML样式的渲染
+        区别：th:utext  获取文本值，会受到HTML样式的渲染
+              th:text  获取文本值（不转义），当普通文本显示，不会受到HTML样式的渲染
 
+    2、取值符号：参见第四章：Standard Expression Syntax
+    3、遍历：参见第六章：Iteration
+        th:each="prod : ${prods}"
+
+
+七、SpringBoot 整合JSP开发
+    之前springboot默认自带一个内置的tomcat，不需要打war包，直接通过jar即可运行。如果要整合jsp开发，就要单独配置一个外置的tomcat，需要打war包。
+    注意：<dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <scope>provided</scope>
+          </dependency>
+        provided：意思是 将项目打包时，不需要将内置的tomcat一起打包。
+
+    1、新建boot项目，<packaging>war</packaging>
+
+    2、建立基本的web项目所需的目录结构
+        webapp/WEB-INF
+        webapp/WEB-INF/web.xml （不需要）
+        webapp/jspIndex.jsp
+
+    3、创建tomcat实例，部署项目
+        STS：Servers -> new Server（先选择要配置的tomcat版本，再将maven打的war包add到tomcat里面）-> start
+        访问：localhost:8080/项目名/jspIndex.jsp
+             localhost:8080/项目名/接口名
+
+    如果是一个war包的springboot项目，在启动服务器tomcat时，会自动调用ServletInitializer类中的configure方法，configure方法会调用springboot的主配置类，从而启动springboot。
+
+    public class ServletInitializer extends SpringBootServletInitializer {
+        @Override
+        protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+            return application.sources(SptApplication.class);
+        }
+    }
 

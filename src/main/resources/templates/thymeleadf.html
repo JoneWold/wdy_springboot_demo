@@ -7,5 +7,14 @@
 <body>
 <p th:text="${welcome}">Welcome to thymeleaf......</p>
 <p id="pid" class="pClass" th:id="${welcome}" th:class="${welcome}" th:text="${welcome}">Welcome to thymeleaf......</p>
+<hr>
+
+
+<div th:each="prod : ${prods}">
+    <h6 th:text="${prod.name}">Onions</h6>
+    <h6 th:text="${prod.price}">2.41</h6>
+    <h6 th:text="${prod.inStock}? #{true} : #{false}">yes</h6>
+</div>
+
 </body>
 </html>
