@@ -1,6 +1,7 @@
 package com.wdy.springboot.biz.wdy.yml.service;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020/7/6
  */
 @Configuration
+@ComponentScan({"com.wdy.springboot"})
 public class AppConfig {
 
 
