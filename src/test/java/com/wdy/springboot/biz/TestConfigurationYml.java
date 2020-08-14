@@ -1,6 +1,6 @@
 package com.wdy.springboot.biz;
 
-import com.wdy.springboot.biz.wdy.yml.Student;
+import com.wdy.springboot.biz.wdy.yml.StudentDemo;
 import com.wdy.springboot.biz.wdy.yml.service.StudentService;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class TestConfigurationYml {
     Logger logger = LoggerFactory.getLogger(TestConfigurationYml.class);
 
     @Autowired
-    Student student;
+    StudentDemo student;
     @Autowired
     ApplicationContext context; //spring ioc容器
 

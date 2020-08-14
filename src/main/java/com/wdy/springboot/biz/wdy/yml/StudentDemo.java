@@ -21,7 +21,7 @@ import java.util.Map;
 @Data
 @ToString
 @Validated
-public class Student {
+public class StudentDemo {
     @Value("李四")
     private String name;
     private int age;
@@ -30,7 +30,7 @@ public class Student {
     private Map<String, Object> location;
     private String[] hobbies;
     private List<String> skills;
-    private Pet pet;
+    private PetDto pet;
     @Email
     private String email;
     @Value("$(student.userName)")

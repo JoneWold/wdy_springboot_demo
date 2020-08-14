@@ -8,7 +8,7 @@ import lombok.Data;
  * @date 2020/7/3
  */
 @Data
-class Pet {
+class PetDto {
     private String nickName;
     private String strain;
 }
