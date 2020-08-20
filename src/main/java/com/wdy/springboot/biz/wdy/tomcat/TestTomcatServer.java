@@ -2,7 +2,7 @@ package com.wdy.springboot.biz.wdy.tomcat;
 
 /**
  * @author wgch
- * @Description springboot内嵌tomcat
+ * @Description 自定义springboot内嵌tomcat
  * @date 2020/7/10
  */
 public class TestTomcatServer {

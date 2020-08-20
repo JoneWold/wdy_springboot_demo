@@ -130,7 +130,7 @@
             <version>3.5.1</version>
         </dependency>
 
-        <!--springboot内嵌容器tomcat-->
+        <!--自定义springboot内嵌容器tomcat所需依赖-->
         <!--scope为provided,也就是说打包时该依赖不会被包含在lib包内-->
         <!--<dependency>
             <groupId>org.apache.tomcat.embed</groupId>
