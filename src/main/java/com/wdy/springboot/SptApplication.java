@@ -2,13 +2,11 @@ package com.wdy.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.annotation.ImportResource;
 
 /**
- * @author Administrator
+ * @author wdy
  */
-//@EnableEurekaServer
 @SpringBootApplication
 @ImportResource(locations = {"classpath:wdySpring.xml"}) // 加载自定义的配置文件（不推荐）
 public class SptApplication {
