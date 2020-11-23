@@ -1,21 +1,21 @@
 package com.wdy.game.constant;
 
 /**
- * ×Óµ¯·½Ïò
+ * å­å¼¹æ–¹å‘
  *
  * @author Administrator
  */
 public enum Direction {
     /**
-     * »ù±¾4·½Ïò
+     * åŸºæœ¬4æ–¹å‘
      */
     DUp, DDown, DLeft, Dright, DStop,
     /**
-     * À©Õ¹4·½Ïò
+     * æ‰©å±•4æ–¹å‘
      */
     DUpLeft, DUpright, DDownLeft, DDownRight,
     /**
-     * ×Ô¶¯·½Ïò£¬Ö÷ÒªÓÃÓÚ×Óµ¯¸ú×Ù
+     * è‡ªåŠ¨æ–¹å‘ï¼Œä¸»è¦ç”¨äºå­å¼¹è·Ÿè¸ª
      */
     DAuto;
 }

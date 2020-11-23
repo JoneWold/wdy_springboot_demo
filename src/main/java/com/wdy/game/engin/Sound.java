@@ -4,9 +4,10 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
 import java.io.InputStream;
+import java.util.Objects;
 
 /**
- * ÒôÆµÎÄ¼ş
+ * éŸ³é¢‘æ–‡ä»¶
  *
  * @author Administrator
  */
@@ -17,14 +18,15 @@ public class Sound {
     private String mp3path = null;
 
     /**
-     * ³õÊ¼»¯
+     * åˆå§‹åŒ–
      */
     public Sound(String mp3path) {
         this.mp3path = "game/" + mp3path;
+//        this.mp3path = Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/" + mp3path)).getPath();
     }
 
     /**
-     * ²¥·Å
+     * æ’­æ”¾
      */
     public void play() {
         tLoop = false;
@@ -32,7 +34,7 @@ public class Sound {
     }
 
     /**
-     * Í£Ö¹
+     * åœæ­¢
      */
     @SuppressWarnings("deprecation")
     public void stop() {
@@ -41,7 +43,7 @@ public class Sound {
     }
 
     /**
-     * Ñ­»·²¥·Å
+     * å¾ªç¯æ’­æ”¾
      */
     public void playloop() {
         tLoop = true;

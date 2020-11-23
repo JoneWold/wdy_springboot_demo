@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * ¹Ø¿¨1
+ * å…³å¡1
  *
  * @author Administrator
  */
@@ -26,29 +26,29 @@ public class Chapter01 {
     public int x1 = 0;
     public int x2 = 1536;
     /**
-     * ¹Ø¿¨ĞÅÏ¢
+     * å…³å¡ä¿¡æ¯
      */
     private ArrayList<String[]> chapterlist = new ArrayList<String[]>();
     /**
-     * ±³¾°ÒôÀÖ
+     * èƒŒæ™¯éŸ³ä¹
      */
     private Sound sd = new Sound("music/BGM_0001.mp3");
     /**
-     * BOSSÒôÀÖ
+     * BOSSéŸ³ä¹
      */
     private Sound Boss_sd = new Sound("music/zengjia.mp3");
     /**
-     * µĞ¾üÁĞ±í
+     * æ•Œå†›åˆ—è¡¨
      */
     public ArrayList<Enemy> enemys = new ArrayList<>();
     /**
-     * ³õÊ¼»¯ÓÃ»§
+     * åˆå§‹åŒ–ç”¨æˆ·
      */
     public static UserRobot userrobot = new UserRobot(new Point(100, 250), 100, Direction.DStop);
-    // ÉúÃüÍ¼
+    // ç”Ÿå‘½å›¾
     private BufferedImage lifeimage = null;
     /**
-     * µĞÈËimage
+     * æ•Œäººimage
      */
     private BufferedImage[] enemyimage = new BufferedImage[6];
     private BufferedImage speak01 = null;
@@ -56,45 +56,45 @@ public class Chapter01 {
     private BufferedImage speak03 = null;
     private BufferedImage speak04 = null;
     /**
-     * ¹Ø¿¨¼ÆÊ±Æ÷
+     * å…³å¡è®¡æ—¶å™¨
      */
     private int chapterTime;
     /**
-     * BossÉúÃü
+     * Bossç”Ÿå‘½
      */
     private int Bosslife;
-    //¸è¼§ºÅÊı¾İ
+    //æ­Œå§¬å·æ•°æ®
     private BufferedImage gjhimage = null;
     private boolean hs_gjh = false;
     private Point gjh_position = new Point(-800, -200);
     private int completetime = 0;
 
-    //BOSSËµ»°
+    //BOSSè¯´è¯
     private int speak_start_time;
     private int speak_end_time;
     private String speaker;
     private String speak_about;
 
     /**
-     * ³õÊ¼»¯¹Ø¿¨ĞÅÏ¢
+     * åˆå§‹åŒ–å…³å¡ä¿¡æ¯
      */
     public Chapter01() {
-        //¶ÁÈ¡¹Ø¿¨ÅäÖÃµ¥Î»
+        //è¯»å–å…³å¡é…ç½®å•ä½
         readTxt();
         try {
             lifeimage = ImageIO.read(UserRobot.class.getResource("imgs/life.gif"));
             BackgroundImage01 = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("imgs/Chapter_01/02.gif")), 1536, 600);
-            gjhimage = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("imgs/gjh.gif")), 800, 800); //¼ÓÔØ¸è¼§ºÅ
-            speak01 = ImageIO.read(UserRobot.class.getResource("imgs/speak/lks.gif")); //À­¿ËË¿
-            speak02 = ImageIO.read(UserRobot.class.getResource("imgs/speak/jl.gif")); //»ùÀ­´óºÍ
-            speak03 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj2.gif")); //Ôö¼Ó
-            speak04 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj.gif")); //Ôö¼ÓÒÅÑÔ
+            gjhimage = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("imgs/gjh.gif")), 800, 800); //åŠ è½½æ­Œå§¬å·
+            speak01 = ImageIO.read(UserRobot.class.getResource("imgs/speak/lks.gif")); //æ‹‰å…‹ä¸
+            speak02 = ImageIO.read(UserRobot.class.getResource("imgs/speak/jl.gif")); //åŸºæ‹‰å¤§å’Œ
+            speak03 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj2.gif")); //å¢åŠ 
+            speak04 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj.gif")); //å¢åŠ é—è¨€
             BackgroundImage02 = BackgroundImage01;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //µĞ»úÔØÈëÄÚ´æ
+        //æ•Œæœºè½½å…¥å†…å­˜
         for (int i = 0; i < enemyimage.length; i++) {
             try {
                 enemyimage[i] = ImageIO.read(UserRobot.class.getResource("imgs/NPC_000" + (i + 1) + ".gif"));
@@ -102,11 +102,11 @@ public class Chapter01 {
                 e.printStackTrace();
             }
         }
-        sd.playloop(); //²¥·Å±³¾°ÒôÀÖ
+        sd.playloop(); //æ’­æ”¾èƒŒæ™¯éŸ³ä¹
     }
 
     /**
-     * ¶ÁÈ¡ÎÄ±¾ÖĞµÄ¹Ø¿¨ĞÅÏ¢
+     * è¯»å–æ–‡æœ¬ä¸­çš„å…³å¡ä¿¡æ¯
      */
     public void readTxt() {
         String[] temstr = null;
@@ -115,7 +115,7 @@ public class Chapter01 {
         String lineStr = null;
         try {
             while ((lineStr = br.readLine()) != null) {
-                // È¥µô×¢ÊÍ
+                // å»æ‰æ³¨é‡Š
                 if (lineStr.indexOf("//") != 0) {
                     temstr = lineStr.split(",");
                     if (temstr[0].equals("speak")) {
@@ -134,7 +134,7 @@ public class Chapter01 {
         }
     }
 
-    //¸è¼§ºÅ³öÏÖ
+    //æ­Œå§¬å·å‡ºç°
     public void drawGJH(Graphics g) {
         if (gjh_position.x <= -200 && !hs_gjh) {
             g.drawImage(gjhimage, gjh_position.x++, gjh_position.y, null);
@@ -142,37 +142,37 @@ public class Chapter01 {
             if (gjh_position.x >= -750 && gjh_position.x <= -350) {
                 g.drawImage(speak01, 200, 330, null);
 
-                //¶Ô»°ÄÚÈİ
-                g.setFont(new Font("ËÎÌå", Font.BOLD, 16));
+                //å¯¹è¯å†…å®¹
+                g.setFont(new Font("å®‹ä½“", Font.BOLD, 16));
                 g.setColor(Color.white);
-                g.drawString("À­¿ËË¿", 420, 495);
+                g.drawString("æ‹‰å…‹ä¸", 420, 495);
 
-                g.drawString("¡º·¢ÏÖµĞ»ú£¬È«Ô±¸÷¾Í¸÷Î»£¬»ú¶¯Õ½Ê¿×¼±¸³ö»÷£¡¡»", 400, 520);
+                g.drawString("ã€å‘ç°æ•Œæœºï¼Œå…¨å‘˜å„å°±å„ä½ï¼ŒæœºåŠ¨æˆ˜å£«å‡†å¤‡å‡ºå‡»ï¼ã€", 400, 520);
             } else if (gjh_position.x > -350) {
                 g.drawImage(speak02, 200, 330, null);
 
-                g.setFont(new Font("ËÎÌå", Font.BOLD, 16));
+                g.setFont(new Font("å®‹ä½“", Font.BOLD, 16));
                 g.setColor(Color.white);
-                g.drawString("»ùÀ­", 420, 495);
-                g.drawString("¡ºÊÕµ½£¬FreeDom ³ö»÷£¡¡»", 400, 520);
+                g.drawString("åŸºæ‹‰", 420, 495);
+                g.drawString("ã€æ”¶åˆ°ï¼ŒFreeDom å‡ºå‡»ï¼ã€", 400, 520);
             }
         } else {
             hs_gjh = true;
             g.drawImage(gjhimage, gjh_position.x--, gjh_position.y, null);
 
-            userrobot.graphicsRobot(g, enemys); //»î×Å²Å»æÖÆÍæ¼Ò½ÇÉ«
+            userrobot.graphicsRobot(g, enemys); //æ´»ç€æ‰ç»˜åˆ¶ç©å®¶è§’è‰²
 
         }
     }
 
-    //Ö÷»æÖÆ·½·¨
+    //ä¸»ç»˜åˆ¶æ–¹æ³•
     public void drawAll(Graphics g) {
         chapterTime++;
-        drawBackGround(g); //»æÖÆ±³¾°
-        initNPC(); //ÖÆÔìÅúÁ¿µĞ¾ü
-//		/Ôö¼ÓËµ»°
+        drawBackGround(g); //ç»˜åˆ¶èƒŒæ™¯
+        initNPC(); //åˆ¶é€ æ‰¹é‡æ•Œå†›
+//		/å¢åŠ è¯´è¯
         if (chapterTime == 1500) {
-            this.sd.stop(); //BOSSÒôÀÖ
+            this.sd.stop(); //BOSSéŸ³ä¹
             this.Boss_sd.playloop();
         }
         if (chapterTime >= 1500 && chapterTime <= 1700) {
@@ -180,32 +180,32 @@ public class Chapter01 {
 
             g.drawImage(speak03, 200, 330, null);
 
-            g.setFont(new Font("ËÎÌå", Font.BOLD, 16));
+            g.setFont(new Font("å®‹ä½“", Font.BOLD, 16));
             g.setColor(Color.white);
-            g.drawString("ÔøÙ¤", 420, 495);
-            g.drawString("¡ºÈÃÎÒÀ´¸æËßÄãÎäÕß¾«Éñ°É£¬ÔøÙ¤²ÎÉÏ£¡¡»", 400, 520);
+            g.drawString("æ›¾ä¼½", 420, 495);
+            g.drawString("ã€è®©æˆ‘æ¥å‘Šè¯‰ä½ æ­¦è€…ç²¾ç¥å§ï¼Œæ›¾ä¼½å‚ä¸Šï¼ã€", 400, 520);
         }
-        drawGJH(g); //¸è¼§ºÅ
-        //»úÌåÅö×²
+        drawGJH(g); //æ­Œå§¬å·
+        //æœºä½“ç¢°æ’
         for (int i = 0; i < enemys.size(); i++) {
             userrobot.collision(enemys.get(i));
         }
 
         for (int i = 0; i < enemys.size(); i++) {
-            //»ñµÃBOSSÉúÃü
+            //è·å¾—BOSSç”Ÿå‘½
             if (enemys.get(i).Boss) {
                 Bosslife = enemys.get(i).life;
                 if (Bosslife <= 0) {
-                    //¹ı¹Ø
+                    //è¿‡å…³
                     completetime++;
                     if (completetime <= 500) {
                         g.drawImage(speak04, 200, 330, null);
 
-                        //¶Ô»°ÄÚÈİ
-                        g.setFont(new Font("ËÎÌå", Font.BOLD, 16));
+                        //å¯¹è¯å†…å®¹
+                        g.setFont(new Font("å®‹ä½“", Font.BOLD, 16));
                         g.setColor(Color.white);
-                        g.drawString("ÔøÙ¤", 420, 495);
-                        g.drawString("¡ºÎÒ¹ûÈ»ÀÏÁË£¬¸ÃÊÇ°ÑÊÀ½çÈÃ¸øÄêÇáÈËÁË......¡»", 400, 520);
+                        g.drawString("æ›¾ä¼½", 420, 495);
+                        g.drawString("ã€æˆ‘æœç„¶è€äº†ï¼Œè¯¥æ˜¯æŠŠä¸–ç•Œè®©ç»™å¹´è½»äººäº†......ã€", 400, 520);
                     } else {
                         GameStartApp.gamestatic = 99;
                     }
@@ -215,29 +215,29 @@ public class Chapter01 {
 
             if (enemys.get(i).life > 0) {
                 enemys.get(i).exp.i = 0;
-                enemys.get(i).drawMe(g, userrobot); //»î×ÅµÄµĞ¾ü
+                enemys.get(i).drawMe(g, userrobot); //æ´»ç€çš„æ•Œå†›
             } else if (enemys.get(i).life <= 0 && enemys.get(i).exp.life) {
-                enemys.get(i).drawMe(g, userrobot); //»æÖÆ±¬Õ¨
+                enemys.get(i).drawMe(g, userrobot); //ç»˜åˆ¶çˆ†ç‚¸
             } else if (enemys.get(i).life <= 0 && !enemys.get(i).exp.life) {
                 if (!enemys.get(i).Boss) {
-                    enemys.remove(i); //²»ÊÇBOSSËÀµô¾ÍÉ¾³ı
+                    enemys.remove(i); //ä¸æ˜¯BOSSæ­»æ‰å°±åˆ é™¤
                 }
             }
         }
 
 
-        //*******************************ÏÔÊ¾ĞÅÏ¢Àà********************************************
-        //ÏÔÊ¾×Óµ¯
-        g.setFont(new Font("ËÎÌå", 0, 14));
+        //*******************************æ˜¾ç¤ºä¿¡æ¯ç±»********************************************
+        //æ˜¾ç¤ºå­å¼¹
+        g.setFont(new Font("å®‹ä½“", 0, 14));
         g.setColor(Color.orange);
-        g.drawString("ÎÒ¾ü·¢ÉäµÄ×Óµ¯Îª£º" + String.valueOf(userrobot.bullets.size()), 110, 50); //ÏÔÊ¾×Óµ¯
+        g.drawString("æˆ‘å†›å‘å°„çš„å­å¼¹ä¸ºï¼š" + String.valueOf(userrobot.bullets.size()), 110, 50); //æ˜¾ç¤ºå­å¼¹
 
-        //»æÖÆµĞ¾üÊıÁ¿
+        //ç»˜åˆ¶æ•Œå†›æ•°é‡
         g.setColor(Color.white);
-        g.drawString("µĞ¾üÊıÁ¿Îª" + String.valueOf(enemys.size()), 280, 50);
+        g.drawString("æ•Œå†›æ•°é‡ä¸º" + String.valueOf(enemys.size()), 280, 50);
     }
 
-    //»æÖÆ±³¾°·½·¨
+    //ç»˜åˆ¶èƒŒæ™¯æ–¹æ³•
     public void drawBackGround(Graphics g) {
         x1 = x1 - 5;
         x2 = x2 - 5;
@@ -250,12 +250,12 @@ public class Chapter01 {
         }
     }
 
-    //*********************¹Ø¿¨NPC·ÖÅä*************************************************
+    //*********************å…³å¡NPCåˆ†é…*************************************************
     public void initNPC() {
         if (chapterlist.size() > 0) {
             for (int i = 0; i < chapterlist.size(); i++) {
                 String[] npcs = chapterlist.get(i);
-                if (chapterTime == Integer.parseInt(npcs[0])) { //Ê±¼äµ½ÁË³ö³¡
+                if (chapterTime == Integer.parseInt(npcs[0])) { //æ—¶é—´åˆ°äº†å‡ºåœº
                     BufferedImage loadimg = null;
                     Direction dir = Direction.DLeft;
                     if (npcs[1].equals("true")) {//BOSS
@@ -272,7 +272,7 @@ public class Chapter01 {
                             dir = Direction.DDown;
                         }
                         enemys.add(new Boss(new Point(Integer.parseInt(npcs[2]), Integer.parseInt(npcs[3])), Integer.parseInt(npcs[4]), Integer.parseInt(npcs[5]), loadimg, dir));
-                    } else {//ÔÓ±ø
+                    } else {//æ‚å…µ
                         loadimg = enemyimage[Integer.parseInt(npcs[6])];
                         if (npcs[7].equals("left")) {
                             dir = Direction.DLeft;
@@ -294,18 +294,18 @@ public class Chapter01 {
     }
 
     //**************************************************************************************
-    //¼üÅÌĞÅÏ¢
+    //é”®ç›˜ä¿¡æ¯
     public void keyReleased(KeyEvent e) {
         userrobot.keyReleased(e);
     }
 
     public void keyPressed(KeyEvent e) {
-        //±ØÉ±
+        //å¿…æ€
         if (e.getKeyCode() == KeyEvent.VK_K) {
             for (int i = 0; i < enemys.size(); i++) {
                 enemys.get(i).life -= 100;
                 if (enemys.get(i).life <= 0) {
-                    Sound Explodesd = new Sound("music/Explode.mp3"); //±¬Õ¨ÉùÒô
+                    Sound Explodesd = new Sound("music/Explode.mp3"); //çˆ†ç‚¸å£°éŸ³
                     Explodesd.play();
                 }
             }

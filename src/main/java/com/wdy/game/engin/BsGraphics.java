@@ -8,16 +8,16 @@ import java.awt.image.BufferedImage;
  */
 public class BsGraphics {
     /**
-     * »º³åÃæ
+     * ç¼“å†²é¢
      */
     private Image bufferface = null;
     /**
-     * »º³åÃæÉÏµÄ±Ê
+     * ç¼“å†²é¢ä¸Šçš„ç¬”
      */
     private Graphics bufferpen = null;
 
     /**
-     * ÅúÁ¿Í¼Æ¬³õÊ¼»¯
+     * æ‰¹é‡å›¾ç‰‡åˆå§‹åŒ–
      */
     public Image[] picInit(String[] picPath) {
         Image[] im = new Image[picPath.length];
@@ -29,7 +29,7 @@ public class BsGraphics {
     }
 
     /**
-     * µ¥·ùÍ¼Æ¬³õÊ¼»¯
+     * å•å¹…å›¾ç‰‡åˆå§‹åŒ–
      */
     public Image picInit(String picPath) {
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -37,7 +37,7 @@ public class BsGraphics {
     }
 
     /**
-     * »º³åÇø¼°±Ê´´½¨
+     * ç¼“å†²åŒºåŠç¬”åˆ›å»º
      */
     public void creatBufferFace(int width, int height, Container cont) {
         bufferface = cont.createImage(width, height);
@@ -45,14 +45,14 @@ public class BsGraphics {
     }
 
     /**
-     * »º³åÇøÉÏ»æÍ¼
+     * ç¼“å†²åŒºä¸Šç»˜å›¾
      */
     public void drawImage(Image image, int x, int y) {
         bufferpen.drawImage(image, x, y, null);
     }
 
     /**
-     * ¸´ÖÆ»º³åµ½ÆÁÄ»
+     * å¤åˆ¶ç¼“å†²åˆ°å±å¹•
      */
     public void copyBufferToScreen(Graphics g) {
         if (bufferface != null) {
@@ -62,10 +62,10 @@ public class BsGraphics {
     }
 
     /**
-     * Ğı×ªÍ¼Æ¬ÎªÖ¸¶¨½Ç¶È
+     * æ—‹è½¬å›¾ç‰‡ä¸ºæŒ‡å®šè§’åº¦
      *
-     * @param img    Ä¿±êÍ¼Ïñ
-     * @param degree Ğı×ª½Ç¶È
+     * @param img    ç›®æ ‡å›¾åƒ
+     * @param degree æ—‹è½¬è§’åº¦
      * @return
      */
     public static BufferedImage rotateImage(final BufferedImage img,
@@ -86,11 +86,11 @@ public class BsGraphics {
     }
 
     /**
-     * ±ä¸üÍ¼ÏñÎªÖ¸¶¨´óĞ¡
+     * å˜æ›´å›¾åƒä¸ºæŒ‡å®šå¤§å°
      *
-     * @param img Ä¿±êÍ¼Ïñ
-     * @param w   ¿í
-     * @param h   ¸ß
+     * @param img ç›®æ ‡å›¾åƒ
+     * @param w   å®½
+     * @param h   é«˜
      */
     public static BufferedImage resizeImage(final BufferedImage img,
                                             final int w, final int h) {
@@ -107,9 +107,9 @@ public class BsGraphics {
     }
 
     /**
-     * Ë®Æ½·­×ªÍ¼Ïñ
+     * æ°´å¹³ç¿»è½¬å›¾åƒ
      *
-     * @param img Ä¿±êÍ¼Ïñ
+     * @param img ç›®æ ‡å›¾åƒ
      * @return
      */
     public static BufferedImage flipImage(final BufferedImage img) {

@@ -16,43 +16,43 @@ import static com.wdy.game.constant.CommonConstant.screen_size;
 
 
 /**
- * Íæ¼Ò»úÌåÀà
+ * ç©å®¶æœºä½“ç±»
  *
  * @author Administrator
  */
 public class UserRobot {
 
-    private Dimension size = null; //³ß´ç
-    public Point position = null; //Î»ÖÃ
-    private int Speed = 3; //ËÙ¶È
-    public int life = 0; //ÉúÃü
-    private int bullettime = 0; //Éä»÷ÑÓ³Ù
-    public int bodyPower = 100; //ÉíÌå³å×²ÍşÁ¦
+    private Dimension size = null; //å°ºå¯¸
+    public Point position = null; //ä½ç½®
+    private int Speed = 3; //é€Ÿåº¦
+    public int life = 0; //ç”Ÿå‘½
+    private int bullettime = 0; //å°„å‡»å»¶è¿Ÿ
+    public int bodyPower = 100; //èº«ä½“å†²æ’å¨åŠ›
     private int MaxLife = 0;
     //
-    private BufferedImage robotimage01 = null, robotimage02 = null, robotimage03 = null, robotimage04 = null; //»úÌåÍ¼
-    private BufferedImage bulletimage01 = null, bulletimage02 = null, bulletimage03 = null, bulletimage04 = null, bulletimage05 = null; //×Óµ¯Í¼
+    private BufferedImage robotimage01 = null, robotimage02 = null, robotimage03 = null, robotimage04 = null; //æœºä½“å›¾
+    private BufferedImage bulletimage01 = null, bulletimage02 = null, bulletimage03 = null, bulletimage04 = null, bulletimage05 = null; //å­å¼¹å›¾
     //
-    public BufferedImage robotImage = null; //Í¼Æ¬
-    public ArrayList<Bullet> bullets = new ArrayList<Bullet>(); //×Óµ¯ĞòÁĞ
+    public BufferedImage robotImage = null; //å›¾ç‰‡
+    public ArrayList<Bullet> bullets = new ArrayList<Bullet>(); //å­å¼¹åºåˆ—
 
-    private Direction robotDirection = Direction.DStop; //»úÆ÷ÈË·½Ïò
-    private boolean pUp = false, pDown = false, pLeft = false, pRight = false, pStop = false; //ÅĞ¶Ï°´¼ü
+    private Direction robotDirection = Direction.DStop; //æœºå™¨äººæ–¹å‘
+    private boolean pUp = false, pDown = false, pLeft = false, pRight = false, pStop = false; //åˆ¤æ–­æŒ‰é”®
     private String[] bulletimg = {"imgs/bullet_01/00.gif"};
 
-    public Explosion exp = null; //±¬Õ¨
+    public Explosion exp = null; //çˆ†ç‚¸
     private String[] exp_img = null;
-    private int overspeakindex; //ËÀÍöÊ±ËµµÄ»°
+    private int overspeakindex; //æ­»äº¡æ—¶è¯´çš„è¯
     private BufferedImage overspeakimg = null;
     private BufferedImage headimage = null;
 
-    //³õÊ¼»¯
+    //åˆå§‹åŒ–
     public UserRobot(Point position, int life, Direction robotDirection) {
         this.position = position;
         this.life = life;
         this.MaxLife = life;
         this.robotDirection = robotDirection;
-        //³õÊ¼»¯Í¼Æ¬
+        //åˆå§‹åŒ–å›¾ç‰‡
         try {
             robotimage01 = ImageIO.read(UserRobot.class.getResource("imgs/Freedom_0001.gif"));
             robotimage02 = ImageIO.read(UserRobot.class.getResource("imgs/Freedom_0002.gif"));
@@ -65,17 +65,17 @@ public class UserRobot {
             bulletimage04 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("imgs/bullet_01/04.gif")));
             bulletimage05 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("imgs/bullet_01/05.gif")));
 
-            headimage = ImageIO.read(UserRobot.class.getResource("imgs/jlhead.gif")); //Í·Ïñ
-            overspeakimg = ImageIO.read(UserRobot.class.getResource("imgs/speak/lks2.gif")); //À­¿ËË¿
+            headimage = ImageIO.read(UserRobot.class.getResource("imgs/jlhead.gif")); //å¤´åƒ
+            overspeakimg = ImageIO.read(UserRobot.class.getResource("imgs/speak/lks2.gif")); //æ‹‰å…‹ä¸
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         this.robotImage = robotimage01;
-        //´ÓÍ¼Æ¬·µ»Ø³ß´ç
+        //ä»å›¾ç‰‡è¿”å›å°ºå¯¸
         this.size = new Dimension(this.robotImage.getWidth(null), this.robotImage.getHeight(null));
 
-        //³õÊ¼»¯±¬Õ¨Í¼
+        //åˆå§‹åŒ–çˆ†ç‚¸å›¾
         exp_img = new String[6];
         for (int i = 1; i < 7; i++) {
             exp_img[i - 1] = "imgs/Explosion/0" + i + ".gif";
@@ -84,7 +84,7 @@ public class UserRobot {
 
     }
 
-    //°´¼üÊÂ¼ş
+    //æŒ‰é”®äº‹ä»¶
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
@@ -100,7 +100,7 @@ public class UserRobot {
                 pRight = true;
                 break;
 
-            //¿ª»ğ
+            //å¼€ç«
             case KeyEvent.VK_J:
                 if (bullettime == 0 && life > 0) {
                     bullettime = 15;
@@ -112,7 +112,7 @@ public class UserRobot {
 
     }
 
-    //ÊÍ·Å°´¼ü
+    //é‡Šæ”¾æŒ‰é”®
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
@@ -132,95 +132,95 @@ public class UserRobot {
         }
     }
 
-    //×Ô¼º±¬Õ¨
+    //è‡ªå·±çˆ†ç‚¸
     public void explosionMe(Graphics g) {
         if (this.life <= 0) {
             exp.showMe(g);
         }
     }
 
-    //»ñµÃ»úÆ÷ÈË·½Ïò
+    //è·å¾—æœºå™¨äººæ–¹å‘
     public void getDirection() {
-        //ÉÏ
+        //ä¸Š
         if (pUp && !pDown && !pLeft && !pRight) {
             robotDirection = Direction.DUp;
         }
-//		ÏÂ
+//		ä¸‹
         if (!pUp && pDown && !pLeft && !pRight) {
             robotDirection = Direction.DDown;
         }
-//		×ó
+//		å·¦
         if (!pUp && !pDown && pLeft && !pRight) {
             robotDirection = Direction.DLeft;
         }
-//		ÓÒ
+//		å³
         if (!pUp && !pDown && !pLeft && pRight) {
             robotDirection = Direction.Dright;
         }
-//		Í£Ö¹
+//		åœæ­¢
         if (!pUp && !pDown && !pLeft && !pRight) {
             robotDirection = Direction.DStop;
         }
 
-        //×óÉÏ
+        //å·¦ä¸Š
         if (pUp && !pDown && pLeft && !pRight) {
             robotDirection = Direction.DUpLeft;
         }
-//		ÓÒÉÏ
+//		å³ä¸Š
         if (pUp && !pDown && !pLeft && pRight) {
             robotDirection = Direction.DUpright;
         }
-//		×óÏÂ
+//		å·¦ä¸‹
         if (!pUp && pDown && pLeft && !pRight) {
             robotDirection = Direction.DDownLeft;
         }
-//		ÓÒÏÂ
+//		å³ä¸‹
         if (!pUp && pDown && !pLeft && pRight) {
             robotDirection = Direction.DDownRight;
         }
     }
 
-    //ÒÆ¶¯
+    //ç§»åŠ¨
     public void robotMove() {
         int img = 1;
         switch (robotDirection) {
             case DUp:
                 position.y -= Speed;
-                break; //ÉÏ
+                break; //ä¸Š
             case DDown:
                 position.y += Speed;
-                break; //ÏÂ
+                break; //ä¸‹
             case DLeft:
-                img = 3; //Ïòºó·ÉµÄÍ¼Æ¬
+                img = 3; //å‘åé£çš„å›¾ç‰‡
                 position.x -= Speed;
-                break; //×ó
+                break; //å·¦
             case Dright:
                 position.x += Speed;
-                break; //ÓÒ
+                break; //å³
 
             case DUpLeft:
-                img = 3; //Ïòºó·ÉµÄÍ¼Æ¬
+                img = 3; //å‘åé£çš„å›¾ç‰‡
                 position.y -= Speed;
                 position.x -= Speed;
-                break; //ÉÏ×ó
+                break; //ä¸Šå·¦
             case DUpright:
                 position.y -= Speed;
                 position.x += Speed;
-                break; //ÉÏÓÒ
+                break; //ä¸Šå³
             case DDownLeft:
-                img = 3; //Ïòºó·ÉµÄÍ¼Æ¬
+                img = 3; //å‘åé£çš„å›¾ç‰‡
                 position.y += Speed;
                 position.x -= Speed;
-                break; //ÏÂ×ó
+                break; //ä¸‹å·¦
             case DDownRight:
                 position.y += Speed;
                 position.x += Speed;
-                break; //ÏÂÓÒ
+                break; //ä¸‹å³
             default:
                 break;
         }
 
-        //ÏŞÖÆ²»ÒÆ³öÆÁÄ»
+        //é™åˆ¶ä¸ç§»å‡ºå±å¹•
         if (position.y <= 25) {
             position.y = 25;
         }
@@ -234,7 +234,7 @@ public class UserRobot {
             position.y = screen_size.height - size.height;
         }
 
-        //»»»úÌåÍ¼
+        //æ¢æœºä½“å›¾
         switch (img) {
             case 1:
                 robotImage = robotimage01;
@@ -260,9 +260,9 @@ public class UserRobot {
         }
     }
 
-    //»æÖÆ×Ô¼º
+    //ç»˜åˆ¶è‡ªå·±
     public void graphicsRobot(Graphics g, ArrayList<Enemy> em) {
-        //ÑÓ³ÙÉä»÷´¦Àí
+        //å»¶è¿Ÿå°„å‡»å¤„ç†
         if (bullettime > 0) {
             bullettime--;
         }
@@ -286,26 +286,26 @@ public class UserRobot {
 
         drawGunFire(bullettime, g);
 
-        //´¦Àí×Óµ¯»æÖÆ
+        //å¤„ç†å­å¼¹ç»˜åˆ¶
         if (bullets.size() > 0) {
             for (int i = 0; i < bullets.size(); i++) {
                 if (bullets.get(i).life) {
-                    //×Óµ¯ÉĞÔÚ
+                    //å­å¼¹å°šåœ¨
                     bullets.get(i).GraphicsBullet(g);
-                    //ºÍËùÓĞµĞ¾üÅö×²
+                    //å’Œæ‰€æœ‰æ•Œå†›ç¢°æ’
                     for (int i2 = 0; i2 < em.size(); i2++) {
                         bullets.get(i).collision(em.get(i2));
                     }
                 } else {
-                    //×Óµ¯ÏûÍö
+                    //å­å¼¹æ¶ˆäº¡
                     bullets.remove(i);
                 }
             }
         }
 
-        //´¦ÀíËÀÍö
+        //å¤„ç†æ­»äº¡
         if (life > 0) {
-            // »î×Å²Å»æÖÆ×Ô¼º
+            // æ´»ç€æ‰ç»˜åˆ¶è‡ªå·±
             exp.i = 0;
             g.drawImage(BsGraphics.flipImage(robotImage), position.x, position.y, null);
         } else {
@@ -314,16 +314,16 @@ public class UserRobot {
             if (overspeakindex < 400) {
                 g.drawImage(overspeakimg, 200, 330, null);
 
-                g.setFont(new Font("ËÎÌå", Font.BOLD, 16));
+                g.setFont(new Font("å®‹ä½“", Font.BOLD, 16));
                 g.setColor(Color.white);
-                g.drawString("À­¿ËË¿", 420, 495);
-                g.drawString("¡º»ùÀ­......¡»", 400, 520);
+                g.drawString("æ‹‰å…‹ä¸", 420, 495);
+                g.drawString("ã€åŸºæ‹‰......ã€", 400, 520);
             } else {
                 GameStartApp.gamestatic = 0;
             }
         }
 
-        //»æÖÆÑªÌõ
+        //ç»˜åˆ¶è¡€æ¡
         g.drawImage(headimage, 15, 500, null);
         int xt_length = this.life * 150 / this.MaxLife;
         if (xt_length < 0) {
@@ -341,13 +341,13 @@ public class UserRobot {
         g.setColor(Color.BLACK);
         g.drawRect(130, 550, 150, 20);
 
-        //´¦Àí»úÆ÷ÈËÒÆ¶¯
+        //å¤„ç†æœºå™¨äººç§»åŠ¨
         getDirection();
         robotMove();
     }
 
     /**
-     * »ñµÃ»úÌå¾ØĞÎÇøÓò
+     * è·å¾—æœºä½“çŸ©å½¢åŒºåŸŸ
      */
     public Rectangle getRect() {
         Rectangle rect = new Rectangle(this.position.x + 6, this.position.y + 6, this.size.width - 12, this.size.height - 12);
@@ -355,16 +355,16 @@ public class UserRobot {
     }
 
     /**
-     * »úÌåÅö×°»úÌå
+     * æœºä½“ç¢°è£…æœºä½“
      */
     public void collision(Enemy em) {
         if (this.life > 0 && em.life > 0 && this.getRect().intersects(em.getMeRect())) {
-            //±»»÷ÖĞ
+            //è¢«å‡»ä¸­
             em.life = em.life - this.bodyPower;
             this.life = this.life - em.bodyPower;
 
             if (em.life <= 0) {
-                //±¬Õ¨Éù
+                //çˆ†ç‚¸å£°
                 Sound fireSound = new Sound("music/Explode.mp3");
                 fireSound.play();
             }
@@ -372,10 +372,10 @@ public class UserRobot {
     }
 
     /**
-     * ¿ª»ğ
+     * å¼€ç«
      */
     public Bullet fire() {
-        //¿ª»ğÉùÒô
+        //å¼€ç«å£°éŸ³
         Sound fireSound = new Sound("music/Beam.mp3");
         fireSound.play();
         Bullet bt = new Bullet(new Point(position.x + 120, position.y + 35), true,

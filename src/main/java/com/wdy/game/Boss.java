@@ -14,18 +14,18 @@ import java.io.IOException;
  * @author Administrator
  */
 public class Boss extends Enemy {
-    private Point Exp_point = null; //±¬Õ¨Î»ÖÃ
-    BufferedImage[] Bossimages = new BufferedImage[24]; //Boss»úÌåÍ¼
-    private int overHitTime = 0; //±ØÉ±¼¼
-    private Point overHitPosition = null; //±ØÉ±³å×²µÄÎ»ÖÃ
-    private Dimension overHitsize = null; //±ØÉ±³å×²µÄ·¶Î§
+    private Point Exp_point = null; //çˆ†ç‚¸ä½ç½®
+    BufferedImage[] Bossimages = new BufferedImage[24]; //Bossæœºä½“å›¾
+    private int overHitTime = 0; //å¿…æ€æŠ€
+    private Point overHitPosition = null; //å¿…æ€å†²æ’çš„ä½ç½®
+    private Dimension overHitsize = null; //å¿…æ€å†²æ’çš„èŒƒå›´
     private String[] bossBulletimg = {"imgs/bullet_03/00.gif", "imgs/bullet_03/01.gif", "imgs/bullet_03/02.gif", "imgs/bullet_03/03.gif"};
 
     public Boss(Point position, int speed, int life, BufferedImage EnemyImage,
                 Direction enemyDirection) {
         super(position, speed, life, EnemyImage, enemyDirection);
 
-        //³õÊ¼»¯»úÌåÍ¼
+        //åˆå§‹åŒ–æœºä½“å›¾
         for (int i = 0; i < Bossimages.length; i++) {
             String str = null;
             if (String.valueOf(i + 1).length() < 2) {
@@ -43,19 +43,19 @@ public class Boss extends Enemy {
         MaxLife = life;
         Exp_point = new Point(this.position.x + 360, this.position.y + 130);
         exp = new Explosion(explosionimage, Exp_point, true);
-        this.bodyPower = 1000; //ÉíÌåÉËº¦
+        this.bodyPower = 1000; //èº«ä½“ä¼¤å®³
 
         Boss = true;
-        overHitPosition = new Point(this.position.x + 360, this.position.y + 130);//±ØÉ±³å×²µÄÎ»ÖÃ
-        overHitsize = new Dimension(150, 145);//±ØÉ±³å×²µÄ·¶Î§
+        overHitPosition = new Point(this.position.x + 360, this.position.y + 130);//å¿…æ€å†²æ’çš„ä½ç½®
+        overHitsize = new Dimension(150, 145);//å¿…æ€å†²æ’çš„èŒƒå›´
 
 
     }
 
-    //»æÖÆ×Ô¼º
+    //ç»˜åˆ¶è‡ªå·±
     @Override
     public void drawMe(Graphics g, UserRobot ur) {
-        //»æÖÆÑªÌõ
+        //ç»˜åˆ¶è¡€æ¡
         int xt_length = this.life * 150 / this.MaxLife;
         if (xt_length < 0) {
             xt_length = 0;
@@ -72,14 +72,14 @@ public class Boss extends Enemy {
         g.setColor(Color.BLACK);
         g.drawRect(this.position.x + 350, this.position.y + 90, 150, 10);
 
-        //±¬Õ¨¶¨Î»
+        //çˆ†ç‚¸å®šä½
         exp.position.x = this.position.x + 360;
         exp.position.y = this.position.y + 130;
         explosionMe(g);
 
-        //¶¨Ê±·¢Éä×Óµ¯
+        //å®šæ—¶å‘å°„å­å¼¹
         timer++;
-        overHitTime++; //±ØÉ±¼¼
+        overHitTime++; //å¿…æ€æŠ€
         if (timer >= 80) {
             timer = 0;
             EnemyBullet[] bt = fire();
@@ -87,12 +87,12 @@ public class Boss extends Enemy {
                 enemybullets.add(bt[i]);
             }
         }
-        //±ØÉ±
+        //å¿…æ€
         if (overHitTime >= 800) {
             if ((overHitTime - 800) / 4 < 24) {
                 g.drawImage(Bossimages[(overHitTime - 800) / 4], position.x, position.y, null);
             } else if (this.position.x >= -750) {
-                //³å×²·¶Î§
+                //å†²æ’èŒƒå›´
                 overHitPosition.x = this.position.x + 50;
                 overHitPosition.y = this.position.y + 155;
                 overHitsize.width = 460;
@@ -103,18 +103,18 @@ public class Boss extends Enemy {
             } else {
                 this.position.x = 700;
                 //this.enemyDirection = Direction.DLeft;
-                //ÆÕÍ¨·¶Î§
+                //æ™®é€šèŒƒå›´
                 overHitPosition.x = this.position.x + 360;
                 overHitPosition.y = this.position.y + 130;
                 overHitsize.width = 150;
                 overHitsize.height = 145;
 
-                overHitTime = 0; //Çå¿Õ±ØÉ±
+                overHitTime = 0; //æ¸…ç©ºå¿…æ€
             }
 
         } else {
-            if (this.life > 0) { //»î×Å¾Í»æÖÆ×Ô¼º
-                //ÆÕÍ¨·¶Î§
+            if (this.life > 0) { //æ´»ç€å°±ç»˜åˆ¶è‡ªå·±
+                //æ™®é€šèŒƒå›´
                 overHitPosition.x = this.position.x + 360;
                 overHitPosition.y = this.position.y + 130;
                 overHitsize.width = 150;
@@ -126,54 +126,54 @@ public class Boss extends Enemy {
         }
 
 
-        //»æÖÆ×Óµ¯
+        //ç»˜åˆ¶å­å¼¹
         if (enemybullets.size() > 0) {
             for (int i = 0; i < enemybullets.size(); i++) {
                 if (enemybullets.get(i).life) {
-                    //×Óµ¯ÉĞÔÚ
+                    //å­å¼¹å°šåœ¨
                     enemybullets.get(i).GraphicsBullet(g);
                     enemybullets.get(i).collision(ur);
                 } else {
-                    //×Óµ¯ÏûÍö
+                    //å­å¼¹æ¶ˆäº¡
                     enemybullets.remove(i);
                 }
             }
         }
     }
 
-    //ÖØĞ´ÒÆ¶¯·½·¨
+    //é‡å†™ç§»åŠ¨æ–¹æ³•
     @Override
     public void move() {
-        if (this.position.x >= 330) { //Èë³¡µÄÒÆ¶¯
+        if (this.position.x >= 330) { //å…¥åœºçš„ç§»åŠ¨
             this.position.x -= Speed;
             this.enemyDirection = Direction.DUp;
-        } else {//±äÎªÉÏÏÂÒÆ¶¯
+        } else {//å˜ä¸ºä¸Šä¸‹ç§»åŠ¨
             if (this.position.y < -90) {
-                this.enemyDirection = Direction.DDown; //È·¶¨ÏÂÒÆ
+                this.enemyDirection = Direction.DDown; //ç¡®å®šä¸‹ç§»
                 this.position.y += Speed;
             } else if (this.position.y > 330) {
-                this.enemyDirection = Direction.DUp; //È·¶¨ÉÏÒÆ
+                this.enemyDirection = Direction.DUp; //ç¡®å®šä¸Šç§»
                 this.position.y -= Speed;
             } else if (this.enemyDirection == Direction.DDown) {
-                this.position.y += Speed; //³ÖĞøÏÂÒÆ
+                this.position.y += Speed; //æŒç»­ä¸‹ç§»
             } else if (this.enemyDirection == Direction.DUp) {
-                this.position.y -= Speed; //³ÖĞøÉÏÒÆ
+                this.position.y -= Speed; //æŒç»­ä¸Šç§»
             }
 
         }
     }
 
-    //µÃµ½×Ô¼ºµÄ¾ØĞÎÇøÓò
+    //å¾—åˆ°è‡ªå·±çš„çŸ©å½¢åŒºåŸŸ
     @Override
     public Rectangle getMeRect() {
         Rectangle rectme = new Rectangle(overHitPosition, overHitsize);
         return rectme;
     }
 
-    //¿ª»ğ
+    //å¼€ç«
     @Override
     public EnemyBullet[] fire() {
-        Sound fireSound = new Sound("music/Cannon.mp3"); //¿ª»ğÉùÒô
+        Sound fireSound = new Sound("music/Cannon.mp3"); //å¼€ç«å£°éŸ³
         fireSound.play();
 
         EnemyBullet[] bt = new EnemyBullet[3];

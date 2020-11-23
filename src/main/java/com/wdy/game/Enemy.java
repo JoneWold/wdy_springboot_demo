@@ -12,45 +12,45 @@ import java.util.Random;
 import static com.wdy.game.constant.CommonConstant.screen_size;
 
 /**
- * µĞ»ú
+ * æ•Œæœº
  *
  * @author Administrator
  */
 public class Enemy {
     /**
-     * ÊÇ·ñBOSS
+     * æ˜¯å¦BOSS
      */
     boolean Boss = false;
     public int MaxLife = 0;
-    // ³ß´ç
+    // å°ºå¯¸
     private Dimension size = null;
-    // Î»ÖÃ
+    // ä½ç½®
     protected Point position = null;
     /**
-     * ËÙ¶È
+     * é€Ÿåº¦
      */
     protected int Speed = 3;
     /**
-     * ÉúÃüÖµ
+     * ç”Ÿå‘½å€¼
      */
     int life = 0;
     protected BufferedImage EnemyImage = null;
     /**
-     * ÒÆ¶¯·½Ïò
+     * ç§»åŠ¨æ–¹å‘
      */
     protected Direction enemyDirection = Direction.DStop;
     /**
-     * ±¬Õ¨Í¼Æ¬
+     * çˆ†ç‚¸å›¾ç‰‡
      */
     protected String[] explosionimage = new String[6];
-    // ÉíÌå³å×²ÍşÁ¦
+    // èº«ä½“å†²æ’å¨åŠ›
     int bodyPower = 10;
     /**
-     * Ëæ»ú¿ª»ğ
+     * éšæœºå¼€ç«
      */
     Random random = new Random();
     /**
-     * µĞ¾ü·¢ÉäµÄ×Óµ¯
+     * æ•Œå†›å‘å°„çš„å­å¼¹
      */
     protected ArrayList<EnemyBullet> enemybullets = new ArrayList<EnemyBullet>();
 
@@ -59,7 +59,7 @@ public class Enemy {
     protected int timer;
 
     /**
-     * ³õÊ¼»¯µĞ¾ü
+     * åˆå§‹åŒ–æ•Œå†›
      */
     public Enemy(Point position, int speed, int life, BufferedImage EnemyImage,
                  Direction enemyDirection) {
@@ -69,23 +69,23 @@ public class Enemy {
         this.enemyDirection = enemyDirection;
         this.EnemyImage = EnemyImage;
 
-        // ÎªBOSSÅĞ¶Ï
+        // ä¸ºBOSSåˆ¤æ–­
         if (EnemyImage != null) {
-            // ÉèÖÃ×Ô¼ºµÄ³ß´ç
+            // è®¾ç½®è‡ªå·±çš„å°ºå¯¸
             this.size = new Dimension(this.EnemyImage.getWidth(),
                     this.EnemyImage.getHeight());
         }
-        // ³õÊ¼»¯±¬Õ¨Í¼
+        // åˆå§‹åŒ–çˆ†ç‚¸å›¾
         for (int i = 1; i < 7; i++) {
             explosionimage[i - 1] = "imgs/Explosion/0" + i + ".gif";
         }
-        // ²»ÊÇBOSS
+        // ä¸æ˜¯BOSS
         Boss = false;
         exp = new Explosion(explosionimage, position, true);
     }
 
     /**
-     * »æÖÆ×Ô¼º
+     * ç»˜åˆ¶è‡ªå·±
      *
      * @param g
      * @param ur
@@ -97,7 +97,7 @@ public class Enemy {
         }
         explosionMe(g);
 
-        // ¶¨Ê±·¢Éä×Óµ¯
+        // å®šæ—¶å‘å°„å­å¼¹
         timer++;
         if (timer >= 80) {
             timer = 0;
@@ -107,15 +107,15 @@ public class Enemy {
             }
         }
 
-        // »æÖÆ×Óµ¯
+        // ç»˜åˆ¶å­å¼¹
         if (enemybullets.size() > 0) {
             for (int i = 0; i < enemybullets.size(); i++) {
                 if (enemybullets.get(i).life) {
-                    // ×Óµ¯ÉĞÔÚ
+                    // å­å¼¹å°šåœ¨
                     enemybullets.get(i).GraphicsBullet(g);
                     enemybullets.get(i).collision(ur);
                 } else {
-                    // ×Óµ¯ÏûÍö
+                    // å­å¼¹æ¶ˆäº¡
                     enemybullets.remove(i);
                 }
             }
@@ -123,7 +123,7 @@ public class Enemy {
     }
 
     /**
-     * ×Ô¼º±¬Õ¨
+     * è‡ªå·±çˆ†ç‚¸
      */
     public void explosionMe(Graphics g) {
         if (this.life <= 0) {
@@ -132,7 +132,7 @@ public class Enemy {
     }
 
     /**
-     * µÃµ½×Ô¼ºµÄ¾ØĞÎÇøÓò
+     * å¾—åˆ°è‡ªå·±çš„çŸ©å½¢åŒºåŸŸ
      */
     public Rectangle getMeRect() {
         Rectangle rectme = new Rectangle(this.position, this.size);
@@ -140,43 +140,43 @@ public class Enemy {
     }
 
     /**
-     * ÒÆ¶¯
+     * ç§»åŠ¨
      */
     public void move() {
         switch (enemyDirection) {
             case DUp:
                 position.y -= Speed;
-                break; // ÉÏ
+                break; // ä¸Š
             case DDown:
                 position.y += Speed;
-                break; // ÏÂ
+                break; // ä¸‹
             case DLeft:
                 position.x -= Speed;
-                break; // ×ó
+                break; // å·¦
             case Dright:
                 position.x += Speed;
-                break; // ÓÒ
+                break; // å³
             case DUpLeft:
                 position.y -= Speed;
                 position.x -= Speed;
-                break; // ÉÏ×ó
+                break; // ä¸Šå·¦
             case DUpright:
                 position.y -= Speed;
                 position.x += Speed;
-                break; // ÉÏÓÒ
+                break; // ä¸Šå³
             case DDownLeft:
                 position.y += Speed;
                 position.x -= Speed;
-                break; // ÏÂ×ó
+                break; // ä¸‹å·¦
             case DDownRight:
                 position.y += Speed;
                 position.x += Speed;
-                break; // ÏÂÓÒ
+                break; // ä¸‹å³
             default:
                 break;
         }
 
-        // ÒÆ³ö±ß½çµÄNPC
+        // ç§»å‡ºè¾¹ç•Œçš„NPC
         if (position.x + size.width <= 0 || position.y + size.height <= 0
                 || position.y - size.height >= screen_size.height) {
             life = 0;
@@ -184,10 +184,10 @@ public class Enemy {
     }
 
     /**
-     * ¿ª»ğ
+     * å¼€ç«
      */
     public EnemyBullet[] fire() {
-        // ¿ª»ğÉùÒô
+        // å¼€ç«å£°éŸ³
         Sound fireSound = new Sound("music/Cannon.mp3");
         fireSound.play();
         EnemyBullet[] bt = new EnemyBullet[1];

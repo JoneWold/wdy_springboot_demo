@@ -6,16 +6,16 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * ±¬Õ¨Àà
+ * çˆ†ç‚¸ç±»
  *
  * @author Administrator
  */
 public class Explosion {
 
     private BufferedImage[] explosionImage = new BufferedImage[6];
-    //Î»ÖÃ
+    //ä½ç½®
     public Point position = null;
-    //ÉúÃü
+    //ç”Ÿå‘½
     boolean life = true;
     int i = 0;
 

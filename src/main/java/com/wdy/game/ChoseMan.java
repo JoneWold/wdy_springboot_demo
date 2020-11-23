@@ -12,26 +12,26 @@ import java.util.Objects;
 
 
 /**
- * ÈËÎïÑ¡Ôñ
+ * äººç‰©é€‰æ‹©
  *
  * @author Administrator
  */
-public class ChoseMan {
+class ChoseMan {
     private BufferedImage cmimage0 = null, cmimage1 = null;
     private BufferedImage cjimage0 = null, cjimage1 = null;
     private Sound sd = new Sound("music/go.mp3");
-    Sound ch;
+    private Sound ch;
     private int ctime = 0;
 
     /**
-     * ³õÊ¼»¯
+     * åˆå§‹åŒ–
      */
-    public ChoseMan() {
+    ChoseMan() {
         try {
-            //ÈËÎï   UserRobot.class.getResource("imgs/choseman01.gif")
+            //äººç‰©   UserRobot.class.getResource("imgs/choseman01.gif")
             cmimage0 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/choseman01.gif")));
-            cmimage0 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/choseman02.gif")));
-            //»úÌå
+            cmimage1 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/choseman02.gif")));
+            //æœºä½“
             cjimage0 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/lwj.gif")));
             cjimage1 = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/freedom.gif")));
         } catch (IOException e) {
@@ -42,12 +42,12 @@ public class ChoseMan {
     }
 
     /**
-     * »æÖÆÈ«²¿
+     * ç»˜åˆ¶å…¨éƒ¨
      */
-    public void drawAll(Graphics g) {
-        //°´Å¥
+    void drawAll(Graphics g) {
+        //æŒ‰é’®
         ctime++;
-        g.setFont(new Font("Ó×Ô²", Font.BOLD + Font.ITALIC, 24));
+        g.setFont(new Font("å¹¼åœ†", Font.BOLD + Font.ITALIC, 24));
         g.setColor(Color.yellow);
         if (ctime <= 10) {
             g.drawString("Press [Enter]>>", 50, 550);
@@ -63,52 +63,52 @@ public class ChoseMan {
         }
 
         if (GameStartApp.choseman == 0) {
-            g.setFont(new Font("Ó×Ô²", Font.BOLD, 30));
+            g.setFont(new Font("å¹¼åœ†", Font.BOLD, 30));
             g.setColor(Color.WHITE);
-            g.drawString("<ÕæÊµÏµ>", 160, 100);
-            g.drawString("»ùÀ­´óºÍ", 160, 450);
+            g.drawString("<çœŸå®ç³»>", 160, 100);
+            g.drawString("åŸºæ‹‰å¤§å’Œ", 160, 450);
             g.drawImage(cmimage1, 50, 120, null);
             g.drawImage(cjimage1, 550, 60, null);
 
-            g.setFont(new Font("ËÎÌå", 0, 18));
-            //***********»úÌå½éÉÜ
-            g.drawString("¡º×ÔÓÉ¸ß´ï¡»", 450, 350);
-            g.drawString("    ¸ß£º18.03Ã×£¬ÖØÁ¿£º71.5¶Ö ", 450, 380);
-            g.drawString("    ±¾»úÊÇZAFT¾üÔÚµÃµ½µØÇòÁªºÏ¾üµÄ¸ß´ïÊı¾İ×ÊÁÏºó¿ª·¢µÄ¸ß´ïÖĞ ", 450, 400);
-            g.drawString("µÄÒ»¼Ü£¬ÆäĞÔÄÜÔÚÇ¿Ï®¸ß´ïµÄ4±¶Ö®ÉÏ¡£»úÌåÁ½¼ç¸÷ÉèÒ»ÃÅM100ĞÍµÈÀë", 450, 420);
-            g.drawString("×ÓÊÕÊø¼ÓÅ©ÅÚ£¬Ñü²¿»¹×°ÓĞÁ½ÃÅMMI-M15ĞÍµç´Å¼ÓÅ©ÅÚ£¬¼ÓÉÏMA-M20ĞÍ ", 450, 440);
-            g.drawString("¹âÊø²½Ç¹£¬Ê¹±¾»ú¾ßÓĞÏàµ±Ç¿¾¢µÄ»ğÁ¦¡£ÓÉÓÚ´îÔØÁË·´ÖĞ×Ó¸ÉÈÅ×°ÖÃ£¬ ", 450, 460);
-            g.drawString("Ê¹±¾»ú¿ÉÒÔÊ¹ÓÃºËÒıÇæ£¬Õâ¾Í»ù±¾ÉÏ±ÜÃâÁËÏà×ªÒÆ×°¼×ÔÚÕ½¶·ÖĞÒòÄÜÁ¿", 450, 480);
-            g.drawString("²»×ã¶øÊ§Ğ§µÄÎÊÌâ¡£»úÌå±³²¿µÄÒí¹²ÓĞ5¶Ô¡£ÁíÍâ£¬±¾»ú¿É´îÔØÁ÷ĞÇÏµ", 450, 500);
-            g.drawString("Í³£¬¿É×÷Îª¾ßÓĞÇ¿´ó»ğÁ¦µÄMAÊ¹ÓÃ¡£", 450, 520);
+            g.setFont(new Font("å®‹ä½“", 0, 18));
+            //***********æœºä½“ä»‹ç»
+            g.drawString("ã€è‡ªç”±é«˜è¾¾ã€", 450, 350);
+            g.drawString("    é«˜ï¼š18.03ç±³ï¼Œé‡é‡ï¼š71.5å¨ ", 450, 380);
+            g.drawString("    æœ¬æœºæ˜¯ZAFTå†›åœ¨å¾—åˆ°åœ°çƒè”åˆå†›çš„é«˜è¾¾æ•°æ®èµ„æ–™åå¼€å‘çš„é«˜è¾¾ä¸­ ", 450, 400);
+            g.drawString("çš„ä¸€æ¶ï¼Œå…¶æ€§èƒ½åœ¨å¼ºè¢­é«˜è¾¾çš„4å€ä¹‹ä¸Šã€‚æœºä½“ä¸¤è‚©å„è®¾ä¸€é—¨M100å‹ç­‰ç¦»", 450, 420);
+            g.drawString("å­æ”¶æŸåŠ å†œç‚®ï¼Œè…°éƒ¨è¿˜è£…æœ‰ä¸¤é—¨MMI-M15å‹ç”µç£åŠ å†œç‚®ï¼ŒåŠ ä¸ŠMA-M20å‹ ", 450, 440);
+            g.drawString("å…‰æŸæ­¥æªï¼Œä½¿æœ¬æœºå…·æœ‰ç›¸å½“å¼ºåŠ²çš„ç«åŠ›ã€‚ç”±äºæ­è½½äº†åä¸­å­å¹²æ‰°è£…ç½®ï¼Œ ", 450, 460);
+            g.drawString("ä½¿æœ¬æœºå¯ä»¥ä½¿ç”¨æ ¸å¼•æ“ï¼Œè¿™å°±åŸºæœ¬ä¸Šé¿å…äº†ç›¸è½¬ç§»è£…ç”²åœ¨æˆ˜æ–—ä¸­å› èƒ½é‡", 450, 480);
+            g.drawString("ä¸è¶³è€Œå¤±æ•ˆçš„é—®é¢˜ã€‚æœºä½“èƒŒéƒ¨çš„ç¿¼å…±æœ‰5å¯¹ã€‚å¦å¤–ï¼Œæœ¬æœºå¯æ­è½½æµæ˜Ÿç³»", 450, 500);
+            g.drawString("ç»Ÿï¼Œå¯ä½œä¸ºå…·æœ‰å¼ºå¤§ç«åŠ›çš„MAä½¿ç”¨ã€‚", 450, 520);
             //************************
         } else {
-            g.setFont(new Font("Ó×Ô²", Font.BOLD, 30));
+            g.setFont(new Font("å¹¼åœ†", Font.BOLD, 30));
             g.setColor(Color.WHITE);
-            g.drawString("<³¬¼¶Ïµ>", 160, 100);
-            g.drawString("Ë®ÓğéªÒ¶", 160, 450);
+            g.drawString("<è¶…çº§ç³»>", 160, 100);
+            g.drawString("æ°´ç¾½æ¥ å¶", 160, 450);
             g.drawImage(cmimage0, 50, 120, null);
             g.drawImage(cjimage0, 500, 60, null);
 
-            g.setFont(new Font("ËÎÌå", 0, 18));
-            //***********»úÌå½éÉÜ
-            g.drawString("¡ºÁú»¢Íõ¡»", 450, 350);
-            g.drawString("    ¸ß£º49.9Ã×£¬ÖØÁ¿£º158¶Ö", 450, 380);
-            g.drawString("    ÔÚÖĞ¹úÉ½¶«µØÇøµÄò¿ÓÈ‰VÍÚ¾ò³öÀ´µÄ³¬»úÈË¡£Ô­±¾ÊÇ¹Å´úÈËÀàÎªÁË", 450, 400);
-            g.drawString("ºÍ³ÆÎª¡¸°ÙĞ°¡¹µÄ¶ñÄ§Ñı¹ÖÕ½¶·¶øÖÆÔìµÄ°ëÉúÎï±øÆ÷¡£´øÓĞ×ÔÂÉĞÍË¼¿¼", 450, 420);
-            g.drawString("»ØÂ·£¬ËäÈ»ÄÜ¹»µ¥¶ÀĞĞ¶¯£¬µ«ÊÇÈç¹û²»ÊÇÓÉËü³ĞÈÏµÄÄî¶¯Á¦ÕßÀ´¼İÊ»¾Í", 450, 440);
-            g.drawString("²»ÄÜ·¢»Ó±¾À´µÄÁ¦Á¿¡£ÓëÁíÍâÒ»¸öĞÎÌ¬»¢ÁúÍõÏà±È£¬ËüÉÃ³¤¿ÕÖĞ/Ë®ÖĞ", 450, 460);
-            g.drawString("µÄÕ½¶·ºÍÔ¶¾àÀëµÄ·¨Êõ¹¥»÷£¬ÓĞ¼«´óµÄ¹¥»÷Á¦£¬¼İÊ»Ô±ÊÇ±»Áú»¢ÍõÑ¡ÖĞ", 450, 480);
-            g.drawString("µÄË®ÓğéªÒ¶¡£µÚÒ»´ÎµÇ³¡ÓÚPSµÄ¡¸³¬¼¶»úÆ÷ÈË´óÕ½¦Á¡¹£¬ÔÚOGÏµÁĞÖĞÊ×", 450, 500);
-            g.drawString("´Î³ö³¡¡£", 450, 520);
+            g.setFont(new Font("å®‹ä½“", 0, 18));
+            //***********æœºä½“ä»‹ç»
+            g.drawString("ã€é¾™è™ç‹ã€", 450, 350);
+            g.drawString("    é«˜ï¼š49.9ç±³ï¼Œé‡é‡ï¼š158å¨", 450, 380);
+            g.drawString("    åœ¨ä¸­å›½å±±ä¸œåœ°åŒºçš„èš©å°¤å¡šæŒ–æ˜å‡ºæ¥çš„è¶…æœºäººã€‚åŸæœ¬æ˜¯å¤ä»£äººç±»ä¸ºäº†", 450, 400);
+            g.drawString("å’Œç§°ä¸ºã€Œç™¾é‚ªã€çš„æ¶é­”å¦–æ€ªæˆ˜æ–—è€Œåˆ¶é€ çš„åŠç”Ÿç‰©å…µå™¨ã€‚å¸¦æœ‰è‡ªå¾‹å‹æ€è€ƒ", 450, 420);
+            g.drawString("å›è·¯ï¼Œè™½ç„¶èƒ½å¤Ÿå•ç‹¬è¡ŒåŠ¨ï¼Œä½†æ˜¯å¦‚æœä¸æ˜¯ç”±å®ƒæ‰¿è®¤çš„å¿µåŠ¨åŠ›è€…æ¥é©¾é©¶å°±", 450, 440);
+            g.drawString("ä¸èƒ½å‘æŒ¥æœ¬æ¥çš„åŠ›é‡ã€‚ä¸å¦å¤–ä¸€ä¸ªå½¢æ€è™é¾™ç‹ç›¸æ¯”ï¼Œå®ƒæ“…é•¿ç©ºä¸­/æ°´ä¸­", 450, 460);
+            g.drawString("çš„æˆ˜æ–—å’Œè¿œè·ç¦»çš„æ³•æœ¯æ”»å‡»ï¼Œæœ‰æå¤§çš„æ”»å‡»åŠ›ï¼Œé©¾é©¶å‘˜æ˜¯è¢«é¾™è™ç‹é€‰ä¸­", 450, 480);
+            g.drawString("çš„æ°´ç¾½æ¥ å¶ã€‚ç¬¬ä¸€æ¬¡ç™»åœºäºPSçš„ã€Œè¶…çº§æœºå™¨äººå¤§æˆ˜Î±ã€ï¼Œåœ¨OGç³»åˆ—ä¸­é¦–", 450, 500);
+            g.drawString("æ¬¡å‡ºåœºã€‚", 450, 520);
             //************************
         }
     }
 
     /**
-     * °´¼üĞÅÏ¢
+     * æŒ‰é”®ä¿¡æ¯
      */
-    public void keyPressed(KeyEvent e) {
+    void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_J) {
             GameStartApp.gamestatic = 1;
         }
@@ -119,22 +119,22 @@ public class ChoseMan {
                 cm = true;
                 ch = new Sound("music/chose.mp3");
                 ch.play();
-                break; //×ó
+                break; //å·¦
             case KeyEvent.VK_D:
                 cm = true;
                 ch = new Sound("music/chose.mp3");
                 ch.play();
-                break; //ÓÒ
+                break; //å³
             case KeyEvent.VK_LEFT:
                 cm = true;
                 ch = new Sound("music/chose.mp3");
                 ch.play();
-                break; //×ó
+                break; //å·¦
             case KeyEvent.VK_RIGHT:
                 cm = true;
                 ch = new Sound("music/chose.mp3");
                 ch.play();
-                break; //ÓÒ
+                break; //å³
             default:
                 break;
         }
@@ -149,9 +149,9 @@ public class ChoseMan {
     }
 
     /**
-     * ¹Ø±Õ·½·¨
+     * å…³é—­æ–¹æ³•
      */
-    public void close() {
+    void close() {
         sd.stop();
         sd = null;
     }

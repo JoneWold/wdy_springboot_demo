@@ -12,38 +12,38 @@ import java.io.IOException;
 import static com.wdy.game.constant.CommonConstant.screen_size;
 
 /**
- * ×Óµ¯
+ * å­å¼¹
  *
  * @author Administrator
  */
 public class Bullet {
-    //³ß´ç
+    //å°ºå¯¸
     private Dimension size = null;
-    //Î»ÖÃ
+    //ä½ç½®
     private Point position = null;
-    //ËÙ¶È
+    //é€Ÿåº¦
     private int speed = 0;
-    //ÉúÃü
+    //ç”Ÿå‘½
     public boolean life;
-    //Í¼Æ¬
+    //å›¾ç‰‡
     public BufferedImage[] BulletImage = null;
-    //ÍşÁ¦
+    //å¨åŠ›
     public int power = 0;
-    //×Óµ¯·½Ïò
+    //å­å¼¹æ–¹å‘
     private Direction bulletDirection = Direction.DStop;
 
     private boolean autob = true;
-    // Íæ¼Ò×ø±ê
+    // ç©å®¶åæ ‡
     private int p1x;
     private int p1y;
-    // ×Óµ¯×ø±ê
+    // å­å¼¹åæ ‡
     private int p2x;
     private int p2y;
-    // ×Óµ¯½Ç¶È
+    // å­å¼¹è§’åº¦
     private Direction bulletangle = Direction.DLeft;
     private int bulletindex = 0;
 
-    //³õÊ¼»¯×Óµ¯
+    //åˆå§‹åŒ–å­å¼¹
     public Bullet(Point position, boolean life, String[] BulletImage, Direction bulletDirection,
                   int speed, boolean fanzhuan, int power, int p1x, int p1y, int p2x, int p2y) {
         this.position = position;
@@ -54,7 +54,7 @@ public class Bullet {
         this.p2x = p2x;
         this.p2y = p2y;
 
-        //³õÊ¼»¯×Óµ¯Í¼
+        //åˆå§‹åŒ–å­å¼¹å›¾
         this.BulletImage = new BufferedImage[BulletImage.length];
         try {
             for (int i = 0; i < BulletImage.length; i++) {
@@ -70,11 +70,11 @@ public class Bullet {
         this.bulletDirection = bulletDirection;
         this.speed = speed;
 
-        //´ÓÍ¼Æ¬·µ»Ø³ß´ç
+        //ä»å›¾ç‰‡è¿”å›å°ºå¯¸
         this.size = new Dimension(this.BulletImage[0].getWidth(null), this.BulletImage[0].getHeight(null));
     }
 
-    //»æÖÆ×Ô¼º
+    //ç»˜åˆ¶è‡ªå·±
     public void GraphicsBullet(Graphics g) {
         bulletindex++;
         if (bulletindex / 3 >= BulletImage.length) {
@@ -88,67 +88,67 @@ public class Bullet {
         switch (bulletDirection) {
             case DUp:
                 position.y -= speed;
-                break; //ÉÏ
+                break; //ä¸Š
             case DDown:
                 position.y += speed;
-                break; //ÏÂ
+                break; //ä¸‹
             case DLeft:
                 position.x -= speed;
-                break; //×ó
+                break; //å·¦
             case Dright:
                 position.x += speed;
-                break; //ÓÒ
+                break; //å³
 
             case DUpLeft:
                 position.y -= speed;
                 position.x -= speed;
-                break; //ÉÏ×ó
+                break; //ä¸Šå·¦
             case DUpright:
                 position.y -= speed;
                 position.x += speed;
-                break; //ÉÏÓÒ
+                break; //ä¸Šå³
             case DDownLeft:
                 position.y += speed;
                 position.x -= speed;
-                break; //ÏÂ×ó
+                break; //ä¸‹å·¦
             case DDownRight:
                 position.y += speed;
                 position.x += speed;
-                break; //ÏÂÓÒ
+                break; //ä¸‹å³
 
-            //¸ú×Ù×Óµ¯
+            //è·Ÿè¸ªå­å¼¹
             case DAuto:
                 if (autob) {
                     try {
                         if (p2x - p1x >= 0) {
-                            //Ç°Ãæ
+                            //å‰é¢
                             if ((p2x - p1x) / (p1y - p2y) > 2 || (p2x - p1x) / (p2y - p1y) > 2) {
-                                bulletangle = Direction.DLeft;//×ó
+                                bulletangle = Direction.DLeft;//å·¦
                             } else if ((p2y - p1y) > ((p2x - p1x) * 2)) {
-                                bulletangle = Direction.DUp;//ÉÏ
+                                bulletangle = Direction.DUp;//ä¸Š
                             } else if ((p1y - p2y) > ((p2x - p1x) * 2)) {
-                                bulletangle = Direction.DDown;//ÏÂ
+                                bulletangle = Direction.DDown;//ä¸‹
                             } else if (p2y - p1y > 0) {
-                                bulletangle = Direction.DUpLeft;//×óÉÏ
+                                bulletangle = Direction.DUpLeft;//å·¦ä¸Š
                             } else {
-                                bulletangle = Direction.DDownLeft; //×óÏÂ
+                                bulletangle = Direction.DDownLeft; //å·¦ä¸‹
                             }
                         } else {
-                            //ºóÃæ
+                            //åé¢
                             if ((p1x - p2x) / (p1y - p2y) > 2 || (p1x - p2x) / (p2y - p1y) > 2) {
-                                bulletangle = Direction.Dright;//ÓÒ
+                                bulletangle = Direction.Dright;//å³
                             } else if ((p2y - p1y) > ((p1x - p2x) * 2)) {
-                                bulletangle = Direction.DUp;//ÉÏ
+                                bulletangle = Direction.DUp;//ä¸Š
                             } else if ((p1y - p2y) > ((p1x - p2x) * 2)) {
-                                bulletangle = Direction.DDown;//ÏÂ
+                                bulletangle = Direction.DDown;//ä¸‹
                             } else if (p2y - p1y > 0) {
-                                bulletangle = Direction.DUpright;//ÓÒÉÏ
+                                bulletangle = Direction.DUpright;//å³ä¸Š
                             } else {
-                                bulletangle = Direction.DDownRight; //ÓÒÏÂ
+                                bulletangle = Direction.DDownRight; //å³ä¸‹
                             }
                         }
                     } catch (Exception e) {
-                        //³ı·¨0ÎÊÌâ
+                        //é™¤æ³•0é—®é¢˜
                     }
                     autob = false;
                 }
@@ -156,33 +156,33 @@ public class Bullet {
                 switch (bulletangle) {
                     case DUp:
                         position.y -= speed;
-                        break; //ÉÏ
+                        break; //ä¸Š
                     case DDown:
                         position.y += speed;
-                        break; //ÏÂ
+                        break; //ä¸‹
                     case DLeft:
                         position.x -= speed;
-                        break; //×ó
+                        break; //å·¦
                     case Dright:
                         position.x += speed;
-                        break; //ÓÒ
+                        break; //å³
 
                     case DUpLeft:
                         position.y -= speed;
                         position.x -= speed;
-                        break; //ÉÏ×ó
+                        break; //ä¸Šå·¦
                     case DUpright:
                         position.y -= speed;
                         position.x += speed;
-                        break; //ÉÏÓÒ
+                        break; //ä¸Šå³
                     case DDownLeft:
                         position.y += speed;
                         position.x -= speed;
-                        break; //ÏÂ×ó
+                        break; //ä¸‹å·¦
                     case DDownRight:
                         position.y += speed;
                         position.x += speed;
-                        break; //ÏÂÓÒ
+                        break; //ä¸‹å³
                     default:
                         position.x -= speed;
                         break;
@@ -193,14 +193,14 @@ public class Bullet {
                 break;
         }
 
-        //³¬³öÆÁÄ»
+        //è¶…å‡ºå±å¹•
         if (position.y <= 25 || position.x <= 0 || position.x >= screen_size.width || position.y >= screen_size.height) {
             this.life = false;
         }
     }
 
     /**
-     * µÃµ½×Ô¼ºµÄ¾ØĞÎÇøÓò
+     * å¾—åˆ°è‡ªå·±çš„çŸ©å½¢åŒºåŸŸ
      */
     public Rectangle getMeRect() {
         Rectangle rectme = new Rectangle(this.position, this.size);
@@ -208,16 +208,16 @@ public class Bullet {
     }
 
     /**
-     * ×Óµ¯Åö×²·½·¨
+     * å­å¼¹ç¢°æ’æ–¹æ³•
      */
     public void collision(Enemy em) {
         if (this.life && em.life > 0 && this.getMeRect().intersects(em.getMeRect())) {
-            //±»»÷ÖĞ
+            //è¢«å‡»ä¸­
             em.life = em.life - this.power;
             this.life = false;
 
             if (em.life <= 0) {
-                //±¬Õ¨Éù
+                //çˆ†ç‚¸å£°
                 Sound fireSound = new Sound("music/Explode.mp3");
                 fireSound.play();
             }

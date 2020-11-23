@@ -7,7 +7,7 @@ import com.wdy.game.engin.Sound;
 import java.awt.*;
 
 /**
- * µÐ·½×Óµ¯
+ * æ•Œæ–¹å­å¼¹
  *
  * @author Administrator
  */
@@ -19,16 +19,16 @@ public class EnemyBullet extends Bullet {
     }
 
     /**
-     * ×Óµ¯Åö×²·½·¨
+     * å­å¼¹ç¢°æ’žæ–¹æ³•
      */
     public void collision(UserRobot ur) {
         if (this.life && ur.life > 0 && this.getMeRect().intersects(ur.getRect())) {
-            //±»»÷ÖÐ
+            //è¢«å‡»ä¸­
             ur.life = ur.life - this.power;
             this.life = false;
 
             if (ur.life <= 0) {
-                //±¬Õ¨Éù
+                //çˆ†ç‚¸å£°
                 Sound fireSound = new Sound("music/Explode.mp3");
                 fireSound.play();
             }
