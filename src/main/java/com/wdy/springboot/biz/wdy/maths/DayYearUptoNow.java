@@ -1,6 +1,9 @@
 package com.wdy.springboot.biz.wdy.maths;
 
+import cn.hutool.core.date.DateUtil;
+
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -25,9 +28,9 @@ public class DayYearUptoNow {
         }
 
         Calendar c = Calendar.getInstance();
-        int toYear = c.get(c.YEAR);
-        int toMonth = c.get(c.MONTH) + 1;
-        int toDay = c.get(c.DAY_OF_MONTH);
+        int toYear = DateUtil.year(new Date());
+        int toMonth = DateUtil.month(new Date()) + 1;
+        int toDay = DateUtil.dayOfMonth(new Date());
 
         //相差多少年
         int resultYear = toYear - fromYear;
@@ -41,12 +44,14 @@ public class DayYearUptoNow {
         System.out.print(fromYear + "年" + fromMonth + "月" + fromDay + "日到现在相差有  " + resultYear + " 年 " + resultDay + " 天");
     }
 
-    //判断day是当前year的第几天
-    public static int getDay(int year, int month, int day) {
+    /**
+     * 判断day是当前year的第几天
+     */
+    private static int getDay(int year, int month, int day) {
         int count = 0;
         int days = 0;
         if (month > 0 && month < 13) {
-            for (int i = 1; i < month; i++) {
+            for (int i = 1; i <= month; i++) {
                 switch (i) {
                     case 1:
                     case 3:
@@ -71,6 +76,7 @@ public class DayYearUptoNow {
                         }
                         break;
                     }
+                    default:
                 }
                 count = count + days;
             }

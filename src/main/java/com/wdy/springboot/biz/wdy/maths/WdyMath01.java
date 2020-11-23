@@ -6,8 +6,11 @@ package com.wdy.springboot.biz.wdy.maths;
  * 小兔子长到第四个月后(第五个月起)每个月又生一对兔子，假如兔子都不死，问每个月的兔子总数为多少？
  */
 public class WdyMath01 {
-    // 1.程序分析：兔子的规律为数列1,1,2,3,5,8,13,21....
-    // 从第三项开始，第三个数是前面两个数之和
+
+    /**
+     * 1.程序分析：兔子的规律为数列1,1,2,3,5,8,13,21....
+     * 从第三项开始，第三个数是前面两个数之和
+     */
     public static void main(String[] args) {
         for (int i = 1; i <= 20; i++) {
             System.out.print(func(i) + ",");
@@ -15,7 +18,9 @@ public class WdyMath01 {
 
     }
 
-    // 回调函数
+    /**
+     * 回调函数
+     */
     private static int func(int i) {
         if (i == 1 || i == 2) {
             return 1;
