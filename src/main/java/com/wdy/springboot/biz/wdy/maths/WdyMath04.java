@@ -3,7 +3,8 @@ package com.wdy.springboot.biz.wdy.maths;
 import java.util.Scanner;
 
 /**
- * 【程序4】   题目：将一个正整数分解质因数。例如：输入90,打印出90=2*3*3*5。
+ * @author wgch
+ * @date 2020/11/25
  */
 public class WdyMath04 {
 
@@ -14,21 +15,33 @@ public class WdyMath04 {
      * (3)如果n不能被i整除，则用i+1作为i的值,重复执行第一步。
      */
     public static void main(String[] args) {
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("【程序4】   题目：将一个正整数分解质因数。例如：输入90,打印出90=2*3*3*5。");
+        System.out.println("--------------------------------------------------------------------");
+        math04();
+    }
 
+    private static void math04() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入一个正整数：");
-        int num = scanner.nextInt();
-        System.out.print("你输入的正整数是" + num + " = ");
+        long num = scanner.nextLong();
+        System.out.print("分解质因数：" + num + " = ");
         fenJie(num);
     }
 
-    private static void fenJie(int num) {
-        for (int i = 2; i < num; i++) {
-            if (num != i) {
 
+    private static void fenJie(Long num) {
+        // 2 3 5 7...
+        for (int i = 2; i <= num; i++) {
+            if (num % i == 0) {
+                System.out.print(i);
+                if (num != i) {
+                    System.out.print("*");
+                }
+                fenJie(num / i);
             }
         }
-
+        System.exit(0);
     }
 
 }

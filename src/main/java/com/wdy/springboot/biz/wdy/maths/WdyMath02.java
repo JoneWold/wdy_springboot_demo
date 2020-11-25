@@ -1,7 +1,7 @@
 package com.wdy.springboot.biz.wdy.maths;
 
 /**
- * 【程序2】   题目：判断101-200之间有多少个素数，并输出所有素数。
+ * 【程序2】   题目：判断1-200之间有多少个素数，并输出所有素数。
  */
 public class WdyMath02 {
     /**
@@ -11,7 +11,7 @@ public class WdyMath02 {
 
         int count = 0;
         StringBuilder buffer = new StringBuilder();
-        for (int i = 101; i <= 200; i++) {
+        for (int i = 2; i <= 200; i++) {
             boolean flag = true;
             for (int j = 2; j < Math.sqrt(i); j++) {
                 if (i % j == 0) {
@@ -24,7 +24,7 @@ public class WdyMath02 {
                 buffer.append(String.valueOf(i)).append(" ");
             }
         }
-        System.out.println(">>>101-200之间有 " + count + " 素数<<<");
+        System.out.println(">>>1-200之间有 " + count + " 素数<<<");
         System.out.println(buffer.toString());
     }
 }
