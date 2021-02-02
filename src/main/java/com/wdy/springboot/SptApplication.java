@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 /**
- * @author wdy
+ * @author wgch
  * @date 2020/3/30
  */
 @SpringBootApplication

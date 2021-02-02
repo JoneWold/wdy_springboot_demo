@@ -1,7 +1,7 @@
 package com.wdy.springboot.biz;
 
-import com.wdy.springboot.biz.wdy.yml.StudentDemo;
-import com.wdy.springboot.biz.wdy.yml.service.StudentService;
+import com.wdy.springboot.biz.yml.StudentDemo;
+import com.wdy.springboot.biz.yml.service.StudentService;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +11,9 @@ import org.springframework.context.ApplicationContext;
 
 
 /**
+ * 配置文件及.yml使用
+ *
  * @author wgch
- * @Description 配置文件及.yml使用
  * @date 2020/7/3
  */
 @SpringBootTest

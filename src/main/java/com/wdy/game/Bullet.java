@@ -96,7 +96,7 @@ public class Bullet {
             case DLeft:
                 position.x -= speed;
                 break; //左
-            case Dright:
+            case DRight:
                 position.x += speed;
                 break; //右
 
@@ -137,7 +137,7 @@ public class Bullet {
                         } else {
                             //后面
                             if ((p1x - p2x) / (p1y - p2y) > 2 || (p1x - p2x) / (p2y - p1y) > 2) {
-                                bulletangle = Direction.Dright;//右
+                                bulletangle = Direction.DRight;//右
                             } else if ((p2y - p1y) > ((p1x - p2x) * 2)) {
                                 bulletangle = Direction.DUp;//上
                             } else if ((p1y - p2y) > ((p1x - p2x) * 2)) {
@@ -164,7 +164,7 @@ public class Bullet {
                     case DLeft:
                         position.x -= speed;
                         break; //左
-                    case Dright:
+                    case DRight:
                         position.x += speed;
                         break; //右
 

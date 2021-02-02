@@ -10,7 +10,7 @@ public enum Direction {
     /**
      * 基本4方向
      */
-    DUp, DDown, DLeft, Dright, DStop,
+    DUp, DDown, DLeft, DRight, DStop,
     /**
      * 扩展4方向
      */

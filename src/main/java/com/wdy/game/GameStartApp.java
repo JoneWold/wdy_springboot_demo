@@ -20,14 +20,6 @@ import static com.wdy.game.constant.CommonConstant.screen_size;
  * @date 2020/6/18
  */
 public class GameStartApp extends Frame {
-    /**
-     * 累加时间。用于计算FPS
-     */
-    private Long cumulativeTime;
-    /**
-     * 实时时间，用于锁定FPS
-     */
-    private Long realTime;
     private int fps = 0;
     private int showFPS = 0;
     private Chapter01 chapter01;
@@ -42,15 +34,21 @@ public class GameStartApp extends Frame {
     /**
      * 选择人物
      */
-    private ChoseMan cman = new ChoseMan();
-    //过关图
-    private BufferedImage completeimage = null;
-    //GAMEOVER图
-    private BufferedImage gameoverimage = null;
-    //缓冲层
+    private ChoseMan choseMan = new ChoseMan();
+    /**
+     * 过关图
+     */
+    private BufferedImage completeImage = null;
+    /**
+     * GameOver图
+     */
+    private BufferedImage gameOverImage = null;
+    /**
+     * 缓冲层
+     */
     private Image bufferImage = null;
-    private Sound completesound = new Sound("music/complete.mp3");
-    private Sound gameoversound = new Sound("music/gameover.mp3");
+    private final Sound completeSound = new Sound("music/complete.mp3");
+    private final Sound gameOverSound = new Sound("music/gameover.mp3");
 
     public static void main(String[] args) {
         new GameStartApp().showScreen();
@@ -62,12 +60,12 @@ public class GameStartApp extends Frame {
     private void showScreen() {
         //窗口初始化
         this.setSize(screen_size);
-        this.setTitle("LOVO机战  Ver 1.0");
+        this.setTitle("LoVo机战  Ver 1.0");
         this.setResizable(false);
         this.setBackground(Color.BLACK);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        Point pcenter = ge.getCenterPoint();
-        this.setLocation(pcenter.x - screen_size.width / 2, pcenter.y - screen_size.height / 2);
+        Point pCenter = ge.getCenterPoint();
+        this.setLocation(pCenter.x - screen_size.width / 2, pCenter.y - screen_size.height / 2);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -83,8 +81,8 @@ public class GameStartApp extends Frame {
         this.addKeyListener(new GameJoy());
 
         try { //读取读取画面
-            completeimage = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/complete.jpg")));
-            gameoverimage = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/Gameover.jpg")));
+            completeImage = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/complete.jpg")));
+            gameOverImage = ImageIO.read(Objects.requireNonNull(this.getClass().getClassLoader().getResource("game/imgs/Gameover.jpg")));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -118,13 +116,13 @@ public class GameStartApp extends Frame {
         switch (gamestatic) {
             //读取状态
             case -1:
-                cman.drawAll(g);
+                choseMan.drawAll(g);
                 break;
             //第一关开始
             case 1:
                 if (chapter01 == null) {
-                    cman.close();
-                    cman = null;
+                    choseMan.close();
+                    choseMan = null;
                     chapter01 = new Chapter01();
                 }
                 chapter01.drawAll(g);
@@ -134,18 +132,18 @@ public class GameStartApp extends Frame {
                 if (chapter01 != null) {
                     chapter01.close();
                     chapter01 = null;
-                    completesound.playLoop();
+                    completeSound.playLoop();
                 }
-                g.drawImage(completeimage, 0, 0, null);
+                g.drawImage(completeImage, 0, 0, null);
                 break;
             //GAME OVER
             case 0:
                 if (chapter01 != null) {
                     chapter01.close();
                     chapter01 = null;
-                    gameoversound.playLoop();
+                    gameOverSound.playLoop();
                 }
-                g.drawImage(gameoverimage, 0, 0, null);
+                g.drawImage(gameOverImage, 0, 0, null);
                 break;
             default:
                 break;
@@ -169,8 +167,10 @@ public class GameStartApp extends Frame {
     class MainLoop extends Thread {
         @Override
         public void run() {
-            cumulativeTime = System.currentTimeMillis();
-            realTime = System.currentTimeMillis();
+            // 累加时间。用于计算FPS
+            long cumulativeTime = System.currentTimeMillis();
+            // 实时时间，用于锁定FPS
+            long realTime = System.currentTimeMillis();
             while (true) {
                 //限制FPS
                 try {
@@ -201,7 +201,7 @@ public class GameStartApp extends Frame {
         public void keyReleased(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                 // Java消息提示框
-                int msgIndex = JOptionPane.showConfirmDialog(null, "你确定要退出游戏吗？", "消息框", 0);
+                int msgIndex = JOptionPane.showConfirmDialog(null, "你确定要退出游戏吗？", "消息框", JOptionPane.YES_NO_OPTION);
                 if (msgIndex == 0) {
                     System.exit(0);
                 }
@@ -217,8 +217,8 @@ public class GameStartApp extends Frame {
             if (chapter01 != null) {
                 chapter01.keyPressed(e);
             }
-            if (cman != null) {
-                cman.keyPressed(e);
+            if (choseMan != null) {
+                choseMan.keyPressed(e);
             }
         }
     }

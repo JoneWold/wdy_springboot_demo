@@ -156,7 +156,7 @@ public class UserRobot {
         }
 //		右
         if (!pUp && !pDown && !pLeft && pRight) {
-            robotDirection = Direction.Dright;
+            robotDirection = Direction.DRight;
         }
 //		停止
         if (!pUp && !pDown && !pLeft && !pRight) {
@@ -195,7 +195,7 @@ public class UserRobot {
                 img = 3; //向后飞的图片
                 position.x -= Speed;
                 break; //左
-            case Dright:
+            case DRight:
                 position.x += Speed;
                 break; //右
 
@@ -380,7 +380,7 @@ public class UserRobot {
         Sound fireSound = new Sound("music/Beam.mp3");
         fireSound.play();
         Bullet bt = new Bullet(new Point(position.x + 120, position.y + 35), true,
-                bulletimg, Direction.Dright, 8, true, 5, 0, 0, 0, 0);
+                bulletimg, Direction.DRight, 8, true, 5, 0, 0, 0, 0);
         return bt;
     }
 }

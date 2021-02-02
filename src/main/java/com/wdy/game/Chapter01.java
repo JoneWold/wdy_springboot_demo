@@ -264,7 +264,7 @@ public class Chapter01 {
                             dir = Direction.DLeft;
                         }
                         if (npcs[7].equals("right")) {
-                            dir = Direction.Dright;
+                            dir = Direction.DRight;
                         }
                         if (npcs[7].equals("up")) {
                             dir = Direction.DUp;
@@ -279,7 +279,7 @@ public class Chapter01 {
                             dir = Direction.DLeft;
                         }
                         if (npcs[7].equals("right")) {
-                            dir = Direction.Dright;
+                            dir = Direction.DRight;
                         }
                         if (npcs[7].equals("up")) {
                             dir = Direction.DUp;

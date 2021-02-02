@@ -4,6 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--业务逻辑层注入-->
-    <bean id="stuService1" class=" com.wdy.springboot.biz.wdy.yml.service.StudentService">
+    <bean id="stuService1" class=" com.wdy.springboot.biz.yml.service.StudentService">
     </bean>
 </beans>

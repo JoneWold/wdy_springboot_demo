@@ -154,7 +154,7 @@ public class Enemy {
             case DLeft:
                 position.x -= Speed;
                 break; // 左
-            case Dright:
+            case DRight:
                 position.x += Speed;
                 break; // 右
             case DUpLeft:

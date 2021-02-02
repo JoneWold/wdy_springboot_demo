@@ -37,7 +37,7 @@ class SptApplicationTests {
                 .setEntityName("%sEntity");//实体类xxxEntity
         //2、数据源配置
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setDbType(DbType.POSTGRE_SQL)//数据库类型
+        dataSourceConfig.setDbType(DbType.MYSQL)//数据库类型
                 .setDriverName(rb.getString("driver"))
                 .setUrl(rb.getString("url"))
                 .setSchemaName(rb.getString("schemaName"))
@@ -48,7 +48,7 @@ class SptApplicationTests {
         strategyConfig.setCapitalMode(true)//开启全局大写命名
                 .setNaming(NamingStrategy.underline_to_camel)//下划线到驼峰的命名方式
                 .setEntityLombokModel(false)//使用lombok
-                .setInclude("work_order_upload")
+                .setInclude("blog")
                 .setLogicDeleteFieldName("is_delete_")
                 .setEntityTableFieldAnnotationEnable(true)//逆向工程使用的表
         ;
