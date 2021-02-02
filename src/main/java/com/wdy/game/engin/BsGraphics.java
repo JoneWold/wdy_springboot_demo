@@ -4,7 +4,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 public class BsGraphics {
     /**

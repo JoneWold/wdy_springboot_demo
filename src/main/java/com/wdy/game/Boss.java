@@ -11,7 +11,8 @@ import java.io.IOException;
 /**
  * boss
  *
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 public class Boss extends Enemy {
     private Point Exp_point = null; //爆炸位置

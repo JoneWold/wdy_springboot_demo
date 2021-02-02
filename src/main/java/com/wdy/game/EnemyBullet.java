@@ -9,7 +9,8 @@ import java.awt.*;
 /**
  * 敌方子弹
  *
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 public class EnemyBullet extends Bullet {
 

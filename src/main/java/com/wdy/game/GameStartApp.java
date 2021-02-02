@@ -134,7 +134,7 @@ public class GameStartApp extends Frame {
                 if (chapter01 != null) {
                     chapter01.close();
                     chapter01 = null;
-                    completesound.playloop();
+                    completesound.playLoop();
                 }
                 g.drawImage(completeimage, 0, 0, null);
                 break;
@@ -143,7 +143,7 @@ public class GameStartApp extends Frame {
                 if (chapter01 != null) {
                     chapter01.close();
                     chapter01 = null;
-                    gameoversound.playloop();
+                    gameoversound.playLoop();
                 }
                 g.drawImage(gameoverimage, 0, 0, null);
                 break;

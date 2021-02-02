@@ -3,7 +3,8 @@ package com.wdy.game.constant;
 /**
  * 子弹方向
  *
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 public enum Direction {
     /**

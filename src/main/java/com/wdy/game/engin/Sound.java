@@ -4,17 +4,17 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
 import java.io.InputStream;
-import java.util.Objects;
 
 /**
  * 音频文件
  *
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 public class Sound {
     private AdvancedPlayer ap = null;
     private boolean tLoop = false;
-    private Musicl ml = new Musicl();
+    private final MusicThread ml = new MusicThread();
     private String mp3path = null;
 
     /**
@@ -45,12 +45,12 @@ public class Sound {
     /**
      * 循环播放
      */
-    public void playloop() {
+    public void playLoop() {
         tLoop = true;
         ml.start();
     }
 
-    class Musicl extends Thread {
+    class MusicThread extends Thread {
         @Override
         public void run() {
             do {

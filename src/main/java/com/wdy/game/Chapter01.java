@@ -18,7 +18,8 @@ import java.util.ArrayList;
 /**
  * 关卡1
  *
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 public class Chapter01 {
     public BufferedImage BackgroundImage01 = null;
@@ -102,7 +103,7 @@ public class Chapter01 {
                 e.printStackTrace();
             }
         }
-        sd.playloop(); //播放背景音乐
+        sd.playLoop(); //播放背景音乐
     }
 
     /**
@@ -173,7 +174,7 @@ public class Chapter01 {
 //		/增加说话
         if (chapterTime == 1500) {
             this.sd.stop(); //BOSS音乐
-            this.Boss_sd.playloop();
+            this.Boss_sd.playLoop();
         }
         if (chapterTime >= 1500 && chapterTime <= 1700) {
 

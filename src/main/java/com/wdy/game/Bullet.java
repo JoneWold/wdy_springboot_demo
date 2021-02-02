@@ -14,7 +14,8 @@ import static com.wdy.game.constant.CommonConstant.screen_size;
 /**
  * 子弹
  *
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 public class Bullet {
     //尺寸

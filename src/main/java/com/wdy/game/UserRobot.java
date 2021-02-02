@@ -18,7 +18,8 @@ import static com.wdy.game.constant.CommonConstant.screen_size;
 /**
  * 玩家机体类
  *
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 public class UserRobot {
 

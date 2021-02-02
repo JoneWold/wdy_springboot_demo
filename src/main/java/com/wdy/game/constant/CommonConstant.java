@@ -3,8 +3,9 @@ package com.wdy.game.constant;
 import java.awt.*;
 
 /**
+ * 通用常量类
+ *
  * @author wgch
- * @Description 通用常量类
  * @date 2020/6/19
  */
 public class CommonConstant {

@@ -14,7 +14,8 @@ import java.util.Objects;
 /**
  * 人物选择
  *
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 class ChoseMan {
     private BufferedImage cmimage0 = null, cmimage1 = null;
@@ -38,7 +39,7 @@ class ChoseMan {
             e.printStackTrace();
         }
 
-        sd.playloop();
+        sd.playLoop();
     }
 
     /**

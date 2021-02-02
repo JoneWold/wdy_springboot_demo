@@ -8,7 +8,8 @@ import java.io.IOException;
 /**
  * 爆炸类
  *
- * @author Administrator
+ * @author wgch
+ * @date 2020/6/19
  */
 public class Explosion {
 
