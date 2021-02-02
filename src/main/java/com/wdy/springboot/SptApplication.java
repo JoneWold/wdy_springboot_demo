@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ImportResource;
 
 /**
  * @author wdy
+ * @date 2020/3/30
  */
 @SpringBootApplication
 @ImportResource(locations = {"classpath:wdySpring.xml"}) // 加载自定义的配置文件（不推荐）

@@ -25,8 +25,9 @@ public class WdyMath08 {
         int a = scanner.nextInt();
         System.out.println("请输入共几个数相加：");
         int index = scanner.nextInt();
+        int s = 0;
         for (int i = 1; i <= index; i++) {
-            
+
 
         }
 

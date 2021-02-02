@@ -28,7 +28,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         List<User> list = userMapper.getList();
         Page<User> page = new Page<>(pageNum, pageSize, list.size());
         // 数据分页
-        page.setRecords(list.stream().skip((pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList()));
+        page.setRecords(list.stream().skip((long) (pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList()));
         return page;
     }
 

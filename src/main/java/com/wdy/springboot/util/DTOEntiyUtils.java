@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 对象转换bean到dto或vo
+ *
  * @author wgch
- * @Description 对象转换bean到dto或vo
  * @date 2020/06/18
  */
 public class DTOEntiyUtils {
