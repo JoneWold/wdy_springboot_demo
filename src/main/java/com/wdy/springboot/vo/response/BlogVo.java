@@ -8,6 +8,7 @@ import lombok.Data;
  */
 @Data
 public class BlogVo {
+    private Integer id;
     private String title;
     private String content;
 

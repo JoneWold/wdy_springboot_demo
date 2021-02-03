@@ -1,8 +1,8 @@
 package com.wdy.springboot.biz;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wdy.springboot.service.UserService;
 import com.wdy.springboot.entity.User;
+import com.wdy.springboot.service.ISysUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class TestUserService {
 
     @Autowired
-    UserService userService;
+    ISysUserService userService;
 
     @Test
     void getList() {

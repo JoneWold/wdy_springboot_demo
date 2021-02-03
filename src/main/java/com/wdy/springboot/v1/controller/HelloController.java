@@ -1,6 +1,6 @@
 package com.wdy.springboot.v1.controller;
 
-import com.wdy.springboot.entity.Product;
+import com.wdy.springboot.vo.request.ProductDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,10 +28,10 @@ public class HelloController {
         // 给request域中放welcome
         map.put("welcome", "少时诵诗书");
 
-        List<Product> prods = new ArrayList<>();
-        prods.add(new Product("a", 100, 10));
-        prods.add(new Product("b", 200, 20));
-        prods.add(new Product("b", 300, 30));
+        List<ProductDto> prods = new ArrayList<>();
+        prods.add(new ProductDto("a", 100.0, 10));
+        prods.add(new ProductDto("b", 200.0, 20));
+        prods.add(new ProductDto("b", 300.0, 30));
         map.put("prods", prods);
 
         // 转到thymeleaf.html

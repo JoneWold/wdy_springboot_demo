@@ -1,6 +1,5 @@
 package com.wdy.springboot.wdy;
 
-import com.wdy.springboot.entity.Blog;
 import com.wdy.springboot.util.DTOEntiyUtils;
 import com.wdy.springboot.vo.response.BlogVo;
 
@@ -24,9 +23,9 @@ public class WdyMainMethod {
      * 对象转换bean到dto或vo
      */
     private static void testDozer() {
-        List<Blog> blogs = new ArrayList<>();
+        List<BlogVo> blogs = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            Blog blog = new Blog();
+            BlogVo blog = new BlogVo();
             blog.setId(i);
             blog.setTitle("标题" + i);
             blog.setContent("blog内容" + i);

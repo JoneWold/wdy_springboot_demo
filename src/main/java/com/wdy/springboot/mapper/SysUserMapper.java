@@ -1,10 +1,9 @@
 package com.wdy.springboot.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wdy.springboot.entity.SysUserEntity;
 import com.wdy.springboot.entity.User;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,12 +12,10 @@ import java.util.List;
  * 用户表 Mapper 接口
  * </p>
  *
- * @author HHL
- * @since 2019-12-26
+ * @author wdy
+ * @since 2021-02-03
  */
-@Repository("UserMapper")
-@Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface SysUserMapper extends BaseMapper<SysUserEntity> {
     List<User> getList();
 
     @Select("select * from sys_user where id=#{id}")

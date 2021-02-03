@@ -1,4 +1,4 @@
-package com.wdy.springboot.entity;
+package com.wdy.springboot.vo.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,8 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class Product {
+public class ProductDto {
     private String name;
-    private double price;
-    private int inStock;
+    private Double price;
+    private Integer inStock;
 }
