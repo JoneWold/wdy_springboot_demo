@@ -2,7 +2,7 @@ package com.wdy.springboot.v1.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wdy.springboot.entity.User;
+import com.wdy.springboot.entity.SysUserEntity;
 import com.wdy.springboot.service.ISysUserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +26,12 @@ public class UserController {
     private ISysUserService userService;
 
     @GetMapping("/getList")
-    public Page<User> getList() {
+    public Page<SysUserEntity> getList() {
         return userService.getList(1, 10);
     }
 
     @GetMapping("/getOne")
-    public User getOne() {
+    public SysUserEntity getOne() {
         return userService.getOne(1);
     }
 

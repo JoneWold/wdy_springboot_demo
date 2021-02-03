@@ -1,12 +1,8 @@
 package com.wdy.springboot.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wdy.springboot.entity.SysUserEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.wdy.springboot.entity.User;
-import com.wdy.springboot.mapper.SysUserMapper;
-
-import javax.annotation.Resource;
+import com.wdy.springboot.entity.SysUserEntity;
 
 /**
  * <p>
@@ -18,7 +14,7 @@ import javax.annotation.Resource;
  */
 public interface ISysUserService extends IService<SysUserEntity> {
 
-    Page<User> getList(int pageNum, int pageSize);
+    Page<SysUserEntity> getList(int pageNum, int pageSize);
 
-    User getOne(int id);
+    SysUserEntity getOne(int id);
 }

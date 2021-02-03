@@ -1,7 +1,7 @@
 package com.wdy.springboot.biz;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wdy.springboot.entity.User;
+import com.wdy.springboot.entity.SysUserEntity;
 import com.wdy.springboot.service.ISysUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ class TestUserService {
 
     @Test
     void getList() {
-        Page<User> list = userService.getList(1, 1);
+        Page<SysUserEntity> list = userService.getList(1, 1);
         System.err.println(list.getRecords());
     }
 

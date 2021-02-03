@@ -4,8 +4,9 @@ import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
 
 /**
+ * 自定义springboot内嵌tomcat
+ *
  * @author wgch
- * @Description 自定义springboot内嵌tomcat
  * @date 2020/7/10
  */
 public class TomcatServer {

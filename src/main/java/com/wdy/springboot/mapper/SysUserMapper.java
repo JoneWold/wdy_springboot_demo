@@ -2,7 +2,6 @@ package com.wdy.springboot.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wdy.springboot.entity.SysUserEntity;
-import com.wdy.springboot.entity.User;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -16,8 +15,8 @@ import java.util.List;
  * @since 2021-02-03
  */
 public interface SysUserMapper extends BaseMapper<SysUserEntity> {
-    List<User> getList();
+    List<SysUserEntity> getList();
 
     @Select("select * from sys_user where id=#{id}")
-    User getOne(int id);
+    SysUserEntity getOne(int id);
 }

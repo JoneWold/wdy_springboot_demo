@@ -10,7 +10,6 @@ import javax.servlet.ServletRegistration;
 
 /**
  * @author wgch
- * @Description
  * @date 2020/7/10
  */
 public class WdyWebApplication implements WebApplicationInitializer {
