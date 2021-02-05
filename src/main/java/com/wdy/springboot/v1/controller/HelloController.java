@@ -17,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/")
 public class HelloController {
 
-    //    @GetMapping("/")
+    @GetMapping("/say")
     public String say() {
         return "Hello Spring Boot";
     }
