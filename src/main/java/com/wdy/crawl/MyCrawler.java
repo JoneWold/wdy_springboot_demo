@@ -8,6 +8,7 @@ import com.wdy.crawl.page.PageParserTool;
 import com.wdy.crawl.page.RequestAndResponseTool;
 import com.wdy.crawl.tjsj.CodeValueVo;
 import com.wdy.crawl.tjsj.ReadXzQh;
+import com.wdy.crawl.util.FileTool;
 
 import java.io.File;
 import java.util.*;
@@ -30,7 +31,7 @@ public class MyCrawler {
     }
 
     public static void getData() {
-        String xz = FileUtil.readUtf8String("D:\\wdy\\wdy_springboot_demo\\src\\main\\java\\com\\wdy\\crawl\\tjsj\\xzqhData2.txt");
+        String xz = FileUtil.readUtf8String("D:\\wdy\\wdy_springboot_demo\\src\\main\\java\\com\\wdy\\crawl\\tjsj\\xZqhData.txt");
         List<CodeValueVo> voList = new ArrayList<>();
         for (String str : xz.split(",")) {
             str = str.replace(" ", "");
@@ -93,18 +94,9 @@ public class MyCrawler {
             //对page进行处理： 访问DOM的某个标签
             map.putAll(ReadXzQh.readCity(page));
             map.putAll(ReadXzQh.readCounty(page));
-//            Elements elements = PageParserTool.select(page, "a");
-//            if (!elements.isEmpty()) {
-//                for (Element element : elements) {
-//                    String href = element.attr("href");
-//                    String node = element.childNodes().get(0).outerHtml();
-//                    if (Character.isDigit(href.charAt(0))) {
-//                        map.put(href.replace(".html", ""), node);
-//                    }
-//                }
-//            }
+
             //将保存文件
-//            FileTool.saveToLocal(page);
+            FileTool.saveToLocal(page);
             //将已经访问过的链接放入已访问的链接中；
             Links.addVisitedUrlSet(visitUrl);
             //得到超链接

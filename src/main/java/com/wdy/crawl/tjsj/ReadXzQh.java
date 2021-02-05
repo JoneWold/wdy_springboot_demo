@@ -27,8 +27,10 @@ public class ReadXzQh {
         Page page = RequestAndResponseTool.sendRequstAndGetResponse(visitUrl);
         readCity(page);
         String countyUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/65/6501.html";
-        Page page1 = RequestAndResponseTool.sendRequstAndGetResponse(countyUrl);
-        readCounty(page1);
+        Page countyPage = RequestAndResponseTool.sendRequstAndGetResponse(countyUrl);
+        readCounty(countyPage);
+
+        readA(countyPage);
     }
 
     public static Map<String, String> readCity(Page page) {
@@ -65,4 +67,21 @@ public class ReadXzQh {
         }
         return map;
     }
+
+
+    public static void readA(Page page) {
+        Map<String, String> map = new HashMap<>();
+        Elements elements = PageParserTool.select(page, "a");
+        if (!elements.isEmpty()) {
+            for (Element element : elements) {
+                String href = element.attr("href");
+                String node = element.childNodes().get(0).outerHtml();
+                if (Character.isDigit(href.charAt(0))) {
+                    map.put(href.replace(".html", ""), node);
+                }
+            }
+        }
+        System.out.println(map);
+    }
+
 }
