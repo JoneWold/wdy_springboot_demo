@@ -9,6 +9,8 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 
 
 /**
+ * http请求
+ *
  * @author wgch
  */
 public class RequestAndResponseTool {

@@ -7,7 +7,7 @@ import com.wdy.crawl.page.Page;
 import com.wdy.crawl.page.PageParserTool;
 import com.wdy.crawl.page.RequestAndResponseTool;
 import com.wdy.crawl.tjsj.CodeValueVo;
-import com.wdy.crawl.tjsj.ReadXzQh;
+import com.wdy.crawl.tjsj.ReadXzQhFromHtml;
 import com.wdy.crawl.util.FileTool;
 
 import java.io.File;
@@ -92,8 +92,8 @@ public class MyCrawler {
             //根据URL得到page;
             Page page = RequestAndResponseTool.sendRequstAndGetResponse(visitUrl);
             //对page进行处理： 访问DOM的某个标签
-            map.putAll(ReadXzQh.readCity(page));
-            map.putAll(ReadXzQh.readCounty(page));
+            map.putAll(ReadXzQhFromHtml.readCity(page));
+            map.putAll(ReadXzQhFromHtml.readCounty(page));
 
             //将保存文件
             FileTool.saveToLocal(page);

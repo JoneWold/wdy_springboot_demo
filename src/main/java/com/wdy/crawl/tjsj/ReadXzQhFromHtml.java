@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 行政区划数据
+ * 行政区划数据获取
  *
  * @author wgch
  * @date 2021/2/3
  */
-public class ReadXzQh {
+public class ReadXzQhFromHtml {
 
 
     public static void main(String[] args) {
