@@ -7,10 +7,9 @@ import com.wdy.crawl.page.Page;
 import com.wdy.crawl.page.PageParserTool;
 import com.wdy.crawl.page.RequestAndResponseTool;
 import com.wdy.crawl.tjsj.CodeValueVo;
-import com.wdy.crawl.util.FileTool;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import com.wdy.crawl.tjsj.ReadXzQh;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,17 +20,17 @@ import java.util.stream.Collectors;
 public class MyCrawler {
 
     public static void main(String[] args) {
-        List<String> list = new ArrayList<String>() {{
-            add("http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/index.html");
-        }};
-        MyCrawler myCrawler = new MyCrawler();
-        myCrawler.crawling(list);
+//        List<String> list = new ArrayList<String>() {{
+//            add("http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/index.html");
+//        }};
+//        MyCrawler myCrawler = new MyCrawler();
+//        myCrawler.crawling(list);
 
-//        getData();
+        getData();
     }
 
     public static void getData() {
-        String xz = FileUtil.readUtf8String("D:\\wdy\\wdy_springboot_demo\\src\\main\\java\\com\\wdy\\crawl\\tjsj\\data.txt");
+        String xz = FileUtil.readUtf8String("D:\\wdy\\wdy_springboot_demo\\src\\main\\java\\com\\wdy\\crawl\\tjsj\\xzqhData2.txt");
         List<CodeValueVo> voList = new ArrayList<>();
         for (String str : xz.split(",")) {
             str = str.replace(" ", "");
@@ -75,6 +74,7 @@ public class MyCrawler {
      * 抓取过程
      */
     public void crawling(List<String> seeds) {
+        long start = System.currentTimeMillis();
         Map<String, String> map = new HashMap<>();
         //初始化 URL 队列
         this.initCrawlerWithSeeds(seeds);
@@ -91,18 +91,20 @@ public class MyCrawler {
             //根据URL得到page;
             Page page = RequestAndResponseTool.sendRequstAndGetResponse(visitUrl);
             //对page进行处理： 访问DOM的某个标签
-            Elements elements = PageParserTool.select(page, "a");
-            if (!elements.isEmpty()) {
-                for (Element element : elements) {
-                    String href = element.attr("href");
-                    String node = element.childNodes().get(0).outerHtml();
-                    if (Character.isDigit(href.charAt(0))) {
-                        map.put(href.replace(".html", ""), node);
-                    }
-                }
-            }
+            map.putAll(ReadXzQh.readCity(page));
+            map.putAll(ReadXzQh.readCounty(page));
+//            Elements elements = PageParserTool.select(page, "a");
+//            if (!elements.isEmpty()) {
+//                for (Element element : elements) {
+//                    String href = element.attr("href");
+//                    String node = element.childNodes().get(0).outerHtml();
+//                    if (Character.isDigit(href.charAt(0))) {
+//                        map.put(href.replace(".html", ""), node);
+//                    }
+//                }
+//            }
             //将保存文件
-            FileTool.saveToLocal(page);
+//            FileTool.saveToLocal(page);
             //将已经访问过的链接放入已访问的链接中；
             Links.addVisitedUrlSet(visitUrl);
             //得到超链接
@@ -114,9 +116,18 @@ public class MyCrawler {
                 System.err.println("新增爬取路径: " + link);
             }
         }
+        long end = System.currentTimeMillis();
         System.out.println("------------------------------------------");
         System.out.println("------------------------------------------");
         System.out.println(map);
+        System.out.println("------------------------------------------");
+        System.out.println("------------------------------------------");
+        System.out.println("数据量：" + map.size());
+        System.out.println("耗时：" + (end - start) + "毫秒");
+        String resource = this.getClass().getResource("/").getPath();
+        File file = FileUtil.newFile(resource + "xxx.txt");
+        FileUtil.writeBytes(map.toString().getBytes(), file);
+        System.out.println("数据存储在：" + file.getPath());
     }
 
     /**

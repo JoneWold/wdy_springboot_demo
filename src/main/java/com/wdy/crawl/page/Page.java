@@ -76,7 +76,7 @@ public class Page {
             return doc;
         }
         try {
-            this.doc = Jsoup.parse(getHtml(), url);
+            this.doc = Jsoup.parse(this.getHtml(), url);
             return doc;
         } catch (Exception ex) {
             ex.printStackTrace();
