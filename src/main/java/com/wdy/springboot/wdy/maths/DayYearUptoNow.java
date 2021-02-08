@@ -1,6 +1,7 @@
 package com.wdy.springboot.wdy.maths;
 
 import cn.hutool.core.date.DateUtil;
+import com.wdy.springboot.constant.PublicConstant;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -20,7 +21,7 @@ public class DayYearUptoNow {
         fromMonth = scanner.nextInt();
         fromDay = scanner.nextInt();
 
-        while (fromYear < 1 || fromMonth < 1 || fromMonth > 12 || fromDay < 1 || fromDay > 31) {
+        while (fromYear < 1 || fromMonth < 1 || fromMonth > PublicConstant.TWELVE || fromDay < 1 || fromDay > PublicConstant.THIRTY_ONE) {
             System.out.println("输入错误，请依次输入正确的年月日：");
             fromYear = scanner.nextInt();
             fromMonth = scanner.nextInt();
@@ -50,7 +51,8 @@ public class DayYearUptoNow {
     private static int getDay(int year, int month, int day) {
         int count = 0;
         int days = 0;
-        if (month > 0 && month < 13) {
+        boolean leapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+        if (month > 0 && month < PublicConstant.THIRTEEN) {
             for (int i = 1; i <= month; i++) {
                 switch (i) {
                     case 1:
@@ -69,7 +71,7 @@ public class DayYearUptoNow {
                         days = 30;
                         break;
                     case 2: {
-                        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                        if (leapYear) {
                             days = 29;
                         } else {
                             days = 28;

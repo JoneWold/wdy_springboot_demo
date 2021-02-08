@@ -11,6 +11,9 @@ public class PublicConstant {
     public static final int ONE = 1;
     public static final int TWO = 2;
     public static final int THREE = 3;
+    public static final int TWELVE = 12;
+    public static final int THIRTEEN = 13;
+    public static final int THIRTY_ONE = 31;
     public static final String ONE_STR = "1";
     public static final String TWO_STR = "2";
     public static final String THREE_STR = "3";
