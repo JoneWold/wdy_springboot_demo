@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.wdy.game.constant.CommonConstant.screen_size;
+import static com.wdy.game.constant.CommonConstant.SCREEN_SIZE;
 
 /**
  * 敌机
@@ -179,7 +179,7 @@ public class Enemy {
 
         // 移出边界的NPC
         if (position.x + size.width <= 0 || position.y + size.height <= 0
-                || position.y - size.height >= screen_size.height) {
+                || position.y - size.height >= SCREEN_SIZE.height) {
             life = 0;
         }
     }

@@ -63,7 +63,7 @@ class ChoseMan {
             g.drawString("Press [Enter]>    >", 50, 550);
         }
 
-        if (GameStartApp.choseman == 0) {
+        if (GameStartApp.manNum == 0) {
             g.setFont(new Font("幼圆", Font.BOLD, 30));
             g.setColor(Color.WHITE);
             g.drawString("<真实系>", 160, 100);
@@ -111,7 +111,7 @@ class ChoseMan {
      */
     void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_J) {
-            GameStartApp.gamestatic = 1;
+            GameStartApp.gameStatic = 1;
         }
 
         boolean cm = false;
@@ -141,10 +141,10 @@ class ChoseMan {
         }
 
         if (cm == true) {
-            if (GameStartApp.choseman == 0) {
-                GameStartApp.choseman = 1;
+            if (GameStartApp.manNum == 0) {
+                GameStartApp.manNum = 1;
             } else {
-                GameStartApp.choseman = 0;
+                GameStartApp.manNum = 0;
             }
         }
     }

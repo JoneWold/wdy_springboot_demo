@@ -13,7 +13,7 @@ public class CommonConstant {
     /**
      * 窗口尺寸
      */
-    public static Dimension screen_size = new Dimension(1024, 600);
+    public static Dimension SCREEN_SIZE = new Dimension(1024, 600);
 
 
 }

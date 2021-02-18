@@ -54,6 +54,7 @@ public class Sound {
         @Override
         public void run() {
             do {
+                // /D:/wdy/wdy_springboot_demo/target/classes/game/music/go.mp3
                 InputStream in = this.getClass().getClassLoader().getResourceAsStream(mp3path);
                 try {
                     ap = new AdvancedPlayer(in);

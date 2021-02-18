@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.wdy.game.constant.CommonConstant.screen_size;
+import static com.wdy.game.constant.CommonConstant.SCREEN_SIZE;
 
 
 /**
@@ -228,11 +228,11 @@ public class UserRobot {
         if (position.x <= 0) {
             position.x = 0;
         }
-        if (position.x >= screen_size.width - size.width) {
-            position.x = screen_size.width - size.width;
+        if (position.x >= SCREEN_SIZE.width - size.width) {
+            position.x = SCREEN_SIZE.width - size.width;
         }
-        if (position.y >= screen_size.height - size.height) {
-            position.y = screen_size.height - size.height;
+        if (position.y >= SCREEN_SIZE.height - size.height) {
+            position.y = SCREEN_SIZE.height - size.height;
         }
 
         //换机体图
@@ -320,7 +320,7 @@ public class UserRobot {
                 g.drawString("拉克丝", 420, 495);
                 g.drawString("『基拉......』", 400, 520);
             } else {
-                GameStartApp.gamestatic = 0;
+                GameStartApp.gameStatic = 0;
             }
         }
 

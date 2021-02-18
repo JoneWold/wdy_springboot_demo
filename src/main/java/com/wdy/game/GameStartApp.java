@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.wdy.game.constant.CommonConstant.screen_size;
+import static com.wdy.game.constant.CommonConstant.SCREEN_SIZE;
 
 /**
  * @author wgch
@@ -26,11 +26,11 @@ public class GameStartApp extends Frame {
     /**
      * 游戏状态。1为第1关，99为过关，0为死亡,-1为选择人物
      */
-    static int gamestatic = -1;
+    static int gameStatic = -1;
     /**
      * 0为基拉，1为蓝叶
      */
-    static int choseman = 0;
+    static int manNum = 0;
     /**
      * 选择人物
      */
@@ -59,13 +59,13 @@ public class GameStartApp extends Frame {
      */
     private void showScreen() {
         //窗口初始化
-        this.setSize(screen_size);
+        this.setSize(SCREEN_SIZE);
         this.setTitle("LoVo机战  Ver 1.0");
         this.setResizable(false);
         this.setBackground(Color.BLACK);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Point pCenter = ge.getCenterPoint();
-        this.setLocation(pCenter.x - screen_size.width / 2, pCenter.y - screen_size.height / 2);
+        this.setLocation(pCenter.x - SCREEN_SIZE.width / 2, pCenter.y - SCREEN_SIZE.height / 2);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -96,14 +96,14 @@ public class GameStartApp extends Frame {
     public void update(Graphics g) {
         //创建缓冲层
         if (bufferImage == null) {
-            bufferImage = this.createImage(screen_size.width, screen_size.height);
+            bufferImage = this.createImage(SCREEN_SIZE.width, SCREEN_SIZE.height);
         }
         //获得缓冲层笔
         Graphics bufferPen = bufferImage.getGraphics();
         //设置刷新层颜色
         bufferPen.setColor(this.getBackground());
         //绘制刷新层
-        bufferPen.fillRect(0, 0, screen_size.width, screen_size.height);
+        bufferPen.fillRect(0, 0, SCREEN_SIZE.width, SCREEN_SIZE.height);
         paint(bufferPen);
         g.drawImage(bufferImage, 0, 0, null);
     }
@@ -113,7 +113,7 @@ public class GameStartApp extends Frame {
      */
     @Override
     public void paint(Graphics g) {
-        switch (gamestatic) {
+        switch (gameStatic) {
             //读取状态
             case -1:
                 choseMan.drawAll(g);

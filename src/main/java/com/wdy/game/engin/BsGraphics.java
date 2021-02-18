@@ -11,11 +11,11 @@ public class BsGraphics {
     /**
      * 缓冲面
      */
-    private Image bufferface = null;
+    private Image bufferFace = null;
     /**
      * 缓冲面上的笔
      */
-    private Graphics bufferpen = null;
+    private Graphics bufferPen = null;
 
     /**
      * 批量图片初始化
@@ -41,23 +41,23 @@ public class BsGraphics {
      * 缓冲区及笔创建
      */
     public void creatBufferFace(int width, int height, Container cont) {
-        bufferface = cont.createImage(width, height);
-        bufferpen = bufferface.getGraphics();
+        bufferFace = cont.createImage(width, height);
+        bufferPen = bufferFace.getGraphics();
     }
 
     /**
      * 缓冲区上绘图
      */
     public void drawImage(Image image, int x, int y) {
-        bufferpen.drawImage(image, x, y, null);
+        bufferPen.drawImage(image, x, y, null);
     }
 
     /**
      * 复制缓冲到屏幕
      */
     public void copyBufferToScreen(Graphics g) {
-        if (bufferface != null) {
-            g.drawImage(bufferface, 0, 0, null);
+        if (bufferFace != null) {
+            g.drawImage(bufferFace, 0, 0, null);
         }
 
     }

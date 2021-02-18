@@ -1,5 +1,6 @@
 package com.wdy.springboot.wdy;
 
+import com.wdy.springboot.constant.PublicConstant;
 import com.wdy.springboot.util.DTOEntiyUtils;
 import com.wdy.springboot.vo.response.BlogVo;
 
@@ -24,7 +25,7 @@ public class WdyMainMethod {
      */
     private static void testDozer() {
         List<BlogVo> blogs = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < PublicConstant.TEN; i++) {
             BlogVo blog = new BlogVo();
             blog.setId(i);
             blog.setTitle("标题" + i);

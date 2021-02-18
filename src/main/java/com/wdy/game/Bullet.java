@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import static com.wdy.game.constant.CommonConstant.screen_size;
+import static com.wdy.game.constant.CommonConstant.SCREEN_SIZE;
 
 /**
  * 子弹
@@ -195,7 +195,7 @@ public class Bullet {
         }
 
         //超出屏幕
-        if (position.y <= 25 || position.x <= 0 || position.x >= screen_size.width || position.y >= screen_size.height) {
+        if (position.y <= 25 || position.x <= 0 || position.x >= SCREEN_SIZE.width || position.y >= SCREEN_SIZE.height) {
             this.life = false;
         }
     }
