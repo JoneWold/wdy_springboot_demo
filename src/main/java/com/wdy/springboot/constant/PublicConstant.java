@@ -8,7 +8,7 @@ package com.wdy.springboot.constant;
  */
 public class PublicConstant {
     /**
-     * *******************数字类*******************
+     * 数字类
      */
     public static final int ZERO = 0;
     public static final int ONE = 1;
@@ -26,12 +26,20 @@ public class PublicConstant {
     public static final String THREE_STR = "3";
 
     /**
-     * *******************符号类*******************
+     * 符号类
      */
     public static final String POINT = ".";
     public static final String DOT = ",";
     public static final String DOT_CHINESE = "，";
     public static final String UN_KNOWN = "-";
     public static final String EMPTY_NULL = "null";
+
+    /**
+     * 文件路径类
+     */
+    public static final String STATIC = "static/";
+    public static final String CLASSPATH = "classpath:";
+    public static final String BASE_DOWNLOAD_PATH = "/upload/download/";
+
 
 }
