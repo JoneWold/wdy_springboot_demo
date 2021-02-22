@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
  * @date 2021/2/20
  */
 @Component
-public class FileDelete {
+public class FileDeleteJob {
 
     /**
      * 执行结束后7天跑一次
