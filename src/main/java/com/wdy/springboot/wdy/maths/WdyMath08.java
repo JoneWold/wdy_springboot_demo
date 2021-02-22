@@ -18,6 +18,7 @@ public class WdyMath08 {
 
     /**
      * 1.程序分析：关键是计算出每一项的值。
+     * 可以利用： 1*10+1=11    11*10+1=111  111*10+1=1111
      */
     private static void math08() {
         Scanner scanner = new Scanner(System.in);
@@ -25,12 +26,15 @@ public class WdyMath08 {
         int a = scanner.nextInt();
         System.out.println("请输入共几个数相加：");
         int index = scanner.nextInt();
-        int s = 0;
+        int sum = 0;
+        int temp = 0;
         for (int i = 1; i <= index; i++) {
-
-
+            temp += a;
+            a = a * 10;
+            sum += temp;
+            System.out.print(temp + " ");
         }
-
+        System.err.println("总和：" + sum);
     }
 
 
