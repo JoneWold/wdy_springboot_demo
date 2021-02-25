@@ -1,5 +1,6 @@
 package com.wdy.springboot.wdy;
 
+import cn.hutool.extra.pinyin.PinyinUtil;
 import com.wdy.springboot.constant.PublicConstant;
 import com.wdy.springboot.util.DTOEntiyUtils;
 import com.wdy.springboot.vo.response.BlogVo;
@@ -17,7 +18,7 @@ public class WdyMainMethod {
 
     public static void main(String[] args) {
         testDozer();
-
+        testPinYinStr();
     }
 
     /**
@@ -35,4 +36,14 @@ public class WdyMainMethod {
         List<BlogVo> voList = DTOEntiyUtils.trans(blogs, BlogVo.class);
         System.err.println(voList);
     }
+
+    /**
+     * 获取汉语拼音
+     */
+    private static void testPinYinStr() {
+        String pinyin = PinyinUtil.getPinyin("少时诵诗书", " ");
+        System.out.println(pinyin);
+    }
+
+
 }
