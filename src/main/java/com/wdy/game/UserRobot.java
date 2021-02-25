@@ -22,28 +22,37 @@ import static com.wdy.game.constant.CommonConstant.SCREEN_SIZE;
  * @date 2020/6/19
  */
 public class UserRobot {
-
-    private Dimension size = null; //尺寸
-    public Point position = null; //位置
-    private int Speed = 3; //速度
-    public int life = 0; //生命
-    private int bullettime = 0; //射击延迟
-    public int bodyPower = 100; //身体冲撞威力
+    //尺寸
+    private Dimension size = null;
+    //位置
+    public Point position = null;
+    //速度
+    private int Speed = 3;
+    //生命
+    public int life = 0;
+    //射击延迟
+    private int bullettime = 0;
+    //身体冲撞威力
+    public int bodyPower = 100;
     private int MaxLife = 0;
-    //
-    private BufferedImage robotimage01 = null, robotimage02 = null, robotimage03 = null, robotimage04 = null; //机体图
-    private BufferedImage bulletimage01 = null, bulletimage02 = null, bulletimage03 = null, bulletimage04 = null, bulletimage05 = null; //子弹图
-    //
-    public BufferedImage robotImage = null; //图片
-    public ArrayList<Bullet> bullets = new ArrayList<Bullet>(); //子弹序列
-
-    private Direction robotDirection = Direction.DStop; //机器人方向
-    private boolean pUp = false, pDown = false, pLeft = false, pRight = false, pStop = false; //判断按键
-    private String[] bulletimg = {"imgs/bullet_01/00.gif"};
-
-    public Explosion exp = null; //爆炸
+    //机体图
+    private BufferedImage robotimage01 = null, robotimage02 = null, robotimage03 = null, robotimage04 = null;
+    //子弹图
+    private BufferedImage bulletimage01 = null, bulletimage02 = null, bulletimage03 = null, bulletimage04 = null, bulletimage05 = null;
+    //图片
+    public BufferedImage robotImage = null;
+    //子弹序列
+    public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+    //机器人方向
+    private Direction robotDirection = Direction.DStop;
+    //判断按键
+    private boolean pUp = false, pDown = false, pLeft = false, pRight = false, pStop = false;
+    private String[] bulletimg = {"game/imgs/bullet_01/00.gif"};
+    //爆炸
+    public Explosion exp = null;
     private String[] exp_img = null;
-    private int overspeakindex; //死亡时说的话
+    //死亡时说的话
+    private int overspeakindex;
     private BufferedImage overspeakimg = null;
     private BufferedImage headimage = null;
 
@@ -55,19 +64,21 @@ public class UserRobot {
         this.robotDirection = robotDirection;
         //初始化图片
         try {
-            robotimage01 = ImageIO.read(UserRobot.class.getResource("imgs/Freedom_0001.gif"));
-            robotimage02 = ImageIO.read(UserRobot.class.getResource("imgs/Freedom_0002.gif"));
-            robotimage03 = ImageIO.read(UserRobot.class.getResource("imgs/Freedom_0003.gif"));
-            robotimage04 = ImageIO.read(UserRobot.class.getResource("imgs/Freedom_0004.gif"));
+            robotimage01 = ImageIO.read(UserRobot.class.getResource("/game/imgs/Freedom_0001.gif"));
+            robotimage02 = ImageIO.read(UserRobot.class.getResource("/game/imgs/Freedom_0002.gif"));
+            robotimage03 = ImageIO.read(UserRobot.class.getResource("/game/imgs/Freedom_0003.gif"));
+            robotimage04 = ImageIO.read(UserRobot.class.getResource("/game/imgs/Freedom_0004.gif"));
 
-            bulletimage01 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("imgs/bullet_01/01.gif")));
-            bulletimage02 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("imgs/bullet_01/02.gif")));
-            bulletimage03 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("imgs/bullet_01/03.gif")));
-            bulletimage04 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("imgs/bullet_01/04.gif")));
-            bulletimage05 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("imgs/bullet_01/05.gif")));
+            bulletimage01 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("/game/imgs/bullet_01/01.gif")));
+            bulletimage02 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("/game/imgs/bullet_01/02.gif")));
+            bulletimage03 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("/game/imgs/bullet_01/03.gif")));
+            bulletimage04 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("/game/imgs/bullet_01/04.gif")));
+            bulletimage05 = BsGraphics.flipImage(ImageIO.read(UserRobot.class.getResource("/game/imgs/bullet_01/05.gif")));
 
-            headimage = ImageIO.read(UserRobot.class.getResource("imgs/jlhead.gif")); //头像
-            overspeakimg = ImageIO.read(UserRobot.class.getResource("imgs/speak/lks2.gif")); //拉克丝
+            //头像
+            headimage = ImageIO.read(UserRobot.class.getResource("/game/imgs/jlhead.gif"));
+            //拉克丝
+            overspeakimg = ImageIO.read(UserRobot.class.getResource("/game/imgs/speak/lks2.gif"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -79,13 +90,15 @@ public class UserRobot {
         //初始化爆炸图
         exp_img = new String[6];
         for (int i = 1; i < 7; i++) {
-            exp_img[i - 1] = "imgs/Explosion/0" + i + ".gif";
+            exp_img[i - 1] = "game/imgs/Explosion/0" + i + ".gif";
         }
         exp = new Explosion(exp_img, position, true);
 
     }
 
-    //按键事件
+    /**
+     * 按键事件
+     */
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
@@ -113,7 +126,9 @@ public class UserRobot {
 
     }
 
-    //释放按键
+    /**
+     * 释放按键
+     */
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
@@ -133,32 +148,36 @@ public class UserRobot {
         }
     }
 
-    //自己爆炸
+    /**
+     * 自己爆炸
+     */
     public void explosionMe(Graphics g) {
         if (this.life <= 0) {
             exp.showMe(g);
         }
     }
 
-    //获得机器人方向
+    /**
+     * 获得机器人方向
+     */
     public void getDirection() {
         //上
         if (pUp && !pDown && !pLeft && !pRight) {
             robotDirection = Direction.DUp;
         }
-//		下
+        //下
         if (!pUp && pDown && !pLeft && !pRight) {
             robotDirection = Direction.DDown;
         }
-//		左
+        //左
         if (!pUp && !pDown && pLeft && !pRight) {
             robotDirection = Direction.DLeft;
         }
-//		右
+        //右
         if (!pUp && !pDown && !pLeft && pRight) {
             robotDirection = Direction.DRight;
         }
-//		停止
+        //停止
         if (!pUp && !pDown && !pLeft && !pRight) {
             robotDirection = Direction.DStop;
         }
@@ -167,21 +186,23 @@ public class UserRobot {
         if (pUp && !pDown && pLeft && !pRight) {
             robotDirection = Direction.DUpLeft;
         }
-//		右上
+        //右上
         if (pUp && !pDown && !pLeft && pRight) {
             robotDirection = Direction.DUpright;
         }
-//		左下
+        //左下
         if (!pUp && pDown && pLeft && !pRight) {
             robotDirection = Direction.DDownLeft;
         }
-//		右下
+        //右下
         if (!pUp && pDown && !pLeft && pRight) {
             robotDirection = Direction.DDownRight;
         }
     }
 
-    //移动
+    /**
+     * 移动
+     */
     public void robotMove() {
         int img = 1;
         switch (robotDirection) {
@@ -192,7 +213,8 @@ public class UserRobot {
                 position.y += Speed;
                 break; //下
             case DLeft:
-                img = 3; //向后飞的图片
+                //向后飞的图片
+                img = 3;
                 position.x -= Speed;
                 break; //左
             case DRight:
@@ -200,7 +222,8 @@ public class UserRobot {
                 break; //右
 
             case DUpLeft:
-                img = 3; //向后飞的图片
+                //向后飞的图片
+                img = 3;
                 position.y -= Speed;
                 position.x -= Speed;
                 break; //上左
@@ -209,7 +232,8 @@ public class UserRobot {
                 position.x += Speed;
                 break; //上右
             case DDownLeft:
-                img = 3; //向后飞的图片
+                //向后飞的图片
+                img = 3;
                 position.y += Speed;
                 position.x -= Speed;
                 break; //下左

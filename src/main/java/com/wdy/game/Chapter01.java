@@ -89,11 +89,16 @@ public class Chapter01 {
         try {
             lifeImage = ImageIO.read(UserRobot.class.getResource("imgs/life.gif"));
             backgroundImage01 = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("imgs/Chapter_01/02.gif")), 1536, 600);
-            gjhImage = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("imgs/gjh.gif")), 800, 800); //加载歌姬号
-            speak01 = ImageIO.read(UserRobot.class.getResource("imgs/speak/lks.gif")); //拉克丝
-            speak02 = ImageIO.read(UserRobot.class.getResource("imgs/speak/jl.gif")); //基拉大和
-            speak03 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj2.gif")); //增加
-            speak04 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj.gif")); //增加遗言
+            //加载歌姬号
+            gjhImage = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("imgs/gjh.gif")), 800, 800);
+            //拉克丝
+            speak01 = ImageIO.read(UserRobot.class.getResource("imgs/speak/lks.gif"));
+            //基拉大和
+            speak02 = ImageIO.read(UserRobot.class.getResource("imgs/speak/jl.gif"));
+            //增加
+            speak03 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj2.gif"));
+            //增加遗言
+            speak04 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj.gif"));
             backgroundImage02 = backgroundImage01;
         } catch (IOException e) {
             e.printStackTrace();
