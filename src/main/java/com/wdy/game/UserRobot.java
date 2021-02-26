@@ -47,7 +47,7 @@ public class UserRobot {
     private Direction robotDirection = Direction.DStop;
     //判断按键
     private boolean pUp = false, pDown = false, pLeft = false, pRight = false, pStop = false;
-    private final String[] bulletImg = {"game/imgs/bullet_01/00.gif"};
+    private final String[] bulletImg = {"/game/imgs/bullet_01/00.gif"};
     //爆炸
     public Explosion exp = null;
     //死亡时说的话
@@ -91,7 +91,7 @@ public class UserRobot {
         //初始化爆炸图
         String[] expImg = new String[6];
         for (int i = 1; i < 7; i++) {
-            expImg[i - 1] = "game/imgs/Explosion/0" + i + ".gif";
+            expImg[i - 1] = "/game/imgs/Explosion/0" + i + ".gif";
         }
         exp = new Explosion(expImg, position, true);
 

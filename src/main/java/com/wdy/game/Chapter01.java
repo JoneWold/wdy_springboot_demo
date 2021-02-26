@@ -87,18 +87,18 @@ public class Chapter01 {
         //读取关卡配置单位
         readTxt();
         try {
-            lifeImage = ImageIO.read(UserRobot.class.getResource("game/imgs/life.gif"));
-            backgroundImage01 = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("game/imgs/Chapter_01/02.gif")), 1536, 600);
+            lifeImage = ImageIO.read(UserRobot.class.getResource("/game/imgs/life.gif"));
+            backgroundImage01 = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("/game/imgs/Chapter_01/02.gif")), 1536, 600);
             //加载歌姬号
-            gjhImage = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("game/imgs/gjh.gif")), 800, 800);
+            gjhImage = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("/game/imgs/gjh.gif")), 800, 800);
             //拉克丝
-            speak01 = ImageIO.read(UserRobot.class.getResource("game/imgs/speak/lks.gif"));
+            speak01 = ImageIO.read(UserRobot.class.getResource("/game/imgs/speak/lks.gif"));
             //基拉大和
-            speak02 = ImageIO.read(UserRobot.class.getResource("game/imgs/speak/jl.gif"));
+            speak02 = ImageIO.read(UserRobot.class.getResource("/game/imgs/speak/jl.gif"));
             //增加
-            speak03 = ImageIO.read(UserRobot.class.getResource("game/imgs/speak/zj2.gif"));
+            speak03 = ImageIO.read(UserRobot.class.getResource("/game/imgs/speak/zj2.gif"));
             //增加遗言
-            speak04 = ImageIO.read(UserRobot.class.getResource("game/imgs/speak/zj.gif"));
+            speak04 = ImageIO.read(UserRobot.class.getResource("/game/imgs/speak/zj.gif"));
             backgroundImage02 = backgroundImage01;
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,7 +107,7 @@ public class Chapter01 {
         //敌机载入内存
         for (int i = 0; i < enemyImage.length; i++) {
             try {
-                enemyImage[i] = ImageIO.read(UserRobot.class.getResource("game/imgs/NPC_000" + (i + 1) + ".gif"));
+                enemyImage[i] = ImageIO.read(UserRobot.class.getResource("/game/imgs/NPC_000" + (i + 1) + ".gif"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -121,7 +121,7 @@ public class Chapter01 {
      */
     public void readTxt() {
         String[] temstr = null;
-        InputStream ist = this.getClass().getResourceAsStream("game/imgs/C1.txt");
+        InputStream ist = this.getClass().getResourceAsStream("/game/imgs/C1.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(ist));
         String lineStr = null;
         try {

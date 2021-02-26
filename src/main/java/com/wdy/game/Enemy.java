@@ -56,7 +56,7 @@ public class Enemy {
     protected ArrayList<EnemyBullet> enemybullets = new ArrayList<EnemyBullet>();
 
     public Explosion exp = null;
-    protected String[] bulletimg = {"game/imgs/bullet_02/00.gif"};
+    protected String[] bulletimg = {"/game/imgs/bullet_02/00.gif"};
     protected int timer;
 
     /**
@@ -78,7 +78,7 @@ public class Enemy {
         }
         // 初始化爆炸图
         for (int i = 1; i < 7; i++) {
-            explosionimage[i - 1] = "game/imgs/Explosion/0" + i + ".gif";
+            explosionimage[i - 1] = "/game/imgs/Explosion/0" + i + ".gif";
         }
         // 不是BOSS
         Boss = false;

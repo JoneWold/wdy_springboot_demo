@@ -25,7 +25,7 @@ public class Boss extends Enemy {
     private Point overHitPosition = null;
     //必杀冲撞的范围
     private Dimension overHitsize = null;
-    private String[] bossBulletimg = {"game/imgs/bullet_03/00.gif", "game/imgs/bullet_03/01.gif", "game/imgs/bullet_03/02.gif", "game/imgs/bullet_03/03.gif"};
+    private String[] bossBulletimg = {"/game/imgs/bullet_03/00.gif", "/game/imgs/bullet_03/01.gif", "/game/imgs/bullet_03/02.gif", "/game/imgs/bullet_03/03.gif"};
 
     public Boss(Point position, int speed, int life, BufferedImage EnemyImage,
                 Direction enemyDirection) {
@@ -40,7 +40,7 @@ public class Boss extends Enemy {
                 str = String.valueOf(i + 1);
             }
             try {
-                Bossimages[i] = ImageIO.read(UserRobot.class.getResource("game/imgs/Boss/" + str + ".gif"));
+                Bossimages[i] = ImageIO.read(UserRobot.class.getResource("/game/imgs/Boss/" + str + ".gif"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
