@@ -15,12 +15,17 @@ import java.io.IOException;
  * @date 2020/6/19
  */
 public class Boss extends Enemy {
-    private Point Exp_point = null; //爆炸位置
-    BufferedImage[] Bossimages = new BufferedImage[24]; //Boss机体图
-    private int overHitTime = 0; //必杀技
-    private Point overHitPosition = null; //必杀冲撞的位置
-    private Dimension overHitsize = null; //必杀冲撞的范围
-    private String[] bossBulletimg = {"imgs/bullet_03/00.gif", "imgs/bullet_03/01.gif", "imgs/bullet_03/02.gif", "imgs/bullet_03/03.gif"};
+    //爆炸位置
+    private Point Exp_point = null;
+    //Boss机体图
+    BufferedImage[] Bossimages = new BufferedImage[24];
+    //必杀技
+    private int overHitTime = 0;
+    //必杀冲撞的位置
+    private Point overHitPosition = null;
+    //必杀冲撞的范围
+    private Dimension overHitsize = null;
+    private String[] bossBulletimg = {"game/imgs/bullet_03/00.gif", "game/imgs/bullet_03/01.gif", "game/imgs/bullet_03/02.gif", "game/imgs/bullet_03/03.gif"};
 
     public Boss(Point position, int speed, int life, BufferedImage EnemyImage,
                 Direction enemyDirection) {
@@ -35,7 +40,7 @@ public class Boss extends Enemy {
                 str = String.valueOf(i + 1);
             }
             try {
-                Bossimages[i] = ImageIO.read(UserRobot.class.getResource("imgs/Boss/" + str + ".gif"));
+                Bossimages[i] = ImageIO.read(UserRobot.class.getResource("game/imgs/Boss/" + str + ".gif"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -44,16 +49,21 @@ public class Boss extends Enemy {
         MaxLife = life;
         Exp_point = new Point(this.position.x + 360, this.position.y + 130);
         exp = new Explosion(explosionimage, Exp_point, true);
-        this.bodyPower = 1000; //身体伤害
+        //身体伤害
+        this.bodyPower = 1000;
 
         Boss = true;
-        overHitPosition = new Point(this.position.x + 360, this.position.y + 130);//必杀冲撞的位置
-        overHitsize = new Dimension(150, 145);//必杀冲撞的范围
+        //必杀冲撞的位置
+        overHitPosition = new Point(this.position.x + 360, this.position.y + 130);
+        //必杀冲撞的范围
+        overHitsize = new Dimension(150, 145);
 
 
     }
 
-    //绘制自己
+    /**
+     * 绘制自己
+     */
     @Override
     public void drawMe(Graphics g, UserRobot ur) {
         //绘制血条
@@ -80,7 +90,8 @@ public class Boss extends Enemy {
 
         //定时发射子弹
         timer++;
-        overHitTime++; //必杀技
+        //必杀技
+        overHitTime++;
         if (timer >= 80) {
             timer = 0;
             EnemyBullet[] bt = fire();
@@ -109,12 +120,13 @@ public class Boss extends Enemy {
                 overHitPosition.y = this.position.y + 130;
                 overHitsize.width = 150;
                 overHitsize.height = 145;
-
-                overHitTime = 0; //清空必杀
+                //清空必杀
+                overHitTime = 0;
             }
 
         } else {
-            if (this.life > 0) { //活着就绘制自己
+            //活着就绘制自己
+            if (this.life > 0) {
                 //普通范围
                 overHitPosition.x = this.position.x + 360;
                 overHitPosition.y = this.position.y + 130;
@@ -142,39 +154,52 @@ public class Boss extends Enemy {
         }
     }
 
-    //重写移动方法
+    /**
+     * 重写移动方法
+     */
     @Override
     public void move() {
-        if (this.position.x >= 330) { //入场的移动
+        //入场的移动
+        if (this.position.x >= 330) {
             this.position.x -= Speed;
             this.enemyDirection = Direction.DUp;
-        } else {//变为上下移动
+            //变为上下移动
+        } else {
             if (this.position.y < -90) {
-                this.enemyDirection = Direction.DDown; //确定下移
+                //确定下移
+                this.enemyDirection = Direction.DDown;
                 this.position.y += Speed;
             } else if (this.position.y > 330) {
-                this.enemyDirection = Direction.DUp; //确定上移
+                //确定上移
+                this.enemyDirection = Direction.DUp;
                 this.position.y -= Speed;
             } else if (this.enemyDirection == Direction.DDown) {
-                this.position.y += Speed; //持续下移
+                //持续下移
+                this.position.y += Speed;
             } else if (this.enemyDirection == Direction.DUp) {
-                this.position.y -= Speed; //持续上移
+                //持续上移
+                this.position.y -= Speed;
             }
 
         }
     }
 
-    //得到自己的矩形区域
+    /**
+     * 得到自己的矩形区域
+     */
     @Override
     public Rectangle getMeRect() {
         Rectangle rectme = new Rectangle(overHitPosition, overHitsize);
         return rectme;
     }
 
-    //开火
+    /**
+     * 开火
+     */
     @Override
     public EnemyBullet[] fire() {
-        Sound fireSound = new Sound("music/Cannon.mp3"); //开火声音
+        //开火声音
+        Sound fireSound = new Sound("music/Cannon.mp3");
         fireSound.play();
 
         EnemyBullet[] bt = new EnemyBullet[3];

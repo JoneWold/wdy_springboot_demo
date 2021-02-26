@@ -27,14 +27,14 @@ public class UserRobot {
     //位置
     public Point position = null;
     //速度
-    private int Speed = 3;
+    private int speed = 3;
     //生命
     public int life = 0;
     //射击延迟
-    private int bullettime = 0;
+    private int bulletTime = 0;
     //身体冲撞威力
     public int bodyPower = 100;
-    private int MaxLife = 0;
+    private int maxLife = 0;
     //机体图
     private BufferedImage robotimage01 = null, robotimage02 = null, robotimage03 = null, robotimage04 = null;
     //子弹图
@@ -47,20 +47,21 @@ public class UserRobot {
     private Direction robotDirection = Direction.DStop;
     //判断按键
     private boolean pUp = false, pDown = false, pLeft = false, pRight = false, pStop = false;
-    private String[] bulletimg = {"game/imgs/bullet_01/00.gif"};
+    private final String[] bulletImg = {"game/imgs/bullet_01/00.gif"};
     //爆炸
     public Explosion exp = null;
-    private String[] exp_img = null;
     //死亡时说的话
     private int overspeakindex;
     private BufferedImage overspeakimg = null;
     private BufferedImage headimage = null;
 
-    //初始化
+    /**
+     * 初始化
+     */
     public UserRobot(Point position, int life, Direction robotDirection) {
         this.position = position;
         this.life = life;
-        this.MaxLife = life;
+        this.maxLife = life;
         this.robotDirection = robotDirection;
         //初始化图片
         try {
@@ -88,11 +89,11 @@ public class UserRobot {
         this.size = new Dimension(this.robotImage.getWidth(null), this.robotImage.getHeight(null));
 
         //初始化爆炸图
-        exp_img = new String[6];
+        String[] expImg = new String[6];
         for (int i = 1; i < 7; i++) {
-            exp_img[i - 1] = "game/imgs/Explosion/0" + i + ".gif";
+            expImg[i - 1] = "game/imgs/Explosion/0" + i + ".gif";
         }
-        exp = new Explosion(exp_img, position, true);
+        exp = new Explosion(expImg, position, true);
 
     }
 
@@ -116,8 +117,8 @@ public class UserRobot {
 
             //开火
             case KeyEvent.VK_J:
-                if (bullettime == 0 && life > 0) {
-                    bullettime = 15;
+                if (bulletTime == 0 && life > 0) {
+                    bulletTime = 15;
                 }
                 break;
             default:
@@ -207,39 +208,39 @@ public class UserRobot {
         int img = 1;
         switch (robotDirection) {
             case DUp:
-                position.y -= Speed;
+                position.y -= speed;
                 break; //上
             case DDown:
-                position.y += Speed;
+                position.y += speed;
                 break; //下
             case DLeft:
                 //向后飞的图片
                 img = 3;
-                position.x -= Speed;
+                position.x -= speed;
                 break; //左
             case DRight:
-                position.x += Speed;
+                position.x += speed;
                 break; //右
 
             case DUpLeft:
                 //向后飞的图片
                 img = 3;
-                position.y -= Speed;
-                position.x -= Speed;
+                position.y -= speed;
+                position.x -= speed;
                 break; //上左
             case DUpright:
-                position.y -= Speed;
-                position.x += Speed;
+                position.y -= speed;
+                position.x += speed;
                 break; //上右
             case DDownLeft:
                 //向后飞的图片
                 img = 3;
-                position.y += Speed;
-                position.x -= Speed;
+                position.y += speed;
+                position.x -= speed;
                 break; //下左
             case DDownRight:
-                position.y += Speed;
-                position.x += Speed;
+                position.y += speed;
+                position.x += speed;
                 break; //下右
             default:
                 break;
@@ -285,31 +286,33 @@ public class UserRobot {
         }
     }
 
-    //绘制自己
+    /**
+     * 绘制自己
+     */
     public void graphicsRobot(Graphics g, ArrayList<Enemy> em) {
         //延迟射击处理
-        if (bullettime > 0) {
-            bullettime--;
+        if (bulletTime > 0) {
+            bulletTime--;
         }
-        if (bullettime > 10 && bullettime <= 15) {
+        if (bulletTime > 10 && bulletTime <= 15) {
             this.robotImage = robotimage03;
             this.size.width = robotImage.getWidth();
             this.size.height = robotImage.getHeight();
-        } else if (bullettime > 5 && bullettime <= 10) {
+        } else if (bulletTime > 5 && bulletTime <= 10) {
             this.robotImage = robotimage02;
             this.size.width = robotImage.getWidth();
             this.size.height = robotImage.getHeight();
-        } else if (bullettime > 1 && bullettime <= 5) {
+        } else if (bulletTime > 1 && bulletTime <= 5) {
             this.robotImage = robotimage03;
             this.size.width = robotImage.getWidth();
             this.size.height = robotImage.getHeight();
 
-            if (bullettime == 2) {
+            if (bulletTime == 2) {
                 bullets.add(fire());
             }
         }
 
-        drawGunFire(bullettime, g);
+        drawGunFire(bulletTime, g);
 
         //处理子弹绘制
         if (bullets.size() > 0) {
@@ -350,7 +353,7 @@ public class UserRobot {
 
         //绘制血条
         g.drawImage(headimage, 15, 500, null);
-        int xt_length = this.life * 150 / this.MaxLife;
+        int xt_length = this.life * 150 / this.maxLife;
         if (xt_length < 0) {
             xt_length = 0;
         }
@@ -404,7 +407,7 @@ public class UserRobot {
         Sound fireSound = new Sound("music/Beam.mp3");
         fireSound.play();
         Bullet bt = new Bullet(new Point(position.x + 120, position.y + 35), true,
-                bulletimg, Direction.DRight, 8, true, 5, 0, 0, 0, 0);
+                bulletImg, Direction.DRight, 8, true, 5, 0, 0, 0, 0);
         return bt;
     }
 }

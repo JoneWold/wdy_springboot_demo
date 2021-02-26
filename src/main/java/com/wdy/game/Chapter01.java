@@ -87,18 +87,18 @@ public class Chapter01 {
         //读取关卡配置单位
         readTxt();
         try {
-            lifeImage = ImageIO.read(UserRobot.class.getResource("imgs/life.gif"));
-            backgroundImage01 = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("imgs/Chapter_01/02.gif")), 1536, 600);
+            lifeImage = ImageIO.read(UserRobot.class.getResource("game/imgs/life.gif"));
+            backgroundImage01 = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("game/imgs/Chapter_01/02.gif")), 1536, 600);
             //加载歌姬号
-            gjhImage = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("imgs/gjh.gif")), 800, 800);
+            gjhImage = BsGraphics.resizeImage(ImageIO.read(UserRobot.class.getResource("game/imgs/gjh.gif")), 800, 800);
             //拉克丝
-            speak01 = ImageIO.read(UserRobot.class.getResource("imgs/speak/lks.gif"));
+            speak01 = ImageIO.read(UserRobot.class.getResource("game/imgs/speak/lks.gif"));
             //基拉大和
-            speak02 = ImageIO.read(UserRobot.class.getResource("imgs/speak/jl.gif"));
+            speak02 = ImageIO.read(UserRobot.class.getResource("game/imgs/speak/jl.gif"));
             //增加
-            speak03 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj2.gif"));
+            speak03 = ImageIO.read(UserRobot.class.getResource("game/imgs/speak/zj2.gif"));
             //增加遗言
-            speak04 = ImageIO.read(UserRobot.class.getResource("imgs/speak/zj.gif"));
+            speak04 = ImageIO.read(UserRobot.class.getResource("game/imgs/speak/zj.gif"));
             backgroundImage02 = backgroundImage01;
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,12 +107,13 @@ public class Chapter01 {
         //敌机载入内存
         for (int i = 0; i < enemyImage.length; i++) {
             try {
-                enemyImage[i] = ImageIO.read(UserRobot.class.getResource("imgs/NPC_000" + (i + 1) + ".gif"));
+                enemyImage[i] = ImageIO.read(UserRobot.class.getResource("game/imgs/NPC_000" + (i + 1) + ".gif"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        sd.playLoop(); //播放背景音乐
+        //播放背景音乐
+        sd.playLoop();
     }
 
     /**
@@ -120,7 +121,7 @@ public class Chapter01 {
      */
     public void readTxt() {
         String[] temstr = null;
-        InputStream ist = this.getClass().getResourceAsStream("imgs/C1.txt");
+        InputStream ist = this.getClass().getResourceAsStream("game/imgs/C1.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(ist));
         String lineStr = null;
         try {
@@ -144,7 +145,9 @@ public class Chapter01 {
         }
     }
 
-    //歌姬号出现
+    /**
+     * 歌姬号出现
+     */
     public void drawGJH(Graphics g) {
         if (gjhPosition.x <= -200 && !hsGjh) {
             g.drawImage(gjhImage, gjhPosition.x++, gjhPosition.y, null);
@@ -169,8 +172,8 @@ public class Chapter01 {
         } else {
             hsGjh = true;
             g.drawImage(gjhImage, gjhPosition.x--, gjhPosition.y, null);
-
-            userrobot.graphicsRobot(g, enemies); //活着才绘制玩家角色
+            //活着才绘制玩家角色
+            userrobot.graphicsRobot(g, enemies);
 
         }
     }
@@ -178,16 +181,17 @@ public class Chapter01 {
     //主绘制方法
     public void drawAll(Graphics g) {
         chapterTime++;
-        drawBackGround(g); //绘制背景
-        initNPC(); //制造批量敌军
-//		/增加说话
+        //绘制背景
+        drawBackGround(g);
+        //制造批量敌军
+        initNPC();
+        //增加说话
         if (chapterTime == 1500) {
-            this.sd.stop(); //BOSS音乐
+            //BOSS音乐
+            this.sd.stop();
             this.bossSd.playLoop();
         }
         if (chapterTime >= 1500 && chapterTime <= 1700) {
-
-
             g.drawImage(speak03, 200, 330, null);
 
             g.setFont(new Font("宋体", Font.BOLD, 16));
@@ -195,7 +199,8 @@ public class Chapter01 {
             g.drawString("曾伽", 420, 495);
             g.drawString("『让我来告诉你武者精神吧，曾伽参上！』", 400, 520);
         }
-        drawGJH(g); //歌姬号
+        //歌姬号
+        drawGJH(g);
         //机体碰撞
         for (int i = 0; i < enemies.size(); i++) {
             userrobot.collision(enemies.get(i));
@@ -225,12 +230,14 @@ public class Chapter01 {
 
             if (enemies.get(i).life > 0) {
                 enemies.get(i).exp.i = 0;
-                enemies.get(i).drawMe(g, userrobot); //活着的敌军
+                //活着的敌军
+                enemies.get(i).drawMe(g, userrobot);
             } else if (enemies.get(i).life <= 0 && enemies.get(i).exp.life) {
-                enemies.get(i).drawMe(g, userrobot); //绘制爆炸
+                enemies.get(i).drawMe(g, userrobot);
             } else if (enemies.get(i).life <= 0 && !enemies.get(i).exp.life) {
                 if (!enemies.get(i).Boss) {
-                    enemies.remove(i); //不是BOSS死掉就删除
+                    //不是BOSS死掉就删除
+                    enemies.remove(i);
                 }
             }
         }
@@ -240,14 +247,17 @@ public class Chapter01 {
         //显示子弹
         g.setFont(new Font("宋体", 0, 14));
         g.setColor(Color.orange);
-        g.drawString("我军发射的子弹为：" + String.valueOf(userrobot.bullets.size()), 110, 50); //显示子弹
+        //显示子弹
+        g.drawString("我军发射的子弹为：" + String.valueOf(userrobot.bullets.size()), 110, 50);
 
         //绘制敌军数量
         g.setColor(Color.white);
         g.drawString("敌军数量为" + String.valueOf(enemies.size()), 280, 50);
     }
 
-    //绘制背景方法
+    /**
+     * 绘制背景方法
+     */
     public void drawBackGround(Graphics g) {
         x1 = x1 - 5;
         x2 = x2 - 5;
@@ -260,15 +270,21 @@ public class Chapter01 {
         }
     }
 
-    //*********************关卡NPC分配*************************************************
+    //**************************************************************************************
+
+    /**
+     * 关卡NPC分配
+     */
     public void initNPC() {
         if (chapterList.size() > 0) {
             for (int i = 0; i < chapterList.size(); i++) {
                 String[] npcs = chapterList.get(i);
-                if (chapterTime == Integer.parseInt(npcs[0])) { //时间到了出场
+                //时间到了出场
+                if (chapterTime == Integer.parseInt(npcs[0])) {
                     BufferedImage loadimg = null;
                     Direction dir = Direction.DLeft;
-                    if (npcs[1].equals("true")) {//BOSS
+                    //BOSS
+                    if (npcs[1].equals("true")) {
                         if (npcs[7].equals("left")) {
                             dir = Direction.DLeft;
                         }
@@ -282,7 +298,8 @@ public class Chapter01 {
                             dir = Direction.DDown;
                         }
                         enemies.add(new Boss(new Point(Integer.parseInt(npcs[2]), Integer.parseInt(npcs[3])), Integer.parseInt(npcs[4]), Integer.parseInt(npcs[5]), loadimg, dir));
-                    } else {//杂兵
+                    } else {
+                        //杂兵
                         loadimg = enemyImage[Integer.parseInt(npcs[6])];
                         if (npcs[7].equals("left")) {
                             dir = Direction.DLeft;
@@ -304,7 +321,10 @@ public class Chapter01 {
     }
 
     //**************************************************************************************
-    //键盘信息
+
+    /**
+     * 键盘信息
+     */
     public void keyReleased(KeyEvent e) {
         userrobot.keyReleased(e);
     }
@@ -315,8 +335,9 @@ public class Chapter01 {
             for (int i = 0; i < enemies.size(); i++) {
                 enemies.get(i).life -= 100;
                 if (enemies.get(i).life <= 0) {
-                    Sound Explodesd = new Sound("music/Explode.mp3"); //爆炸声音
-                    Explodesd.play();
+                    //爆炸声音
+                    Sound explodesd = new Sound("music/Explode.mp3");
+                    explodesd.play();
                 }
             }
         }

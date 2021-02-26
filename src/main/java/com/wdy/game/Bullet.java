@@ -44,7 +44,9 @@ public class Bullet {
     private Direction bulletangle = Direction.DLeft;
     private int bulletindex = 0;
 
-    //初始化子弹
+    /**
+     * 初始化子弹
+     */
     public Bullet(Point position, boolean life, String[] BulletImage, Direction bulletDirection,
                   int speed, boolean fanzhuan, int power, int p1x, int p1y, int p2x, int p2y) {
         this.position = position;
@@ -75,7 +77,9 @@ public class Bullet {
         this.size = new Dimension(this.BulletImage[0].getWidth(null), this.BulletImage[0].getHeight(null));
     }
 
-    //绘制自己
+    /**
+     * 绘制自己
+     */
     public void GraphicsBullet(Graphics g) {
         bulletindex++;
         if (bulletindex / 3 >= BulletImage.length) {
@@ -124,28 +128,38 @@ public class Bullet {
                         if (p2x - p1x >= 0) {
                             //前面
                             if ((p2x - p1x) / (p1y - p2y) > 2 || (p2x - p1x) / (p2y - p1y) > 2) {
-                                bulletangle = Direction.DLeft;//左
+                                //左
+                                bulletangle = Direction.DLeft;
                             } else if ((p2y - p1y) > ((p2x - p1x) * 2)) {
-                                bulletangle = Direction.DUp;//上
+                                //上
+                                bulletangle = Direction.DUp;
                             } else if ((p1y - p2y) > ((p2x - p1x) * 2)) {
-                                bulletangle = Direction.DDown;//下
+                                //下
+                                bulletangle = Direction.DDown;
                             } else if (p2y - p1y > 0) {
-                                bulletangle = Direction.DUpLeft;//左上
+                                //左上
+                                bulletangle = Direction.DUpLeft;
                             } else {
-                                bulletangle = Direction.DDownLeft; //左下
+                                //左下
+                                bulletangle = Direction.DDownLeft;
                             }
                         } else {
                             //后面
                             if ((p1x - p2x) / (p1y - p2y) > 2 || (p1x - p2x) / (p2y - p1y) > 2) {
-                                bulletangle = Direction.DRight;//右
+                                //右
+                                bulletangle = Direction.DRight;
                             } else if ((p2y - p1y) > ((p1x - p2x) * 2)) {
-                                bulletangle = Direction.DUp;//上
+                                //上
+                                bulletangle = Direction.DUp;
                             } else if ((p1y - p2y) > ((p1x - p2x) * 2)) {
-                                bulletangle = Direction.DDown;//下
+                                //下
+                                bulletangle = Direction.DDown;
                             } else if (p2y - p1y > 0) {
-                                bulletangle = Direction.DUpright;//右上
+                                //右上
+                                bulletangle = Direction.DUpright;
                             } else {
-                                bulletangle = Direction.DDownRight; //右下
+                                //右下
+                                bulletangle = Direction.DDownRight;
                             }
                         }
                     } catch (Exception e) {
