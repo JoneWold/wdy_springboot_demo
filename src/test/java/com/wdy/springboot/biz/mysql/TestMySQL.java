@@ -35,9 +35,10 @@ public class TestMySQL {
             ResultSetMetaData md = rs.getMetaData();
             //获取行的数量
             int columnCount = md.getColumnCount();
+            int id = 7027;
             while (rs.next()) {
                 Map<String, Object> rowData = new HashMap<>();
-                // 组合SQL语句
+                // 组合SQL插入语句
                 StringBuilder sb = new StringBuilder("INSERT INTO  `code_value` ");
                 StringBuilder sub1 = new StringBuilder();
                 StringBuilder sub2 = new StringBuilder();
@@ -53,7 +54,7 @@ public class TestMySQL {
                 }
                 //INSERT INTO `tongzhan2`.`code_value`(`id`, `code_type`, `meeting_code`, `CODE`, `CODE_NAME`, `CODE_ABR1`, `CODE_ABR2`, `CODE_LEVEL`, `CODE_LEAF`, `SUP_CODE`, `ININO`, `CODE_ASSIST`, `INVALID`, `CODE_ANAME`, `CODE_BSPELLING`, `CODE_SPELLING`, `START_DATE`, `STOP_DATE`, `IS_USE`, `IS_MODIFY`, `REPORT_CODE`, `CODE_SOURCE`, `REPORT_LEVEL`)
                 //VALUES (1, 'ga21412', NULL, '00', '无宗教信仰', NULL, '00', NULL, '1', NULL, 1, NULL, '1', '无宗教信仰', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-                sb.append("(`code_type`").append(sub1).append(") VALUES ('").append(table).append("'").append(sub2).append(");");
+                sb.append("(`id`,`code_type`").append(sub1).append(") VALUES ('").append(id).append("','").append(table).append("'").append(sub2).append(");");
                 System.out.println(sb);
                 // 写入文件中
                 String resource = TestMySQL.class.getResource("/").getPath();
@@ -61,6 +62,7 @@ public class TestMySQL {
                 FileWriter writer = new FileWriter(file, true);
                 writer.write(sb.toString() + "\n");
                 writer.close();
+                id++;
             }
         }
     }
@@ -68,7 +70,8 @@ public class TestMySQL {
 
     public static List<String> getDictTables() {
         return new ArrayList<String>() {{
-            add("zb01");
+            add("b01");
+//            add("zb01");
         }};
 //        return new ArrayList<String>() {{
 //            add("ga21412");
