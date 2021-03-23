@@ -168,3 +168,8 @@ SpringBoot基础笔记
         }
     }
 
+
+八、运行Java打包程序
+    java -jar -Xms512m -Xmx2048m -Dloader.path=config  zenith-front-all-run-1.0-SNAPSHOT.jar
+
+

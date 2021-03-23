@@ -26,6 +26,8 @@
         <hutool.all.version>5.3.3</hutool.all.version>
         <lombok.version>1.16.20</lombok.version>
         <dozer.version>5.5.1</dozer.version>
+        <pinyin4j.version>2.5.1</pinyin4j.version>
+        <jpinyin.version>1.1.8</jpinyin.version>
     </properties>
 
     <dependencies>
@@ -214,11 +216,16 @@
             <artifactId>poi-ooxml</artifactId>
             <version>3.17</version>
         </dependency>
-        <!--poi-->
+        <!--汉语拼音-->
         <dependency>
             <groupId>com.belerweb</groupId>
             <artifactId>pinyin4j</artifactId>
-            <version>2.5.1</version>
+            <version>${pinyin4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.stuxuhai</groupId>
+            <artifactId>jpinyin</artifactId>
+            <version>${jpinyin.version}</version>
         </dependency>
 
     </dependencies>

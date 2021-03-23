@@ -1,6 +1,7 @@
 package com.wdy.springboot.wdy;
 
 import cn.hutool.extra.pinyin.PinyinUtil;
+import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.wdy.springboot.constant.PublicConstant;
 import com.wdy.springboot.util.DTOEntiyUtils;
 import com.wdy.springboot.vo.response.BlogVo;
@@ -16,7 +17,7 @@ import java.util.List;
 public class WdyMainMethod {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         testDozer();
         testPinYinStr();
     }
@@ -40,9 +41,13 @@ public class WdyMainMethod {
     /**
      * 获取汉语拼音
      */
-    private static void testPinYinStr() {
+    private static void testPinYinStr() throws Exception {
         String pinyin = PinyinUtil.getPinyin("少时诵诗书", " ");
+        String letter = PinyinUtil.getFirstLetter("少时诵诗书", "");
+        String pinyin2 = PinyinHelper.getShortPinyin("少时诵诗书");
         System.out.println(pinyin);
+        System.out.println(letter);
+        System.out.println(pinyin2);
     }
 
 
