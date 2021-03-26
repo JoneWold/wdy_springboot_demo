@@ -12,8 +12,9 @@
     <groupId>com.wdy</groupId>
     <artifactId>wdy_springboot_demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spt</name>
-    <description>Demo project for Spring Boot</description>
+    <name>wdy_spt</name>
+    <packaging>jar</packaging>
+    <description>Spring Boot基础项目测试20200330</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -231,13 +232,138 @@
     </dependencies>
 
 
+    <!--    <build>-->
+    <!--        <plugins>-->
+    <!--            <plugin>-->
+    <!--                <groupId>org.springframework.boot</groupId>-->
+    <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+    <!--            </plugin>-->
+    <!--        </plugins>-->
+    <!--    </build>-->
     <build>
+        <finalName>wdy_spt</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <!-- 将静态资源排除出 jar 包 -->
+                    <excludes>
+                        <exclude>*.**</exclude>
+                        <exclude>static/**</exclude>
+                        <exclude>public/**</exclude>
+                        <exclude>templates/**</exclude>
+                        <!-- 自定义自己的配置文件 -->
+                        <exclude>*.yml</exclude>
+                    </excludes>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <!-- MANIFEST.MF 中 Class-Path 加入前缀 -->
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- jar 包不包含唯一版本标识 -->
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <!-- 指定启动类的包路径 -->
+                            <mainClass>com.zenith.front.Application</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <!--MANIFEST.MF 中 Class-Path 加入资源文件目录 -->
+                            <Class-Path>config/</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                    <!-- 指定打出的 jar 包路径 -->
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                </configuration>
+            </plugin>
+            <!-- 这个插件是用来复制项目依赖的 jar 包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!-- 自定义 -->
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 复制依赖的 jar 包 -->
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 将依赖的 jar 包复制到该路径下 -->
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 这个插件是用来复制项目的静态资源 -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!-- 自定义 -->
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 复制静态资源 -->
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <delimiters>
+                                <delimiter>@</delimiter>
+                            </delimiters>
+                            <useDefaultDelimiters>false</useDefaultDelimiters>
+                            <resources>
+                                <resource>
+                                    <!-- 指定静态资源的路径 -->
+                                    <directory>src/main/resources</directory>
+                                    <!-- 处理文件时替换文件中的变量 -->
+                                    <filtering>true</filtering>
+                                    <!-- 指定需要复制的文件 -->
+                                    <includes>
+                                        <!--<include>*.*</include>-->
+                                        <include>application.yml</include>
+                                        <include>application.properties</include>
+                                        <include>*.xml</include>
+                                        <include>*.properties</include>
+                                        <include>public/**</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <!-- 指定复制到该目录下 -->
+                            <outputDirectory>${project.build.directory}/config</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--     打包 zip    -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <!-- 这个插件需要指定一个配置文件 -->
+                    <descriptors>
+                        <descriptor>src/main/resources/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <!-- 自定义 -->
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 只执行一次 -->
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
 </project>
