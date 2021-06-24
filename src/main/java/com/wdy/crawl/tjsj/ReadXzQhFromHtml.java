@@ -23,10 +23,10 @@ public class ReadXzQhFromHtml {
 
 
     public static void main(String[] args) {
-        String visitUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/index.html";
-        Page page = RequestAndResponseTool.sendRequstAndGetResponse(visitUrl);
-        readCity(page);
-        String countyUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/65/6501.html";
+//        String visitUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/index.html";
+//        Page page = RequestAndResponseTool.sendRequstAndGetResponse(visitUrl);
+//        readCity(page);
+        String countyUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/50/5001.html";
         Page countyPage = RequestAndResponseTool.sendRequstAndGetResponse(countyUrl);
         readCounty(countyPage);
 
