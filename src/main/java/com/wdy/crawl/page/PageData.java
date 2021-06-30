@@ -12,7 +12,7 @@ import java.io.UnsupportedEncodingException;
  *
  * @author wgch
  */
-public class Page {
+public class PageData {
 
     private byte[] content;
     /**
@@ -36,7 +36,7 @@ public class Page {
      */
     private String contentType;
 
-    public Page(byte[] content, String url, String contentType) {
+    public PageData(byte[] content, String url, String contentType) {
         this.content = content;
         this.url = url;
         this.contentType = contentType;

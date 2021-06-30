@@ -20,19 +20,19 @@ public class PageParserTool {
     /**
      * 通过选择器来选取页面的
      */
-    public static Elements select(Page page, String cssSelector) {
+    public static Elements select(PageData page, String cssSelector) {
         return page.getDoc().select(cssSelector);
     }
 
 
-    public static Elements selectByClass(Page page, String cssSelector) {
+    public static Elements selectByClass(PageData page, String cssSelector) {
         return page.getDoc().getElementsByClass(cssSelector);
     }
 
     /**
      * 通过css选择器来得到指定元素
      */
-    public static Element select(Page page, String cssSelector, int index) {
+    public static Element select(PageData page, String cssSelector, int index) {
         Elements elements = select(page, cssSelector);
         int realIndex = index;
         if (index < 0) {
@@ -48,7 +48,7 @@ public class PageParserTool {
      * 就要将cssSelector定义为div[id=content] a
      * 放入set 中 防止重复；
      */
-    public static Set<String> getLinks(Page page, String startUrl, String cssSelector) {
+    public static Set<String> getLinks(PageData page, String startUrl, String cssSelector) {
         Set<String> links = new HashSet<String>();
         Elements es = selectByClass(page, cssSelector);
         if (CollUtil.isNotEmpty(es)) {
@@ -75,7 +75,7 @@ public class PageParserTool {
     /**
      * 获取乡镇街道链接
      */
-    public static Set<String> getTownLinks(Page page, String startUrl, String cssSelector) {
+    public static Set<String> getTownLinks(PageData page, String startUrl, String cssSelector) {
         Set<String> links = new HashSet<String>();
         Elements es = selectByClass(page, cssSelector);
         if (CollUtil.isNotEmpty(es)) {
@@ -99,7 +99,7 @@ public class PageParserTool {
      * 获取网页中满足指定css选择器的所有元素的指定属性的集合
      * 例如通过getAttrs("img[src]","abs:src")可获取网页中所有图片的链接
      */
-    public static ArrayList<String> getAttrs(Page page, String cssSelector, String attrName) {
+    public static ArrayList<String> getAttrs(PageData page, String cssSelector, String attrName) {
         ArrayList<String> result = new ArrayList<String>();
         Elements elements = select(page, cssSelector);
         for (Element ele : elements) {

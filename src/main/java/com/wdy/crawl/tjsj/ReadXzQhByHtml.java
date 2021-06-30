@@ -5,7 +5,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
-import com.wdy.crawl.page.Page;
+import com.wdy.crawl.page.PageData;
 import com.wdy.crawl.page.PageParserTool;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -45,7 +45,7 @@ public class ReadXzQhByHtml {
     /**
      * 省市
      */
-    public static Map<String, String> readCity(Page page) {
+    public static Map<String, String> readCity(PageData page) {
         Map<String, String> map = new LinkedHashMap<>();
         Elements elements = PageParserTool.selectByClass(page, "provincetr");
         elements.addAll(PageParserTool.selectByClass(page, "citytr"));
@@ -66,7 +66,7 @@ public class ReadXzQhByHtml {
     /**
      * 区县
      */
-    public static Map<String, String> readCounty(Page page) {
+    public static Map<String, String> readCounty(PageData page) {
         Map<String, String> map = new LinkedHashMap<>();
         Elements elements = PageParserTool.selectByClass(page, "countytr");
         for (Element element : elements) {
@@ -84,7 +84,7 @@ public class ReadXzQhByHtml {
     /**
      * 乡镇街道
      */
-    public static Map<String, String> readTowntr(Page page) {
+    public static Map<String, String> readTowntr(PageData page) {
         Map<String, String> map = new LinkedHashMap<>();
         Elements towns = PageParserTool.selectByClass(page, "towntr");
         for (Element element : towns) {
@@ -119,7 +119,7 @@ public class ReadXzQhByHtml {
     }
 
 
-    public static void readA(Page page) {
+    public static void readA(PageData page) {
         Map<String, String> map = new LinkedHashMap<>();
         Elements elements = PageParserTool.select(page, "a");
         if (!elements.isEmpty()) {

@@ -4,11 +4,11 @@ import cn.hutool.core.io.FileUtil;
 import com.wdy.crawl.link.LinkFilter;
 import com.wdy.crawl.link.Links;
 import com.wdy.crawl.page.HttpClientTool;
-import com.wdy.crawl.page.Page;
+import com.wdy.crawl.page.PageData;
 import com.wdy.crawl.page.PageParserTool;
 import com.wdy.crawl.tjsj.CodeValueVo;
 import com.wdy.crawl.tjsj.ReadXzQhByHtml;
-import com.wdy.crawl.util.FileTool;
+import com.wdy.crawl.util.FileHtmlTool;
 
 import java.io.File;
 import java.util.*;
@@ -74,7 +74,7 @@ public class MyCrawler {
     /**
      * 抓取过程
      */
-    public void crawling(List<String> seeds) {
+    private void crawling(List<String> seeds) {
         long start = System.currentTimeMillis();
         Map<String, String> map = new HashMap<>();
         //初始化 URL 队列
@@ -90,14 +90,16 @@ public class MyCrawler {
                 continue;
             }
             //根据URL得到page;
-            Page page = HttpClientTool.getPageBySendUrl(visitUrl);
+            PageData page = HttpClientTool.getPageBySendUrl(visitUrl);
+            System.err.println("visitUrl ----->>>>> " + visitUrl);
+            System.err.println("page ----->>>>> " + page.getUrl());
             //对page进行处理： 访问DOM的某个标签
             map.putAll(ReadXzQhByHtml.readCity(page));
             map.putAll(ReadXzQhByHtml.readCounty(page));
             map.putAll(ReadXzQhByHtml.readTowntr(page));
-
+            System.err.println("map ----->>>>> " + map.size());
             //将保存文件
-            FileTool.saveToLocal(page);
+            FileHtmlTool.saveToLocal(page);
             //将已经访问过的链接放入已访问的链接中；
             Links.addVisitedUrlSet(visitUrl);
             //得到超链接
