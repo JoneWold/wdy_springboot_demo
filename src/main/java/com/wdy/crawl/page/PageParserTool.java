@@ -1,5 +1,6 @@
 package com.wdy.crawl.page;
 
+import cn.hutool.core.collection.CollUtil;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -50,21 +51,45 @@ public class PageParserTool {
     public static Set<String> getLinks(Page page, String startUrl, String cssSelector) {
         Set<String> links = new HashSet<String>();
         Elements es = selectByClass(page, cssSelector);
-        for (Element element : es) {
-            Elements elements = element.getElementsByAttribute("href");
-            for (Element sunE : elements) {
-                String href = sunE.attr("href");
-                String node = sunE.childNodes().get(0).outerHtml();
-                if (Character.isDigit(href.charAt(0)) && !Character.isDigit(node.charAt(0))
-                        && href.replace(".html", "").length() <= 7) {
-                    links.add(startUrl + href);
+        if (CollUtil.isNotEmpty(es)) {
+            for (Element element : es) {
+                Elements elements = element.getElementsByAttribute("href");
+                for (Element sunE : elements) {
+                    String href = sunE.attr("href");
+                    String node = sunE.childNodes().get(0).outerHtml();
+                    if (Character.isDigit(href.charAt(0)) && !Character.isDigit(node.charAt(0))
+                            && href.replace(".html", "").length() <= 7) {
+                        links.add(startUrl + href);
+                    }
                 }
-            }
 //            if (element.hasAttr("href")) {
 //                links.add(element.attr("abs:href"));
 //            } else if (element.hasAttr("src")) {
 //                links.add(element.attr("abs:src"));
 //            }
+            }
+        }
+        return links;
+    }
+
+    /**
+     * 获取乡镇街道链接
+     */
+    public static Set<String> getTownLinks(Page page, String startUrl, String cssSelector) {
+        Set<String> links = new HashSet<String>();
+        Elements es = selectByClass(page, cssSelector);
+        if (CollUtil.isNotEmpty(es)) {
+            for (Element element : es) {
+                Elements elements = element.getElementsByAttribute("href");
+                for (Element sunE : elements) {
+                    //<a href="02/500235.html">500235000000</a>
+                    String href = sunE.attr("href");
+                    String node = sunE.childNodes().get(0).outerHtml();
+                    if (Character.isDigit(href.charAt(0)) && !Character.isDigit(node.charAt(0)) && href.replace(".html", "").length() == 9) {
+                        links.add(startUrl + href.substring(3, 5) + "/" + href);
+                    }
+                }
+            }
         }
         return links;
     }

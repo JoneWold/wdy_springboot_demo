@@ -3,11 +3,11 @@ package com.wdy.crawl;
 import cn.hutool.core.io.FileUtil;
 import com.wdy.crawl.link.LinkFilter;
 import com.wdy.crawl.link.Links;
+import com.wdy.crawl.page.HttpClientTool;
 import com.wdy.crawl.page.Page;
 import com.wdy.crawl.page.PageParserTool;
-import com.wdy.crawl.page.RequestAndResponseTool;
 import com.wdy.crawl.tjsj.CodeValueVo;
-import com.wdy.crawl.tjsj.ReadXzQhFromHtml;
+import com.wdy.crawl.tjsj.ReadXzQhByHtml;
 import com.wdy.crawl.util.FileTool;
 
 import java.io.File;
@@ -21,13 +21,13 @@ import java.util.stream.Collectors;
 public class MyCrawler {
 
     public static void main(String[] args) {
-//        List<String> list = new ArrayList<String>() {{
-//            add("http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/index.html");
-//        }};
-//        MyCrawler myCrawler = new MyCrawler();
-//        myCrawler.crawling(list);
+        List<String> list = new ArrayList<String>() {{
+            add("http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/index.html");
+        }};
+        MyCrawler myCrawler = new MyCrawler();
+        myCrawler.crawling(list);
 
-        getData();
+//        getData();
     }
 
     public static void getData() {
@@ -90,10 +90,11 @@ public class MyCrawler {
                 continue;
             }
             //根据URL得到page;
-            Page page = RequestAndResponseTool.sendRequstAndGetResponse(visitUrl);
+            Page page = HttpClientTool.getPageBySendUrl(visitUrl);
             //对page进行处理： 访问DOM的某个标签
-            map.putAll(ReadXzQhFromHtml.readCity(page));
-            map.putAll(ReadXzQhFromHtml.readCounty(page));
+            map.putAll(ReadXzQhByHtml.readCity(page));
+            map.putAll(ReadXzQhByHtml.readCounty(page));
+            map.putAll(ReadXzQhByHtml.readTowntr(page));
 
             //将保存文件
             FileTool.saveToLocal(page);
@@ -103,6 +104,7 @@ public class MyCrawler {
             Set<String> links = PageParserTool.getLinks(page, startUrl, "provincetr");
             links.addAll(PageParserTool.getLinks(page, startUrl, "citytr"));
             links.addAll(PageParserTool.getLinks(page, startUrl, "countytr"));
+            links.addAll(PageParserTool.getTownLinks(page, startUrl, "countytr"));
             for (String link : links) {
                 Links.addUnvisitedUrlQueue(link);
                 System.err.println("新增爬取路径: " + link);

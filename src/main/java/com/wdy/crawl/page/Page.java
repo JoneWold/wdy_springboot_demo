@@ -1,14 +1,10 @@
 package com.wdy.crawl.page;
 
 
-import cn.hutool.core.thread.ThreadUtil;
-import cn.hutool.http.HttpUtil;
-import com.wdy.crawl.util.CharsetDetector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.UnsupportedEncodingException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * page
@@ -59,11 +55,10 @@ public class Page {
             return null;
         }
         if (charset == null) {
-            // 根据内容来猜测 字符编码
-            charset = CharsetDetector.guessEncoding(content);
+            // 根据内容来猜测 字符编码，返回的html数据乱码
+            charset = "UTF-8";//CharsetDetector.guessEncoding(content);
         }
         try {
-            //返回的html数据乱码
             this.html = new String(content, charset);
             return html;
         } catch (UnsupportedEncodingException ex) {
@@ -80,9 +75,6 @@ public class Page {
             return doc;
         }
         try {
-            ThreadUtil.sleep(1, TimeUnit.SECONDS);
-            String string = HttpUtil.get(url);
-//            this.doc = Jsoup.parse(string, url);
             this.doc = Jsoup.parse(this.getHtml(), url);
             return doc;
         } catch (Exception ex) {
