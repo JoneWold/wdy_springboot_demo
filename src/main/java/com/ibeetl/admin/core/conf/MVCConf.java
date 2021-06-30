@@ -9,6 +9,7 @@ import org.beetl.core.GroupTemplate;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.format.Formatter;
@@ -34,8 +35,8 @@ public class MVCConf implements WebMvcConfigurer, InitializingBean {
      * 系统名称,可以在application.properties中配置
      * app.name=xxx
      */
-//    @Value("${app.name}")
-//    String appName;
+    @Value("${app.name}")
+    String appName;
 
     // 开发用的模拟当前用户和机构
     Long useId;
@@ -85,41 +86,39 @@ public class MVCConf implements WebMvcConfigurer, InitializingBean {
         this.orgId = env.getProperty("user.orgId", Long.class);
         this.mvcTestPath = env.getProperty("mvc.test.path");
         Map<String, Object> var = new HashMap<>(5);
-        String appName =  env.getProperty("app.name");
-        if(appName==null) {
-        	 var.put("appName",DEFAULT_APP_NAME);
-      
+        String appName = env.getProperty("app.name");
+        if (appName == null) {
+            var.put("appName", DEFAULT_APP_NAME);
+
         }
-        
+
         var.put("jsVer", System.currentTimeMillis());
-       
-       groupTemplate.setSharedVars(var);
-        
-        
-   
-       
+
+        groupTemplate.setSharedVars(var);
+
+
     }
 
 
 }
 
-class MyDateFormatter implements Formatter<Date>{
+class MyDateFormatter implements Formatter<Date> {
 
     @Override
     public Date parse(String text, Locale locale) throws ParseException {
-        if(text==null){
+        if (text == null) {
             return null;
         }
-        if(text.trim().length()==0){
+        if (text.trim().length() == 0) {
             return null;
         }
-        if(text.length()<=10){
+        if (text.length() <= 10) {
             String format = "yyyy-MM-dd";
-            SimpleDateFormat sdf = new SimpleDateFormat(format,locale);
+            SimpleDateFormat sdf = new SimpleDateFormat(format, locale);
             return sdf.parse(text);
-        }else{
+        } else {
             String format = "yyyy-MM-dd HH:mm:ss";
-            SimpleDateFormat sdf = new SimpleDateFormat(format,locale);
+            SimpleDateFormat sdf = new SimpleDateFormat(format, locale);
             return sdf.parse(text);
         }
 
@@ -128,8 +127,8 @@ class MyDateFormatter implements Formatter<Date>{
     @Override
     public String print(Date object, Locale locale) {
         String format = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(format,locale);
-        return sdf.format((Date)object);
+        SimpleDateFormat sdf = new SimpleDateFormat(format, locale);
+        return sdf.format((Date) object);
     }
 }
 
