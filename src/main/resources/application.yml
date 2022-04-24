@@ -65,12 +65,12 @@ student:
   # List和数组类型可以写成：
   # - 篮球
   # - 跑步
-  hobbies: [篮球,跑步]
-  skills: [Java编程,金融]
+  hobbies: [ 篮球,跑步 ]
+  skills: [ Java编程,金融 ]
   # 对象类型数据可以写成：
   # nickName: 旺财
   # strain: 哈士奇
-  pet: {nickName: 旺财, strain: 哈士奇}
+  pet: { nickName: 旺财, strain: 哈士奇 }
   email: 115@1.com
   userName: 管理员
 

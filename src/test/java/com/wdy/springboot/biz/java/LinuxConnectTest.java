@@ -19,17 +19,26 @@ public class LinuxConnectTest {
 
 
     public static void main(String[] args) throws Exception {
+        testLinuxOpt();
+
+    }
+
+
+    /**
+     * Linux操作测试
+     */
+    private static void testLinuxOpt() throws IOException {
         Connection conn = LinuxServerUtil.getSSHConnection();
-        System.out.println(conn);
-//        Session session = conn.openSession();
-//        session.execCommand("cd /home/html; ls;");
-//        // 消费所有输入流
-//        String inStr = consumeInputStream(session.getStdout());
-//        String errStr = consumeInputStream(session.getStderr());
-//        System.out.println("......" + inStr);
-//        System.out.println("......" + errStr);
-//        session.close();
-//        session.close();
+        //获取会话信息
+        Session session = conn.openSession();
+        session.execCommand("cd /home/html; ls;");
+        // 消费所有输入流
+        String inStr = LinuxServerUtil.consumeInputStream(session.getStdout());
+        String errStr = LinuxServerUtil.consumeInputStream(session.getStderr());
+        System.out.println("inStr ......" + inStr);
+        System.err.println("errStr ......" + errStr);
+        session.close();
+        conn.close();
     }
 
 
@@ -72,19 +81,5 @@ public class LinuxConnectTest {
         return lastLineLog;
     }
 
-    public static String consumeInputStream(InputStream is) {
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String s = "";
-        StringBuilder sb = new StringBuilder();
-        try {
-            while ((s = br.readLine()) != null) {
-                System.out.println(s);
-                sb.append(s);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
-    }
 
 }
