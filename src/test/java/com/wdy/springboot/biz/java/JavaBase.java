@@ -1,7 +1,11 @@
 package com.wdy.springboot.biz.java;
 
+import cn.hutool.core.date.DateField;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
 import java.util.Scanner;
 
 class JavaBase {
@@ -22,5 +26,16 @@ class JavaBase {
         scanner.nextInt();
     }
 
+
+    @Test
+    void test() {
+        DateTime time = DateUtil.parse("2021.03", "yyyy.MM");
+        Date newDate = DateUtil.offset(time, DateField.YEAR, -2);
+        String a0192C = DateUtil.format(newDate, "yyyy.MM");
+        System.out.println(a0192C);
+        //常用偏移 DateTime newDate2 = DateUtil.offsetDay(date, 3); Assert.assertEquals("2017-03-04 22:33:23", newDate2.toString());
+        //常用偏移 DateTime newDate3 = DateUtil.offsetHour(date, -3); Assert.assertEquals("2017-03-01 19:33:23", newDate3.toString());
+
+    }
 
 }
