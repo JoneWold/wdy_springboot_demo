@@ -1,6 +1,7 @@
 package com.wdy.springboot.util;
 
 import ch.ethz.ssh2.Connection;
+import ch.ethz.ssh2.StreamGobbler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,7 +59,9 @@ public class LinuxServerUtil {
     /**
      * 消费所有输入流
      */
-    public static String consumeInputStream(InputStream is) {
+    public static String consumeInputStream(InputStream stream) {
+        //创建输入流
+        InputStream is = new StreamGobbler(stream);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
         try {

@@ -31,12 +31,14 @@ public class LinuxConnectTest {
         Connection conn = LinuxServerUtil.getSSHConnection();
         //获取会话信息
         Session session = conn.openSession();
-        session.execCommand("cd /home/html; ls;");
+        //执行命令
+        session.execCommand("uname -a && uptime && who && cd /home/html; ls;");
         // 消费所有输入流
         String inStr = LinuxServerUtil.consumeInputStream(session.getStdout());
         String errStr = LinuxServerUtil.consumeInputStream(session.getStderr());
         System.out.println("inStr ......" + inStr);
         System.err.println("errStr ......" + errStr);
+        System.out.println("..." + session.getExitStatus());
         session.close();
         conn.close();
     }
