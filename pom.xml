@@ -228,6 +228,12 @@
             <artifactId>jpinyin</artifactId>
             <version>${jpinyin.version}</version>
         </dependency>
+        <!--SSH远程连接-->
+        <dependency>
+            <groupId>ch.ethz.ganymed</groupId>
+            <artifactId>ganymed-ssh2</artifactId>
+            <version>build210</version>
+        </dependency>
 
     </dependencies>
 
