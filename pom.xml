@@ -234,7 +234,22 @@
             <artifactId>ganymed-ssh2</artifactId>
             <version>build210</version>
         </dependency>
-
+        <!--是基于 JNA 的（本地）操作系统和硬件信息库-->
+        <dependency>
+            <groupId>com.github.oshi</groupId>
+            <artifactId>oshi-core</artifactId>
+            <version>6.1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>5.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>5.11.0</version>
+        </dependency>
     </dependencies>
 
 

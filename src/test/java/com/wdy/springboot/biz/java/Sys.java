@@ -1,6 +1,12 @@
 package com.wdy.springboot.biz.java;
 
+import oshi.SystemInfo;
+import oshi.software.os.FileSystem;
+import oshi.software.os.OSFileStore;
+import oshi.software.os.OperatingSystem;
+
 import java.net.InetAddress;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -11,7 +17,32 @@ import java.util.Properties;
 public class Sys {
 
     public static void main(String[] args) throws Exception {
-        property();
+        sys();
+//        property();
+
+        String format = String.format("%.3f" , 102.361);
+        System.out.println(format);
+    }
+
+
+    /**
+     * 查看磁盘状态
+     */
+    private static void sys() {
+        SystemInfo si = new SystemInfo();
+        OperatingSystem os = si.getOperatingSystem();
+        FileSystem fileSystem = os.getFileSystem();
+        List<OSFileStore> fileStores = fileSystem.getFileStores();
+        for (OSFileStore fs : fileStores) {
+            long free = fs.getUsableSpace();
+            long total = fs.getTotalSpace();
+            long used = total - free;
+            System.out.println(">>>> " + fs.getMount());
+            System.out.println("--->>> total " + convertFileSize(total));
+            System.out.println("--->>> free " + convertFileSize(free));
+            System.out.println("--->>> used " + convertFileSize(used));
+        }
+
     }
 
     /**
@@ -64,5 +95,28 @@ public class Sys {
         System.out.println("用户的当前工作目录：    " + props.getProperty("user.dir"));
     }
 
+    /**
+     * 字节转换
+     *
+     * @param size 字节大小
+     * @return 转换后值
+     */
+    public static String convertFileSize(long size) {
+        long kb = 1024;
+        long mb = kb * 1024;
+        long gb = mb * 1024;
+        if (size >= gb) {
+            //保留小数点后面一位
+            return String.format("%.1f GB" , (float) size / gb);
+        } else if (size >= mb) {
+            float f = (float) size / mb;
+            return String.format(f > 100 ? "%.0f MB" : "%.1f MB" , f);
+        } else if (size >= kb) {
+            float f = (float) size / kb;
+            return String.format(f > 100 ? "%.0f KB" : "%.1f KB" , f);
+        } else {
+            return String.format("%d B" , size);
+        }
+    }
 
 }
