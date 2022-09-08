@@ -21,7 +21,7 @@
         <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
         <mybatis-plus-generator.version>3.3.2</mybatis-plus-generator.version>
         <mysql.version>8.0.18</mysql.version>
-        <postgresql.version>42.2.5</postgresql.version>
+        <postgresql.version>42.4.1</postgresql.version>
         <freemarker.version>2.3.30</freemarker.version>
         <velocity.version>2.1</velocity.version>
         <hutool.all.version>5.3.3</hutool.all.version>
